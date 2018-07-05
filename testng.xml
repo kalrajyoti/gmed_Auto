@@ -1,0 +1,297 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
+<suite verbose="0" name="Gmed_test_suite" parallel="false">
+
+	<listeners>
+		<listener class-name="com.gmed.helper.ExtentReporterNG" />
+	</listeners>
+	<parameter name="GPINURL" value="gPinURL" />
+	<parameter name="PATIENTPORTALSIGNUP" value="patientPortalSignUp" />
+	<parameter name="PATIENTPORTALLOGIN" value="patientPortalLogin" />
+	 <parameter name="GGASTROLLOGIN" value="gGastroURL" /> 
+	<parameter name="BROWSERSCREENSHOT" value="ie" />
+	<parameter name="CleanupSuite" value="gGastro" />
+	<!-- <parameter name="OutputManagerTest" value="verifyPublishToPortal" /> -->
+	
+	<test name="Base_Test" preserve-order="true">
+		<classes>
+			<class name="com.gmed.test.BaseTestClass" />
+		</classes>
+	</test>
+ 	  
+  <!-- <test name="MedicalChartTest" preserve-order="true">
+		<classes>
+			<class name="com.gmed.test.MedicalChartTest"/>	
+		</classes>
+		
+</test>  
+ <test name="DemographicsTest" preserve-order="true">
+		<classes>
+			<class name="com.gmed.test.DemographicsTest"/>
+			
+		</classes>
+	
+</test>    
+ -->
+
+
+ <!-- <test name="ProfileTest" preserve-order="true">
+		<classes>
+			<class name="com.gmed.test.ProfileTest">
+				<methods>
+				        <exclude name="verifyDemographicsData" /> 
+				      <exclude name="verifyProfileMenuIcons" />
+				      <exclude name="verifyProblemSectionInProfile" />
+				      <exclude name="verifyRecommendationsInProfile" /> 
+				      <exclude name="verifyFutureAppointmentInProfile" />  
+				      <exclude name="verifyRecallsInProfile" />  
+				         <exclude name="verifyVitalsInProfile" /> 
+				          <exclude name="verifyAdvancedDirectivesInProfile" /> 
+				         <exclude name="verifyPIFSectionInProfile" />  
+				        <exclude name="verifyMedicationsSectionInProfile" /> 
+				           <exclude name="verifyMedicationsOrderInProfile" />  
+				            <exclude name="verifyAllergiesInProfile" /> 
+				           <exclude name="verifyCondtionsInProfile" />   
+				            <exclude name="verifyImmunizationsInProfile" />   
+				             <exclude name="verifyDxStudiesInProfile" />  
+				               <exclude name="verifyProcedureInProfile" />     
+				                <exclude name="verifyFamilyHistoryInProfile" />    
+				                 <exclude name="verifyGeneralInProfile" />    
+				                  <exclude name="verifyAlcholInProfile" />    
+				                    <exclude name="verifyTobaccoInProfile" />    
+				                  <exclude name="verifyDrugInProfile" />   
+				                  <exclude name="verifyExerciseInProfile" />     
+				                 <exclude name="verifyCaffeineInProfile" />     
+				               
+				      
+				</methods>
+			</class>
+
+		</classes>
+	</test> --> 
+
+
+
+<!--     <test name="PatientChartTest" preserve-order="true">
+		<classes>
+			<class name="com.gmed.test.PatientChartTest">
+			<methods>
+			<exclude name="verifyNewButton" />
+		    <include name="verifyChartView" /> 
+		    <exclude name="verifyChartAccessAuditReport" /> 
+			</methods>
+		</class>
+		</classes>
+</test>   -->
+<!--   <test name="QuickNoteTest" preserve-order="true">
+		<classes>
+			<class name="com.gmed.test.QuickNoteTest">	
+			<methods>
+			<include name="verifyApplyQuickNote" />
+		    <include name="verifyApplyPersonalQuickNote" /> 
+		    <include name="verifyApplyGlobalQuickNote" /> 
+			</methods>
+			</class>
+		</classes> 
+</test> -->
+
+
+
+
+<!-- 
+ 	 <test name="DocumentTest" preserve-order="true">
+		<classes>
+			<class name="com.gmed.test.DocumentTest">
+			<methods>
+			 <exclude name="verifyColonoscopySection" />
+		     <exclude name="verifyStaffDetails" />
+		     <exclude name="verifyPatientDemographics" />
+		   <exclude name="verifyInstrumentSection" />
+		     <exclude name="verifyImage" />
+		    <exclude name="verifyASAClass" />
+		    <exclude name="verifyHPISection" />
+		    <exclude name="verifyAdministeredMedication" />
+		    <exclude name="verifyIndicationSection" />
+		    <exclude name="verifyVitalsSignSection" />
+		    <exclude name="verifyPhysicalExamSection" /> 
+		   <exclude name="verifyProcedureSection" />
+		    <exclude name="verifyLimitationSection" />
+		   <exclude name="verifyFindingsSection" />
+		    <exclude name="verifyInterventionSection" />
+		   <exclude name="verifyPlanSection" /> 
+		   <exclude name="verifySampleSection" />
+		  <exclude name="verifyAdditionalNotesSection" /> 
+		   <exclude name="verifySignFunctionality" />
+		   <exclude name = "verifyLockFunctionality" />
+		   <include name = "verifyImpressionSection" />
+
+			</methods>
+			</class>
+		</classes> 
+</test> -->
+ <!-- <test name="TaskTest" preserve-order="true">
+		<classes>
+			<class name="com.gmed.test.TaskTest"/>
+			
+		</classes>
+		
+</test>  
+ <test name="MUTest" preserve-order="true">
+		<classes>
+			<class name="com.gmed.test.MUReport"/>
+			
+		</classes>
+		
+</test> 
+ <test name="CQMTest" preserve-order="true">
+		<classes>
+			<class name="com.gmed.test.CQMReport"/>
+			
+		</classes>
+		</test> 
+		
+	<test name="MIPSTest" preserve-order="true">
+		<classes>
+			<class name="com.gmed.test.MIPSReport"/>
+			
+		</classes>
+		
+</test> 
+ 	<test name="ImmunizationTest" preserve-order="true">
+		<classes>
+			<class name="com.gmed.test.ImmunizationTest"/>
+			
+		</classes>
+		
+</test> 
+<test name="MessagingTest" preserve-order="true">
+		<classes>
+			<class name="com.gmed.test.MessagingTest"/>
+			
+		</classes>
+		
+</test>  
+  <test name="DirectMessageTest" preserve-order="true">
+		<classes>
+			<class name="com.gmed.test.DirectMessageTest"/>
+			
+		</classes>
+		
+</test>  -->
+  <!-- <test name="PrescriptionTest" preserve-order="true">
+		<classes>
+			<class name="com.gmed.test.PrescriptionTest">
+			
+			<methods>
+		 <exclude name="prescribeByVerbalInstruction"/> 
+				 <exclude name="prescribeBySendMethod"/> 
+					<exclude name="prescribeByPharmacy"/>
+						<exclude name="prescribeByPrint"/>
+							 <exclude name="prescribeByHandwritten"/> 
+								<exclude name="prescribeBySample"/>
+									<exclude name="verifyPrintIcon"/> 
+										 <exclude name="verifyMedReconciliation"/> 
+											<exclude name="verifyEPrescription"/>
+											     <exclude name="verifyNoMedicationCheckbox"/>
+											          <exclude name="verifySearchIcon"/>
+											               <exclude name="verifySearchTab"/>
+											                    <exclude name="verifyMedicationField"/>
+											                         <exclude name="verifySearchField"/>
+											                         <exclude name="searchMedication"/>
+											                         <exclude name="verifyModifyItem"/>
+											                          <exclude name="verifyDeleteOption"/>  
+											                          <exclude name="verifyContextPropertyOption"/>
+											                           <exclude name="RClickAddToFavorites"/> 
+											                           <exclude name="verifyMedicationReport"/> 
+											                          <exclude name="verifyDrugAllergy"/> 
+											                         <exclude name="verifyClinicalInteractionsReport"/>
+											                         <exclude name="verifyMedicationPerPatientReport"/> 
+											                          <exclude name="verifyDrugDrugInteration"/>
+											                            <exclude name="prescribeCurrentMedication"/> 
+											                            <exclude name="RClickRenewMedication"/> 
+											                             <exclude name="RClickStopMedication"/> 
+											                             <exclude name="RClickHistory"/> 
+											                             <exclude name="verifyHistoryIcon"/> 
+											                         <exclude name="prescribeByAgent"/> 
+											                         
+											                         
+											                             
+			</methods>
+			</class>
+		</classes>
+		
+</test>  -->
+
+<!--  <test name="gGastroSmokeTest" preserve-order="true">
+		<classes>
+			<class name="com.gmed.test.gGastroSmokeTest">
+			</class>
+
+		</classes>
+		
+</test>   -->
+
+<!--  <test name="OrdersTest" preserve-order="true">
+		<classes>
+			<class name="com.gmed.test.OrdersTest">
+			<methods>
+			 <exclude name="verifyOrderType"/>
+			 <exclude name="verifyLabOrderCreation"/>
+			 <exclude name="verifyFollowupOrderCreation"/>
+			 <include name="verifyRecallDependency"/>
+			</methods>
+			</class>
+			
+		</classes>
+		
+</test> -->
+
+<!--  <test name="ScanningTest" preserve-order="true">
+		<classes>
+			<class name="com.gmed.test.ScanningTest">
+			<methods>
+			 <exclude name="verifySaveScanned"/>
+			 <exclude name="verifyDelete"/>
+			 <exclude name="verifyHistoryOption"/>
+			 <exclude name="verifyLocationAddition"/>
+			 <include name ="verifyAddChartRemarks"/>
+			 <include name ="verifyAddServiceInScanning"/>
+			 <include name ="verifyAddProcedureInScanning"/>
+			 <include name ="verifyAddDxStudiesInScanning"/>
+			 <include name ="verifyAddOrder"/>
+			 <exclude name ="verifyAddDiagonses"/>
+			 
+			 
+			</methods>
+			</class>
+			
+		</classes>
+		
+</test> -->
+
+<test name="OutputMangerTest" preserve-order="true">
+		<classes>
+			<class name="com.gmed.test.OutputManagerTest">
+			
+			<methods>
+ 	              <exclude name="verifyCleanUp"/> 
+			<exclude name="verifySignOperation"/> 
+				 <exclude name="verifyPrintOperation"/>
+				 <exclude name="verifyFaxOperation"/> 
+				   <exclude name="verifyPublishToPortal"/>  
+				  <exclude name="verifySendForSignature"/>  
+				 
+					</methods>
+			</class>
+			
+		</classes>
+		
+</test>  
+<test name="RecallTest" preserve-order="true">
+		<classes>
+			<class name="com.gmed.test.RecallTest"/>
+			
+		</classes>
+		
+</test>
+</suite>
