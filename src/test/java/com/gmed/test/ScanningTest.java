@@ -13,12 +13,13 @@ import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 import org.testng.asserts.Assertion;
 import com.gmed.Frames.Frames;
+import com.gmed.base.BaseTestClass;
 import com.gmed.pages.LeftPanelPage;
 import com.gmed.pages.LoginPage;
 import com.gmed.pages.ScanningPage;
 import com.gmed.utils.ExcelFileUtilty;
 
-public class ScanningTest extends BaseTestClass1 {
+public class ScanningTest extends BaseTestClass {
 
 	private static Logger				logger			= LogManager.getLogger(OrdersTest.class);
 	/** Page reference used to access the methods of those pages */

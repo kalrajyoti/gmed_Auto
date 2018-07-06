@@ -16,6 +16,7 @@ import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 import org.testng.asserts.Assertion;
 
+import com.gmed.base.BaseTestClass;
 import com.gmed.pages.ConfigurationPage;
 import com.gmed.pages.DocumentPage;
 import com.gmed.pages.LeftPanelPage;
@@ -31,7 +32,7 @@ import com.gmed.utils.ConstantsFile;
 import com.gmed.utils.ExcelFileUtilty;
 
 
-public class PrescriptionTest extends BaseTestClass1 {
+public class PrescriptionTest extends BaseTestClass {
 	/** Logger to log the PrescriptionTest log messages */
 	private static Logger logger  = LogManager.getLogger(PrescriptionTest.class); 
 	/**Assertion to verify different elements of the page */

@@ -6,6 +6,7 @@ import org.testng.annotations.Test;
 import org.testng.asserts.Assertion;
 
 import com.gmed.AutoIT.GpinUserLogin;
+import com.gmed.base.BaseTestClass;
 import com.gmed.pages.AppointmentPage;
 import com.gmed.pages.DocumentPage;
 import com.gmed.pages.LeftPanelPage;
@@ -17,7 +18,7 @@ import com.gmed.patientportal.JavaMail;
 import com.gmed.patientportal.PatientPortalLogin;
 import com.gmed.utils.ConstantsFile;
 import com.gpm.pages.BillingPage;
-public class PatientPortalTestClass extends BaseTestClass1{
+public class PatientPortalTestClass extends BaseTestClass{
 	private static Logger logger  = LogManager.getLogger(PatientPortalTestClass.class);
 	private LoginPage loginPageObj;
 	private GpinUserLogin gpinpageobj;

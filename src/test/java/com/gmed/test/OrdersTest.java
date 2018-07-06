@@ -13,6 +13,7 @@ import org.testng.annotations.Test;
 import org.testng.asserts.Assertion;
 
 import com.gmed.Frames.Frames;
+import com.gmed.base.BaseTestClass;
 import com.gmed.pages.AppointmentPage;
 import com.gmed.pages.DocumentPage;
 import com.gmed.pages.HomePage;
@@ -25,7 +26,7 @@ import com.gmed.utils.ConstantsFile;
 import com.gmed.utils.DateUtil;
 import com.gmed.utils.ExcelFileUtilty;
 
-public class OrdersTest extends BaseTestClass1 {
+public class OrdersTest extends BaseTestClass {
 	/** Logger to log the OrdersTest log messages */
 	private static Logger				logger			= LogManager.getLogger(OrdersTest.class);
 	/** Login Page reference used to login for logging in for test */

@@ -13,6 +13,7 @@ import org.testng.annotations.Test;
 import org.testng.asserts.Assertion;
 
 import com.gmed.AutoIT.GpinUserLogin;
+import com.gmed.base.BaseTestClass;
 import com.gmed.pages.AppointmentPage;
 import com.gmed.pages.ConfigurationPage;
 import com.gmed.pages.DemographicsPage;
@@ -31,7 +32,7 @@ import com.gmed.utils.ExcelFileUtilty;
 import com.gpm.pages.BillingPage;
 
 
-public class ProfileTest extends BaseTestClass1 {
+public class ProfileTest extends BaseTestClass {
 	/** Logger to log the ProfileTest log messages */
 	private static Logger logger  = LogManager.getLogger(ProfileTest.class); 
 	/**Assertion to verify different elements of the page */

@@ -10,6 +10,7 @@ import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 import org.testng.asserts.Assertion;
 
+import com.gmed.base.BaseTestClass;
 import com.gmed.pages.ConfigurationPage;
 import com.gmed.pages.DemographicsPage;
 import com.gmed.pages.DocumentPage;
@@ -20,7 +21,7 @@ import com.gmed.pages.PatientChart;
 import com.gmed.pages.PrescriptionPage;
 import com.gmed.pages.Profile;
 import com.gmed.pages.ReportPage;
-import com.gmed.test.BaseTestClass1;
+
 import com.gmed.test.CQMReport;
 import com.gmed.test.DemographicsTest;
 import com.gmed.utils.ConstantsFile;
@@ -28,7 +29,7 @@ import com.gmed.utils.ExcelFileUtilty;
 import com.gpm.pages.BillingPage;
 import com.gpm.pages.PostedChargePage;
 
-public class ChargeTest extends BaseTestClass1 {
+public class ChargeTest extends BaseTestClass {
 	/** Logger to log the Charge log messages */
 	private static Logger logger  = LogManager.getLogger(ChargeTest.class); 
 	/**Assertion to verify different elements of the page */

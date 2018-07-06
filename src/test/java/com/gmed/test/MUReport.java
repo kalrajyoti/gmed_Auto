@@ -11,15 +11,14 @@ import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 import org.testng.asserts.Assertion;
 
-
-
+import com.gmed.base.BaseTestClass;
 import com.gmed.pages.LeftPanelPage;
 import com.gmed.pages.LoginPage;
 import com.gmed.pages.ReportPage;
 import com.gmed.utils.ConstantsFile;
 import com.gmed.utils.ExcelFileUtilty;
 
-public class MUReport extends BaseTestClass1 {
+public class MUReport extends BaseTestClass {
 		/** Logger to log the MUReport log messages */
 		private static Logger logger  = LogManager.getLogger(MUReport.class); 
 		/**Assertion to verify different elements of the page */

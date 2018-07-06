@@ -8,6 +8,7 @@ import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 import org.testng.asserts.Assertion;
 
+import com.gmed.base.BaseTestClass;
 import com.gmed.pages.ConfigurationPage;
 import com.gmed.pages.DemographicsPage;
 import com.gmed.pages.DocumentPage;
@@ -24,7 +25,7 @@ import com.gmed.patientportal.PatientPortalLogin;
 import com.gmed.utils.ConstantsFile;
 import com.gmed.utils.ExcelFileUtilty;
 
-public class RecallTest extends BaseTestClass1 {
+public class RecallTest extends BaseTestClass {
 	/** Logger to log the Recall log messages */
 	private static Logger logger  = LogManager.getLogger(RecallTest.class); 
 	/**Assertion to verify different elements of the page */

@@ -7,6 +7,8 @@ import org.apache.log4j.Logger;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 import org.testng.asserts.Assertion;
+
+import com.gmed.base.BaseTestClass;
 import com.gmed.pages.DocumentPage;
 import com.gmed.pages.LeftPanelPage;
 import com.gmed.pages.LoginPage;
@@ -15,7 +17,7 @@ import com.gmed.utils.ExcelFileUtilty;
 
 
 
-public class QuickNoteTest extends BaseTestClass1 {
+public class QuickNoteTest extends BaseTestClass {
 	/** Logger to log the QuickNoteTest log messages */
 	private static Logger logger  = LogManager.getLogger(PatientChartTest.class); 
 	/** Login Page reference used to login for logging in for test  */

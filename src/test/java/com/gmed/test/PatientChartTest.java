@@ -13,6 +13,7 @@ import org.testng.asserts.SoftAssert;
 import com.gmed.AutoIT.GpinUserLogin;
 import com.gmed.Frames.DynamicFramePage;
 import com.gmed.Frames.Frames;
+import com.gmed.base.BaseTestClass;
 import com.gmed.pages.*;
 import com.gmed.utils.ConstantsFile;
 //import com.gmed.pages.BillingPage;
@@ -27,7 +28,7 @@ import com.gmed.utils.SeleniumUtil;
 import com.gpm.pages.AccountInquiryPage;
 import com.gpm.pages.BillingPage;
 
-public class PatientChartTest extends BaseTestClass1 {
+public class PatientChartTest extends BaseTestClass {
 		/** Logger to log the GpmSmokeTest log messages */
 		private static Logger logger  = LogManager.getLogger(PatientChartTest.class); 
 		private LoginPage loginPageObj;
