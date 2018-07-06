@@ -89,5 +89,7 @@ public class Frames {
 	public static final String OUTPUT_CONFIGURATION                 = "fraDefault>>Popup_Frame>>fraConfiguration_Frame";
 	public static final String OUTPUT_PROVIDER                      = "fraDefault>>Popup_Frame>>>>DialogBox_Frame>>fraProvider_Frame";
 	public static final String USERLIST                             =  "fraDefault>>panConfiguration_Frame>>DialogBox_Frame>>DialogBox_Frame>>panUserList_Frame";
+	//public static final String PIF_INSIDE                           = "fraDefault>>>panConfiguration_Frame>>DialogBox_Frame>>fraSystem_Frame>>DialogBox_Frame";
+	public static final String PIF_USER_LIST                        = "fraDefault>>panConfiguration_Frame>>DialogBox_Frame>>fraSystem_Frame>>DialogBox_Frame>>panUserList_Frame>>fraUserList_Frame";
 }
 

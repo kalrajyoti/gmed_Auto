@@ -3,6 +3,7 @@ package com.gmed.pages;
 import static com.gmed.helper.DriverFactory.driver;
 import static com.gmed.helper.DriverFactory.action;
 import java.util.List;
+import java.util.Map;
 
 import javax.swing.RepaintManager;
 
@@ -13,13 +14,13 @@ import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
 import org.sikuli.script.FindFailed;
+import org.testng.annotations.BeforeClass;
 
 import com.gmed.AutoIT.GpinUserLogin;
 import com.gmed.Frames.DynamicFramePage;
 import com.gmed.Frames.Frames;
 import com.gmed.base.BaseAbstractPage;
-import com.gmed.test.PrescriptionTest;
-import com.gmed.test.ProfileTest;
+
 import com.gmed.utils.ConstantsFile;
 import com.gmed.utils.DateUtil;
 import com.gmed.utils.ExcelFileUtilty;
@@ -82,8 +83,152 @@ public class PrescriptionPage extends BaseAbstractPage {
 	public static By historyRowColums                    = By.xpath(".//tr[@id='tblList_headerRow']");
 	public static By memberTextBox                       = By.id("txtUser_TextBox");
 	public static By agentText                           = By.id("tblAgentOfCollection_div");
+	/**contains the Prescription page data*/
+	public static Map<String, String> preData;
+
+
+	/**contains the Medical Chart page data*/
+	public static Map<String, String> preData1;
+
+	/**contains the Profile page data*/
+	public static Map<String, String> preData2;
+
+
+
+	/**These are the variables which are used to store different data for Prescription module*/
+	public static String existingPatientfirstname;
+	public static String existingPatientlastname;
+	public static String keflexMedication;
+	public static String ketekMedication;
+	public static String sronyxMedication;
+	public static String feroconMedication;
+	public static String medicationForHandwritten;
+	public static String medicationForSample;
+	public static String completeKeflexMedicationName;
+	public static String completeKetekMedicationName;
+	public static String sronyxCompleteName;
+	public static String medication4CompleteName;
+	public static String handwrittenMedicationCompleteName;
+	public static String sampleMedicationCompleteName;
+	public static String actionForMedication;
+	public static String doseForMedication;
+	public static String unitForMedication;
+	public static String routeForMedication;
+	public static String timingForMedication;
+	public static String quantityForMedication;
+	public static String refillForMedication;
+	public static String existingPatientfirstname1;
+	public static String existingPatientlastname1;
+	public static String alphabetName1;
+	public static String alphabetName2;
+	public static String patientcompleteName ;
+	public static String providercompleteName ;
+	public static String medicationForDrugInteraction;
+	public static String currentMedicationName ;
+	public static String historyHeader ;
+	public static String historyMainHeader ;
+	public static String unprescribeUser;
+	public static String unprescribePassword;
+	public static String memberFirstName;
+	public static String memberLastName;
+	public static String unprescribeFirstName;
+	public static String unprescribeLastName;
+	public static String unprescribeCompleteName;
+	public static String providercomName;
+	/** These are the variables which are present on "Prescription" sheet in the excel*/
+	public static final String PATIENT_FIRSTNAME 				                   = "patientfirstname";
+	public static final String PATIENT_LASTNAME 				                   = "patientlastname";
+	public static final String KEFLEX_MEDICATION 				                   = "medicationname1";
+	public static final String KETEK_MEDICATION 				                   = "medicationname2";
+	public static final String SRONY_MEDICATION 				                   = "medicationname3";
+	public static final String FEROCON_MEDICATION 				                   = "medicationname4";
+	public static final String HANDWRITTEN_MEDICATION 				               = "medicationname5";
+	public static final String SAMPLE_MEDICATION 				                   = "medicationname6";
+	public static final String COMPLETE_MEDICATION_NAME1 				           = "keflexCompleteName";
+	public static final String COMPLETE_MEDICATION_NAME2 				           = "ketekCompleteName";
+	public static final String COMPLETE_MEDICATION_NAME3 				           = "sronyxCompleteName";
+	public static final String COMPLETE_MEDICATION_NAME4 				           = "medication4CompleteName";
+	public static final String COMPLETE_MEDICATION_NAME5 				           = "medication5CompleteName";
+	public static final String COMPLETE_MEDICATION_NAME6 				           = "medication6CompleteName";
+	public static final String MEDICATION_ACTION 				                   = "actionForMedication";
+	public static final String MEDICATION_DOSE 				                       = "doseForMedication";
+	public static final String MEDICATION_UNIT 				                       = "unitForMedication";
+	public static final String MEDICATION_ROUTE 				                   = "routeForMedication";
+	public static final String MEDICATION_TIMING 				                   = "timingForMedication";
+	public static final String MEDICATION_QUANTIY 				                   = "medicationQuantity";
+	public static final String REFILL_VALUE 				                       = "refillQuantity";
+	public static final String PATIENT_FIRSTNAME1 				                   = "patientfirstname1";
+	public static final String PATIENT_LASTNAME1 				                   = "patientlastname1";
+	public static final String ALPHABET_NAME1 				                       = "alphabetsName1";
+	public static final String ALPHABET_NAME2 				                       = "alphabetsName2";
+	public static final String PATIENT_COMPLETE_NAME 				               = "patientcompletename";
+	public static final String DRUG_MEDICATION 				                       = "medicationName7";
+	public static final String CURRENT_MEDICATION 				                   = "currentMedicationName";
+	public static final String PROVIDER_COMPLETE_NAME 				               = "providercompleteName";
+	public static final String HISTORY_DATA 				                       = "historyColums";
+	public static final String HISTORY_COLOUM 				                       = "historyMainColums";
+	public static final String UNPRESCRIBE_USERNAME                                = "unprescribeUser";
+	public static final String UNPRESCRIBE_PASSWORD                                = "unprescribepassword";
+	public static final String MEMBER_FIRSTNAME                                    = "memberfirstname";
+	public static final String MEMBER_LASTNAME                                     = "memberlastname";
+	public static final String UNPRESCRIBE_FIRSTNAME                                = "unprescribeUserFirstName";
+	public static final String UNPRESCRIBE_LASTNAME                                = "unprescribeUserLastName";
+	public static final String UNPRESCRIBE_COMPLETENAME                            = "unprescribeCompleteUseName";
+	public static final String PROVIDER_COMP_NAME 				                   = "providercompName";
 	
 	
+	/** This method runs before the first test from the class runs */
+	@BeforeClass
+	public void initClass() throws Exception{
+		logger.info("inside the initClass method for Prescription test class....");
+		preData                                                     = ExcelFileUtilty.readExcelSheet("Prescription");
+		preData1                                                    = ExcelFileUtilty.readExcelSheet("Patients");
+		preData2                                                    = ExcelFileUtilty.readExcelSheet("Profile");
+		existingPatientfirstname                                    = preData.get(PATIENT_FIRSTNAME);
+		existingPatientlastname                                     = preData.get(PATIENT_LASTNAME);
+		keflexMedication                                            = preData.get(KEFLEX_MEDICATION);
+		ketekMedication                                             = preData.get(KETEK_MEDICATION);
+		sronyxMedication                                            = preData.get(SRONY_MEDICATION);
+		feroconMedication                                           = preData.get(FEROCON_MEDICATION);
+		medicationForHandwritten                                    = preData.get(HANDWRITTEN_MEDICATION);
+		medicationForSample                                         = preData.get(SAMPLE_MEDICATION);
+		completeKeflexMedicationName                                = preData.get(COMPLETE_MEDICATION_NAME1);
+		completeKetekMedicationName                                 = preData.get(COMPLETE_MEDICATION_NAME2);
+		sronyxCompleteName                                          = preData.get(COMPLETE_MEDICATION_NAME3);
+		medication4CompleteName                                     = preData.get(COMPLETE_MEDICATION_NAME4);
+		handwrittenMedicationCompleteName                           = preData.get(COMPLETE_MEDICATION_NAME5);
+		sampleMedicationCompleteName                                = preData.get(COMPLETE_MEDICATION_NAME6);
+		actionForMedication                                         = preData.get(MEDICATION_ACTION);
+		doseForMedication                                           = preData.get(MEDICATION_DOSE);
+		unitForMedication                                           = preData.get(MEDICATION_UNIT);
+		routeForMedication                                          = preData.get(MEDICATION_ROUTE);
+		timingForMedication                                         = preData.get(MEDICATION_TIMING);
+		quantityForMedication                                       = preData.get(MEDICATION_QUANTIY);
+		refillForMedication                                         = preData.get(REFILL_VALUE);
+		existingPatientfirstname1                                   = preData1.get(PATIENT_FIRSTNAME1);
+		existingPatientlastname1                                    = preData1.get(PATIENT_LASTNAME1);
+		alphabetName1                                               = preData.get(ALPHABET_NAME1);
+		alphabetName2                                               = preData.get(ALPHABET_NAME2);
+		Profile.recordExistingMedicationForProfile              = preData2.get(Profile.PROFILE_RECORDEXISTING_MEDICATIONNAME);
+		Profile.existingActivityForProfilePatient               = preData2.get(Profile.PROFILE_PATIENT_ACTIVITY);
+		Profile.selectAllergyFormMyAllergies                    = preData2.get(Profile.SELECT_MY_ALLERGY);
+		Profile.userNameForAdvanceDirectiveProfile              = preData2.get(Profile.PROFILE_USER_NAME);
+		patientcompleteName                                         = preData.get(PATIENT_COMPLETE_NAME);
+		medicationForDrugInteraction                                = preData.get(DRUG_MEDICATION); 
+		Profile.medicationUsingUserListForProfile               = preData2.get(Profile.PRESCRIBE_MEDICATION_USERLIST);
+		currentMedicationName                                       = preData.get(CURRENT_MEDICATION); 
+		providercompleteName                                        = preData2.get(PROVIDER_COMPLETE_NAME); 
+		historyHeader                                               = preData.get(HISTORY_DATA);
+		historyMainHeader                                           = preData.get(HISTORY_COLOUM);
+		unprescribeUser                                             = preData.get(UNPRESCRIBE_USERNAME);
+		unprescribePassword                                         = preData.get(UNPRESCRIBE_PASSWORD);
+		memberFirstName                                             = preData.get(MEMBER_FIRSTNAME);
+		memberLastName                                              = preData.get(MEMBER_LASTNAME);
+		unprescribeFirstName                                        = preData.get(UNPRESCRIBE_FIRSTNAME);
+		unprescribeLastName                                         = preData.get(UNPRESCRIBE_LASTNAME);
+		unprescribeCompleteName                                      = preData.get(UNPRESCRIBE_COMPLETENAME);
+		providercomName                                            = preData2.get(PROVIDER_COMP_NAME); 
+	}
 	/**
 	 * This method is used for verify when user click on current medication section present in profile and click on prescribe button then current medication popup should open
 	 * 
@@ -447,13 +592,13 @@ public class PrescriptionPage extends BaseAbstractPage {
 		logger.info("selecting the  Structured SIG for medicine");
 		clickOnStructuredInSIG();
 		logger.info("selecting the dose details form medication ribbon");
-		selectQuanityForMedicationRibbon(PrescriptionTest.actionForMedication,PrescriptionTest.doseForMedication,PrescriptionTest.unitForMedication,PrescriptionTest.routeForMedication,PrescriptionTest.timingForMedication);
+		selectQuanityForMedicationRibbon(PrescriptionPage.actionForMedication,PrescriptionPage.doseForMedication,PrescriptionPage.unitForMedication,PrescriptionPage.routeForMedication,PrescriptionPage.timingForMedication);
 		logger.info("selecting the pharmacy if not present..");
 		selectPharmacy();
 		SeleniumUtil.switchToParentFrame(Frames.TOOLTIP);
 		logger.info("selecting the quanitiy & refill details");
-		SeleniumUtil.getElementWithFluentWait(medicationQuantity).sendKeys(PrescriptionTest.quantityForMedication);
-		SeleniumUtil.getElementWithFluentWait(refilltextBox).sendKeys(PrescriptionTest.refillForMedication);
+		SeleniumUtil.getElementWithFluentWait(medicationQuantity).sendKeys(PrescriptionPage.quantityForMedication);
+		SeleniumUtil.getElementWithFluentWait(refilltextBox).sendKeys(PrescriptionPage.refillForMedication);
 	}
 	/**
 	 * This method is used to verify if provider is associated with the user ,then it should be already present while prescribing any medication
@@ -464,7 +609,7 @@ public class PrescriptionPage extends BaseAbstractPage {
 		logger.info("getting the provider value");
 		ConstantsFile.providerValue=SeleniumUtil.getElementWithFluentWait(providerTextbox).getAttribute("value");
 		System.out.println("provider value"+ ConstantsFile.providerValue);
-		if(! ConstantsFile.providerValue.equalsIgnoreCase(PrescriptionTest.providercomName) ){
+		if(! ConstantsFile.providerValue.equalsIgnoreCase(PrescriptionPage.providercomName) ){
 			logger.info("Provider is documented");
 			isProviderDocument=true;
 		}
@@ -534,7 +679,7 @@ public class PrescriptionPage extends BaseAbstractPage {
 			String rowtext =irows.getText();
 			System.out.println("row Text"+rowtext);
 			String currentDate=DateUtil.getCurrentDateInDateFormatted("M/d/yyyy");
-			if(rowtext.contains(currentDate) && rowtext.contains(ConstantsFile.providerValue) && rowtext.contains(PrescriptionTest.existingPatientfirstname) && rowtext.contains(PrescriptionTest.ketekMedication)) {
+			if(rowtext.contains(currentDate) && rowtext.contains(ConstantsFile.providerValue) && rowtext.contains(PrescriptionPage.existingPatientfirstname) && rowtext.contains(PrescriptionPage.ketekMedication)) {
 				logger.info("correct queue is generated in the e-prescription queue");
 				isRowPresent=true;
 				break;
@@ -565,7 +710,7 @@ public class PrescriptionPage extends BaseAbstractPage {
 			String rowtext =irows.getText();
 			System.out.println("row Text"+rowtext);
 
-			if(rowtext.contains(PrescriptionTest.keflexMedication) ) {
+			if(rowtext.contains(PrescriptionPage.keflexMedication) ) {
 				SeleniumUtil.rightClick(irows);
 				SeleniumUtil.clickOnImageWitScreenInSikuli("selectVoid");
 				SeleniumUtil.switchToParentFrame(Frames.TOOLTIP);	
@@ -609,7 +754,7 @@ public class PrescriptionPage extends BaseAbstractPage {
 			String rowtext =irows.getText();
 			System.out.println("row Text"+rowtext);
 			String currentDate=DateUtil.getCurrentDateInDateFormatted("M/d/yyyy");
-			if(rowtext.contains(currentDate) && rowtext.contains(ConstantsFile.providerValue) && rowtext.contains(PrescriptionTest.ketekMedication)) {
+			if(rowtext.contains(currentDate) && rowtext.contains(ConstantsFile.providerValue) && rowtext.contains(PrescriptionPage.ketekMedication)) {
 				logger.info("correct queue is generated in the e-prescription queue");
 				isRowPresent=true;
 				break;
@@ -714,7 +859,7 @@ public class PrescriptionPage extends BaseAbstractPage {
 	 * This method is used for searching medication with name
 	 */
 	public void searchMedicationByName(){
-		SeleniumUtil.getElementWithFluentWait(medicationNameTextBox).sendKeys(PrescriptionTest.keflexMedication);
+		SeleniumUtil.getElementWithFluentWait(medicationNameTextBox).sendKeys(PrescriptionPage.keflexMedication);
 		SeleniumUtil.getElementWithFluentWait(AppointmentPage.providersearchbutton).click();
 		sleep(5000);
 	}
@@ -861,7 +1006,7 @@ public class PrescriptionPage extends BaseAbstractPage {
 		System.out.println("Created text"+createdText);
 		String serviceText=SeleniumUtil.getElementWithFluentWait(ReportPage.messageContent).getText();
 		System.out.println("Created text"+serviceText);
-		if(createdText.startsWith("Created on") && serviceText.contains(ProfileTest.existingActivityForProfilePatient)){
+		if(createdText.startsWith("Created on") && serviceText.contains(Profile.existingActivityForProfilePatient)){
 			logger.info("Context & property menu have correct properties");
 			SeleniumUtil.getElementWithFluentWait(createdOnText).sendKeys(Keys.ESCAPE);
 			isPropertyDetailsAdded=true;
@@ -921,7 +1066,7 @@ public class PrescriptionPage extends BaseAbstractPage {
 			System.out.println("the rows are:"+irows.getText());
 			String rowtext =irows.getText();
 			System.out.println("row text is"+rowtext);
-			if( rowtext.contains(ProfileTest.selectAllergyFormMyAllergies)){
+			if( rowtext.contains(Profile.selectAllergyFormMyAllergies)){
 				System.out.println("allergy already  added in demographics");
 				SeleniumUtil.rightClick(irows);
 				SeleniumUtil.clickOnImageWitScreenInSikuli("deleteUser");
@@ -1012,7 +1157,7 @@ public class PrescriptionPage extends BaseAbstractPage {
 	 */
 	public void searchUser(){
 		logger.info("search the logged in user by first name & last name");
-		SeleniumUtil.getElementWithFluentWait(ConfigurationPage.searchusertextbox).sendKeys(ProfileTest.userNameForAdvanceDirectiveProfile);
+		SeleniumUtil.getElementWithFluentWait(ConfigurationPage.searchusertextbox).sendKeys(Profile.userNameForAdvanceDirectiveProfile);
 		logger.info("clicking on search button...");
 		SeleniumUtil.getElementWithFluentWait(ConfigurationPage.searchbutton).click();
 		sleep(3000);
@@ -1172,7 +1317,7 @@ public class PrescriptionPage extends BaseAbstractPage {
 		Boolean quantity =SeleniumUtil.getElementWithFluentWait(qtyTextBox).isEnabled();
 		Boolean refill =SeleniumUtil.getElementWithFluentWait(refillsTextBox).isEnabled();
 		String providerValue =SeleniumUtil.getElementWithFluentWait(providerTextBox).getAttribute("value");
-		if(medicationTextbox.equalsIgnoreCase("True") && strengthText && formText && !(sigText.isEmpty()) && quantity && refill && providerValue.contains(PrescriptionTest.providercompleteName)){
+		if(medicationTextbox.equalsIgnoreCase("True") && strengthText && formText && !(sigText.isEmpty()) && quantity && refill && providerValue.contains(PrescriptionPage.providercompleteName)){
 			System.out.println("All the correct properties are present for renew options");
 			isRenewPropertyPresent=true;
 		}
@@ -1191,7 +1336,7 @@ public class PrescriptionPage extends BaseAbstractPage {
 		for(WebElement irows:totaltrrows){
 			String rowtext =irows.getText();
 			System.out.println("row is"+rowtext);
-			if(rowtext.contains("Renewed") && rowtext.contains(PrescriptionTest.providercompleteName) && rowtext.contains(ConstantsFile.completeUserName)){
+			if(rowtext.contains("Renewed") && rowtext.contains(PrescriptionPage.providercompleteName) && rowtext.contains(ConstantsFile.completeUserName)){
 				System.out.println("correct status is present");
 				checkMedicationStatus=true;
 			}
@@ -1229,7 +1374,7 @@ public class PrescriptionPage extends BaseAbstractPage {
 				for(WebElement irows1:noOfRows){
 					String rowtext1 =irows1.getText();
 					System.out.println("row is"+rowtext1);
-					if(rowtext1.contains(PrescriptionTest.sronyxMedication)){
+					if(rowtext1.contains(PrescriptionPage.sronyxMedication)){
 						System.out.println("Correct medication is documented");
 						isMedicationStopped=true;
 					}
@@ -1254,16 +1399,16 @@ public class PrescriptionPage extends BaseAbstractPage {
 	 * This method is used to select create member for the prescription module
 	 */
 	public void selectPrescriptionMember(){
-		SeleniumUtil.getElementWithFluentWait(AppointmentPage.providersearchtextbox).sendKeys(PrescriptionTest.memberFirstName);
+		SeleniumUtil.getElementWithFluentWait(AppointmentPage.providersearchtextbox).sendKeys(PrescriptionPage.memberFirstName);
 		SeleniumUtil.getElementWithFluentWait(AppointmentPage.providersearchtextbox).sendKeys(Keys.SPACE);
-		SeleniumUtil.getElementWithFluentWait(AppointmentPage.providersearchtextbox).sendKeys(PrescriptionTest.memberLastName);
+		SeleniumUtil.getElementWithFluentWait(AppointmentPage.providersearchtextbox).sendKeys(PrescriptionPage.memberLastName);
 		SeleniumUtil.getElementWithFluentWait(AppointmentPage.providersearchbutton).click();
 		sleep(5000);
 		List <WebElement>membernamevalues =driver.findElements(AppointmentPage.totaltrtags);
 		System.out.println(membernamevalues.size());
 		for(WebElement membersrow:membernamevalues){
 			System.out.println(membersrow.getText());
-			if(membersrow.getText().contains(PrescriptionTest.memberLastName) && (membersrow.getText().contains(PrescriptionTest.memberFirstName))){
+			if(membersrow.getText().contains(PrescriptionPage.memberLastName) && (membersrow.getText().contains(PrescriptionPage.memberFirstName))){
 				SeleniumUtil.doubleClick(membersrow);
 				sleep(5000);
 				break;
@@ -1283,7 +1428,7 @@ public class PrescriptionPage extends BaseAbstractPage {
 		System.out.println(associatedUser);
 		String agentOf =SeleniumUtil.getElementWithFluentWait(agentText).getText();
 		System.out.println(agentOf);
-		if(associatedUser.equalsIgnoreCase(PrescriptionTest.unprescribeCompleteName)  && agentOf.contains(PrescriptionTest.providercomName) ){
+		if(associatedUser.equalsIgnoreCase(PrescriptionPage.unprescribeCompleteName)  && agentOf.contains(PrescriptionPage.providercomName) ){
 			System.out.println("correct agent is associated with member");
 			//SeleniumUtil.getElementWithFluentWait(ConfigurationPage.backButton).click();	
 			isCorrectDetailsPresent=true;

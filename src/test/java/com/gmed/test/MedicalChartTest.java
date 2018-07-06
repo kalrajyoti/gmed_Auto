@@ -11,6 +11,7 @@ import org.testng.annotations.BeforeGroups;
 import org.testng.annotations.Test;
 import org.testng.asserts.Assertion;
 
+import com.gmed.base.BaseTestClass;
 import com.gmed.pages.ConfigurationPage;
 import com.gmed.pages.DemographicsPage;
 import com.gmed.pages.DocumentPage;
@@ -36,55 +37,56 @@ public class MedicalChartTest  extends BaseTestClass {
 	private DocumentPage documentpageobj;
 	/**contains the medical page data*/
 	public static Map<String, String> medicalData;
-	
-	/**These are the variables which are used to store different data for medical chart module*/
-	public static String existingPatientfirstname;
-	public static String existingPatientlastname;
-	public static String existingpatientssn0;
-	public static String existingpatientssn1;
-	public static String existingpatientssn2;
-	public static String existingpatientdateofbirthmonth;
-	public static String existingpatientdateofbirthday;
-	public static String existingpatientdateofbirthyear;
-	public static String existingpatientrecordnumber;
-	public static String existingpatientphonenumber0;
-	public static String existingpatientphonenumber1;
-	public static String existingpatientphonenumber2;
-	public static String existingpatientaccountnumber;
-	
-	/** These are the variables which are present on "Medical chart" sheet in the excel*/
-	public static final String MEDICAL_PATIENT_FIRSTNAME 				                   = "patientfirstname";
-	public static final String MEDICAL_PATIENT_LASTNAME 				                   = "patientlastname";
-	public static final String MEDICAL_PATIENT_SSN0 				                       = "ssn0";
-	public static final String MEDICAL_PATIENT_SSN1 				                       = "ssn1";
-	public static final String MEDICAL_PATIENT_SSN2 				                       = "ssn2";
-	public static final String MEDICAL_PATIENT_DATEOFBIRTHMONTH 				           = "month";
-	public static final String MEDICAL_PATIENT_DATEOFBIRTHDAY 				               = "day";
-	public static final String MEDICAL_PATIENT_DATEOFBIRTHYEAR 				               = "year";
-	public static final String MEDICAL_PATIENT_RECORDNUMBER 			                   = "recordnumber";
-	public static final String MEDICAL_PATIENT_PHONENUMBER0 			                   = "phonenumber0";
-	public static final String MEDICAL_PATIENT_PHONENUMBER1 			                   = "phonenumber1";
-	public static final String MEDICAL_PATIENT_PHONENUMBER2 			                   = "phonenumber2";
-	public static final String MEDICAL_PATIENT_ACCOUNTNUMBER 			                   = "accountnumber";
+//	
+//	/**These are the variables which are used to store different data for medical chart module*/
+//	public static String existingPatientfirstname;
+//	public static String existingPatientlastname;
+//	public static String existingpatientssn0;
+//	public static String existingpatientssn1;
+//	public static String existingpatientssn2;
+//	public static String existingpatientdateofbirthmonth;
+//	public static String existingpatientdateofbirthday;
+//	public static String existingpatientdateofbirthyear;
+//	public static String existingpatientrecordnumber;
+//	public static String existingpatientphonenumber0;
+//	public static String existingpatientphonenumber1;
+//	public static String existingpatientphonenumber2;
+//	public static String existingpatientaccountnumber;
+//	
+//	/** These are the variables which are present on "Medical chart" sheet in the excel*/
+//	public static final String MEDICAL_PATIENT_FIRSTNAME 				                   = "patientfirstname";
+//	public static final String MEDICAL_PATIENT_LASTNAME 				                   = "patientlastname";
+//	public static final String MEDICAL_PATIENT_SSN0 				                       = "ssn0";
+//	public static final String MEDICAL_PATIENT_SSN1 				                       = "ssn1";
+//	public static final String MEDICAL_PATIENT_SSN2 				                       = "ssn2";
+//	public static final String MEDICAL_PATIENT_DATEOFBIRTHMONTH 				           = "month";
+//	public static final String MEDICAL_PATIENT_DATEOFBIRTHDAY 				               = "day";
+//	public static final String MEDICAL_PATIENT_DATEOFBIRTHYEAR 				               = "year";
+//	public static final String MEDICAL_PATIENT_RECORDNUMBER 			                   = "recordnumber";
+//	public static final String MEDICAL_PATIENT_PHONENUMBER0 			                   = "phonenumber0";
+//	public static final String MEDICAL_PATIENT_PHONENUMBER1 			                   = "phonenumber1";
+//	public static final String MEDICAL_PATIENT_PHONENUMBER2 			                   = "phonenumber2";
+//	public static final String MEDICAL_PATIENT_ACCOUNTNUMBER 			                   = "accountnumber";
 	
 	/** This method runs before the first test from the class runs */
 	@BeforeClass
 	public void initClass() throws Exception{
 		logger.info("inside the initClass method for medical chart test class....");
-		medicalData                     = ExcelFileUtilty.readExcelSheet("MedicalChart");
-		existingPatientfirstname        = medicalData.get(MEDICAL_PATIENT_FIRSTNAME);
-		existingPatientlastname         = medicalData.get(MEDICAL_PATIENT_LASTNAME);
-		existingpatientssn0             = medicalData.get(MEDICAL_PATIENT_SSN0);
-		existingpatientssn1             = medicalData.get(MEDICAL_PATIENT_SSN1);
-		existingpatientssn2             = medicalData.get(MEDICAL_PATIENT_SSN2);
-		existingpatientdateofbirthmonth = medicalData.get(MEDICAL_PATIENT_DATEOFBIRTHMONTH);
-		existingpatientdateofbirthday   = medicalData.get(MEDICAL_PATIENT_DATEOFBIRTHDAY);
-		existingpatientdateofbirthyear  = medicalData.get(MEDICAL_PATIENT_DATEOFBIRTHYEAR);
-		existingpatientrecordnumber     = medicalData.get(MEDICAL_PATIENT_RECORDNUMBER);
-		existingpatientphonenumber0     = medicalData.get(MEDICAL_PATIENT_PHONENUMBER0);
-		existingpatientphonenumber1     = medicalData.get(MEDICAL_PATIENT_PHONENUMBER1);
-		existingpatientaccountnumber    = medicalData.get(MEDICAL_PATIENT_ACCOUNTNUMBER);
-		existingpatientphonenumber2     = medicalData.get(MEDICAL_PATIENT_PHONENUMBER2);
+//		medicalData                     = ExcelFileUtilty.readExcelSheet("MedicalChart");
+//		existingPatientfirstname        = medicalData.get(MEDICAL_PATIENT_FIRSTNAME);
+//		existingPatientlastname         = medicalData.get(MEDICAL_PATIENT_LASTNAME);
+//		existingpatientssn0             = medicalData.get(MEDICAL_PATIENT_SSN0);
+//		existingpatientssn1             = medicalData.get(MEDICAL_PATIENT_SSN1);
+//		existingpatientssn2             = medicalData.get(MEDICAL_PATIENT_SSN2);
+//		existingpatientdateofbirthmonth = medicalData.get(MEDICAL_PATIENT_DATEOFBIRTHMONTH);
+//		existingpatientdateofbirthday   = medicalData.get(MEDICAL_PATIENT_DATEOFBIRTHDAY);
+//		existingpatientdateofbirthyear  = medicalData.get(MEDICAL_PATIENT_DATEOFBIRTHYEAR);
+//		existingpatientrecordnumber     = medicalData.get(MEDICAL_PATIENT_RECORDNUMBER);
+//		existingpatientphonenumber0     = medicalData.get(MEDICAL_PATIENT_PHONENUMBER0);
+//		existingpatientphonenumber1     = medicalData.get(MEDICAL_PATIENT_PHONENUMBER1);
+//		existingpatientaccountnumber    = medicalData.get(MEDICAL_PATIENT_ACCOUNTNUMBER);
+//		existingpatientphonenumber2     = medicalData.get(MEDICAL_PATIENT_PHONENUMBER2);
+		medicalchartpage.initClass();
 		medicalchartpage                = new MedicalChartPage();
 		loginPageObj                    = new LoginPage();
 		leftPanelpageobj                = new LeftPanelPage();
@@ -99,8 +101,8 @@ public class MedicalChartTest  extends BaseTestClass {
 		medicalchartpage.clickOnMedicalChartFromLeftPanel();
 		medicalchartpage.switchToMedicalFrame();
 		logger.info("Searching the patient with first name & last name in medical chart...");
-		medicalchartpage.searchExistingPatientWithName(existingPatientfirstname,existingPatientlastname);
-		MedicalAssert.assertEquals(medicalchartpage.verifyPatientIsSerchedWithName(existingPatientfirstname,existingPatientlastname), true);
+		medicalchartpage.searchExistingPatientWithName(MedicalChartPage.existingPatientfirstname,MedicalChartPage.existingPatientlastname);
+		MedicalAssert.assertEquals(medicalchartpage.verifyPatientIsSerchedWithName(MedicalChartPage.existingPatientfirstname,MedicalChartPage.existingPatientlastname), true);
 		logger.info("Searching the patient with SSN  in medical chart...");
 		medicalchartpage.searchExistingPatientWithSSN();
 		MedicalAssert.assertEquals(medicalchartpage.verifyPatientIsSerchedWithSSN(), true);
@@ -115,7 +117,7 @@ public class MedicalChartTest  extends BaseTestClass {
 		MedicalAssert.assertEquals(medicalchartpage.verifyPatientIsSerchedWithRecordNumber(), true);
 		logger.info("Searching the patient with PHONE NUMBER  in medical chart...");
 		medicalchartpage.searchPatientWithPhoneNumber();
-		MedicalAssert.assertEquals(medicalchartpage.verifyPatientIsSerchedWithName(existingPatientfirstname,existingPatientlastname), true);
+		MedicalAssert.assertEquals(medicalchartpage.verifyPatientIsSerchedWithName(MedicalChartPage.existingPatientfirstname,MedicalChartPage.existingPatientlastname), true);
 		logger.info("Searching the patient with ACCOUNT NUMBER  in medical chart...");
 		//medicalchartpage.searchPatientWithAccountNumber();
 		//MedicalAssert.assertEquals(medicalchartpage.verifyPatientIsSerchedWithName(existingPatientfirstname,existingPatientlastname), true);
@@ -129,7 +131,7 @@ public class MedicalChartTest  extends BaseTestClass {
 		medicalchartpage.clickOnMedicalChartFromLeftPanel();
 		medicalchartpage.switchToMedicalFrame();
 		logger.info("Searching the patient with first name & last name in medical chart...");
-		medicalchartpage.searchExistingPatientWithName(existingPatientfirstname,existingPatientlastname);
+		medicalchartpage.searchExistingPatientWithName(MedicalChartPage.existingPatientfirstname,MedicalChartPage.existingPatientlastname);
 		logger.info("Right clicking on searched row & select view option in medical chart...");
 		medicalchartpage.rClickOnSerchedPatient("RClickPatientViewOption");
 		MedicalAssert.assertEquals(medicalchartpage.verifyPatientViewFormIsOpened(), true);
@@ -157,10 +159,10 @@ public class MedicalChartTest  extends BaseTestClass {
 		medicalchartpage.clickOnMedicalChartFromLeftPanel();
 		medicalchartpage.switchToMedicalFrame();
 		logger.info("Searching the patient with first name & last name in medical chart...");
-		medicalchartpage.searchExistingPatientWithName(existingPatientfirstname,existingPatientlastname);
+		medicalchartpage.searchExistingPatientWithName(MedicalChartPage.existingPatientfirstname,MedicalChartPage.existingPatientlastname);
 		logger.info("Searching the patient with status as deleted in medical chart...");
 		medicalchartpage.searchPatientWithStatus("Deleted");
-		MedicalAssert.assertEquals(medicalchartpage.verifyPatientIsSerchedWithName(existingPatientfirstname,existingPatientlastname), true);
+		MedicalAssert.assertEquals(medicalchartpage.verifyPatientIsSerchedWithName(MedicalChartPage.existingPatientfirstname,MedicalChartPage.existingPatientlastname), true);
 		logger.info("Right clicking on searched row & select Undelete option in medical chart...");
 		medicalchartpage.rClickOnSerchedPatient("RclickUndeleteOption");
 		logger.info("click on Yes button present in alert in medical chart...");
@@ -170,8 +172,8 @@ public class MedicalChartTest  extends BaseTestClass {
 		medicalchartpage.clearFliter();
 		logger.info("Searching the patient with first name & last name in medical chart...");
 		medicalchartpage.switchToMedicalFrame();
-		medicalchartpage.searchExistingPatientWithName(existingPatientfirstname,existingPatientlastname);
-		MedicalAssert.assertEquals(medicalchartpage.verifyPatientIsSerchedWithName(existingPatientfirstname,existingPatientlastname), true);
+		medicalchartpage.searchExistingPatientWithName(MedicalChartPage.existingPatientfirstname,MedicalChartPage.existingPatientlastname);
+		MedicalAssert.assertEquals(medicalchartpage.verifyPatientIsSerchedWithName(MedicalChartPage.existingPatientfirstname,MedicalChartPage.existingPatientlastname), true);
 		leftPanelpageobj.clickOnLogout();	
 	}
 	

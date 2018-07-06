@@ -12,7 +12,7 @@ import java.util.List;
 import com.gmed.Frames.Frames;
 import com.gmed.base.BaseAbstractPage;
 import com.gmed.pages.AppointmentPage;
-import com.gmed.test.OutputManagerTest;
+import com.gmed.pages.OutputManagerPage;
 import com.gmed.utils.ConstantsFile;
 import com.gmed.utils.DateUtil;
 import com.gmed.utils.ExcelFileUtilty;
@@ -359,7 +359,7 @@ public class PatientPortalLogin extends BaseAbstractPage   {
 		String documentValue=SeleniumUtil.getElementWithFluentWaitInChrome(documentTextOnHome).getText();
 		System.out.println("Document value is"+documentValue);
 		String currentDate=DateUtil.getCurrentDateInDateFormatted("M/d/yyyy");
-		String currentValue=OutputManagerTest.documentText+currentDate;
+		String currentValue=OutputManagerPage.documentText+currentDate;
 		if(documentValue.contains(currentValue) ){
 			System.out.println("Document is publish on home Page");
 			isDocumentPresentInHomePage=true;
@@ -394,7 +394,7 @@ public class PatientPortalLogin extends BaseAbstractPage   {
 			String documentValue=SeleniumUtil.getElementWithFluentWaitInChrome(documentText).getText();
 			System.out.println("Document value is"+documentValue);
 			String currentDate=DateUtil.getCurrentDateInDateFormatted("M/d/yyyy");
-			String currentValue=OutputManagerTest.documentText+currentDate;
+			String currentValue=OutputManagerPage.documentText+currentDate;
 			if(documentValue.contains(currentValue) ){
 				System.out.println("Document is publish on Document Page");
 				isDocumentPresent=true;

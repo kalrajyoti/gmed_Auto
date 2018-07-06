@@ -10,12 +10,12 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 
 import com.gmed.base.BaseAbstractPage;
-import com.gmed.test.GpmSmokeTest;
-import com.gmed.test.ProfileTest;
-import com.gmed.test.gGastroSmokeTest;
+import com.gmed.base.BaseTestClass;
+
+
 import com.gmed.utils.SeleniumUtil;
 
-public class DynamicFramePage extends BaseAbstractPage{
+public class DynamicFramePage extends BaseTestClass{
 	/** Logger to log the DynamicFramePage log messages */
 	public static Logger logger                = LogManager.getLogger(DynamicFramePage.class);
 	
@@ -25,7 +25,7 @@ public class DynamicFramePage extends BaseAbstractPage{
 	 * 
 	 */
 	public static void dynamicFrameForPanchart(){
-		if(gGastroSmokeTest.testName.equalsIgnoreCase("createFutureAppointForColonscopy") || (gGastroSmokeTest.testName.equalsIgnoreCase("startFirstVisitService") || (gGastroSmokeTest.testName.equalsIgnoreCase("startColonscopyService")|| (ProfileTest.testName.equalsIgnoreCase("verifyFutureAppointmentInProfile"))))){
+		if(testName.equalsIgnoreCase("createFutureAppointForColonscopy") || (testName.equalsIgnoreCase("startFirstVisitService") || (testName.equalsIgnoreCase("startColonscopyService")|| (testName.equalsIgnoreCase("verifyFutureAppointmentInProfile"))))){
 			SeleniumUtil.switchToParentFrame(Frames.APPOINTMENT_CREATION);
 			driver.switchTo().parentFrame();
 			driver.switchTo().parentFrame();
@@ -48,7 +48,7 @@ public class DynamicFramePage extends BaseAbstractPage{
 			}
 			SeleniumUtil.switchToFrame(driver,parentOfPanchart);
 		}
-		else if(GpmSmokeTest.testName.equalsIgnoreCase("checkInService")){
+		else if(testName.equalsIgnoreCase("checkInService")){
 			SeleniumUtil.switchToParentFrame(Frames.APPOINTMENT_CREATION);
 			driver.switchTo().parentFrame();
 			driver.switchTo().parentFrame();

@@ -25,7 +25,7 @@ import com.gmed.utils.ConstantsFile;
 import com.gmed.utils.DateUtil;
 import com.gmed.utils.ExcelFileUtilty;
 
-public class OrdersTest extends BaseTestClass {
+public class OrdersTest extends BaseTestClass1 {
 	/** Logger to log the OrdersTest log messages */
 	private static Logger				logger			= LogManager.getLogger(OrdersTest.class);
 	/** Login Page reference used to login for logging in for test */

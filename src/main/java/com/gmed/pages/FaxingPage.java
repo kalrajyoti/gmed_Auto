@@ -10,8 +10,8 @@ import org.openqa.selenium.WebElement;
 import static com.gmed.helper.DriverFactory.driver;
 import com.gmed.Frames.Frames;
 import com.gmed.base.BaseAbstractPage;
-import com.gmed.test.OutputManagerTest;
-import com.gmed.test.ProfileTest;
+
+
 import com.gmed.utils.ConstantsFile;
 import com.gmed.utils.ExcelFileUtilty;
 import com.gmed.utils.SeleniumUtil;
@@ -134,7 +134,7 @@ public class FaxingPage extends BaseAbstractPage {
 		List<WebElement> totaltrrows = driver.findElements(AppointmentPage.totaltrtags);
 		for(WebElement irows:totaltrrows){
 			String rowText = irows.getText();
-			if(rowText.contains(ProfileTest.existingProfileProviderfirstname) && rowText.contains(ProfileTest.existingProfileProviderlastname) && rowText.contains(ConstantsFile.completeUserName)){
+			if(rowText.contains(Profile.existingProfileProviderfirstname) && rowText.contains(Profile.existingProfileProviderlastname) && rowText.contains(ConstantsFile.completeUserName)){
 				System.out.println("fax is displayed");
 				faxrowpresent=true;
 				break;

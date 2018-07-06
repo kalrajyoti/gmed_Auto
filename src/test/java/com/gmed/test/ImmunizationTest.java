@@ -11,6 +11,7 @@ import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 import org.testng.asserts.Assertion;
 
+import com.gmed.base.BaseTestClass;
 import com.gmed.pages.DocumentPage;
 import com.gmed.pages.LeftPanelPage;
 import com.gmed.pages.LoginPage;
@@ -47,26 +48,26 @@ public class ImmunizationTest extends BaseTestClass {
 	/** Order Page reference used for using clicking on new button function for Profile Screen  */
 	private OrdersPage orderpageobj;
 	
-	/**contains the Immunization page data*/
-	public static Map<String, String> immunizationData;
-	
-	/**These are the variables which are used to store different data for immunization module*/
-	public static String existingImmunizationPatientfirstname;
-	public static String existingImmunizationPatientlastname;
-	public static String addNewImmunizationForPatient;
-	
-	/** These are the variables which are present on "Immunization" sheet in the excel*/
-	public static final String PATIENT_FIRSTNAME 				                   = "patientfirstname";
-	public static final String PATIENT_LASTNAME 				                   = "patientlastname";
-	public static final String ADD_NEW_IMMUNIZATION 				               = "addnewcustomimmunization";
+//	/**contains the Immunization page data*/
+//	public static Map<String, String> immunizationData;
+//	
+//	/**These are the variables which are used to store different data for immunization module*/
+//	public static String DocumentPage.existingImmunizationPatientfirstname;
+//	public static String existingImmunizationPatientlastname;
+//	public static String addNewImmunizationForPatient;
+//	
+//	/** These are the variables which are present on "Immunization" sheet in the excel*/
+//	public static final String PATIENT_FIRSTNAME 				                   = "patientfirstname";
+//	public static final String PATIENT_LASTNAME 				                   = "patientlastname";
+//	public static final String ADD_NEW_IMMUNIZATION 				               = "addnewcustomimmunization";
 	/** This method runs before the first test from the class runs */
 	@BeforeClass
 	public void initClass() throws Exception{
 		logger.info("inside the initClass method for DemographicsTest test class....");
-		immunizationData                                 = ExcelFileUtilty.readExcelSheet("Immunization");
-		existingImmunizationPatientfirstname             = immunizationData.get(PATIENT_FIRSTNAME);
-		existingImmunizationPatientlastname              = immunizationData.get(PATIENT_LASTNAME);
-		addNewImmunizationForPatient                     = immunizationData.get(ADD_NEW_IMMUNIZATION);
+//		immunizationData                                 = ExcelFileUtilty.readExcelSheet("Immunization");
+//		DocumentPage.existingImmunizationPatientfirstname             = immunizationData.get(PATIENT_FIRSTNAME);
+//		existingImmunizationPatientlastname              = immunizationData.get(PATIENT_LASTNAME);
+//		addNewImmunizationForPatient                     = immunizationData.get(ADD_NEW_IMMUNIZATION);
 		loginPageObj                                     = new LoginPage();
 		leftPanelpageobj                                 = new LeftPanelPage();
 		medicalchartpage                                 = new MedicalChartPage();
@@ -74,6 +75,7 @@ public class ImmunizationTest extends BaseTestClass {
 		profilepageobj                                   = new Profile();
 		documentobj                                      = new DocumentPage();
 		orderpageobj                                     = new OrdersPage();
+		documentobj.initClass();
 	}
 	@Test(description = "To verify Record Immunization details in Service . ",groups = { "Immunization_Regression" },priority=1)
 	public void verifyImmunizationsInProfile() throws FindFailed{
@@ -84,11 +86,11 @@ public class ImmunizationTest extends BaseTestClass {
 		medicalchartpage.clickOnMedicalChartFromLeftPanel();
 		medicalchartpage.switchToMedicalFrame();
 		logger.info("Searching the patient with first name & last name in medical chart...");
-		medicalchartpage.searchExistingPatientWithName(existingImmunizationPatientfirstname,existingImmunizationPatientlastname);
-		immunizationAssert.assertEquals(medicalchartpage.verifyPatientIsSerchedWithName(existingImmunizationPatientfirstname,existingImmunizationPatientlastname), true);
+		medicalchartpage.searchExistingPatientWithName(DocumentPage.existingImmunizationPatientfirstname,DocumentPage.existingImmunizationPatientlastname);
+		immunizationAssert.assertEquals(medicalchartpage.verifyPatientIsSerchedWithName(DocumentPage.existingImmunizationPatientfirstname,DocumentPage.existingImmunizationPatientlastname), true);
 		logger.info("selecting the patient...");
 		medicalchartpage.selectPatient();
-		immunizationAssert.assertEquals(patientpageobj.verifyPatientChartIsOpened1(existingImmunizationPatientfirstname,existingImmunizationPatientlastname), true);
+		immunizationAssert.assertEquals(patientpageobj.verifyPatientChartIsOpened1(DocumentPage.existingImmunizationPatientfirstname,DocumentPage.existingImmunizationPatientlastname), true);
 		logger.info("verify if existing service is present then delete it");
 		profilepageobj.verifyAddedServicesDetails();
 		logger.info("create first visit service for the patient  in patient chart screen.....");

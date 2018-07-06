@@ -9,6 +9,7 @@ import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 import org.testng.asserts.Assertion;
 
+import com.gmed.base.BaseTestClass;
 import com.gmed.pages.DocumentPage;
 import com.gmed.pages.LeftPanelPage;
 import com.gmed.pages.LoginPage;
@@ -32,31 +33,32 @@ public class MIPSReport extends BaseTestClass {
 	/**contains the MU page data*/
 	public static Map<String, String> MIPSData;
 
-	/**These are the variables which are used to store different data for MU Report module*/
-	public static String Providerfirstname;
-	public static String Providerlastname;
-	public static String mipsReportName;
-	public static String messageRecipientsName;
-
-	/** These are the variables which are present on "MUReport" sheet in the excel*/
-	public static final String PROVIDER_FIRSTNAME 				                   = "providerfirstname";
-	public static final String PROVIDER_LASTNAME 				                   = "providerlastname";
-	public static final String MIPS_REPORT_NAME 				                   = "mipsReportName";
-	public static final String MESSAGE_RECIPIENTS_NAME 				               = "messageRecipients";
+//	/**These are the variables which are used to store different data for MU Report module*/
+//	public static String Providerfirstname;
+//	public static String Providerlastname;
+//	public static String mipsReportName;
+//	public static String messageRecipientsName;
+//
+//	/** These are the variables which are present on "MUReport" sheet in the excel*/
+//	public static final String PROVIDER_FIRSTNAME 				                   = "providerfirstname";
+//	public static final String PROVIDER_LASTNAME 				                   = "providerlastname";
+//	public static final String MIPS_REPORT_NAME 				                   = "mipsReportName";
+//	public static final String MESSAGE_RECIPIENTS_NAME 				               = "messageRecipients";
 
 
 	@BeforeClass
 	public void initClass() throws Exception{
 		logger.info("inside the initClass method for DemographicsTest test class....");
-		MIPSData                                    = ExcelFileUtilty.readExcelSheet("Report");
-		Providerfirstname                           = MIPSData.get(PROVIDER_FIRSTNAME);
-		Providerlastname                            = MIPSData.get(PROVIDER_LASTNAME);
-		mipsReportName                              = MIPSData.get(MIPS_REPORT_NAME);
-		messageRecipientsName                       = MIPSData.get(MESSAGE_RECIPIENTS_NAME);
+//		MIPSData                                    = ExcelFileUtilty.readExcelSheet("Report");
+//		Providerfirstname                           = MIPSData.get(PROVIDER_FIRSTNAME);
+//		Providerlastname                            = MIPSData.get(PROVIDER_LASTNAME);
+//		mipsReportName                              = MIPSData.get(MIPS_REPORT_NAME);
+//		messageRecipientsName                       = MIPSData.get(MESSAGE_RECIPIENTS_NAME);
 		loginPageObj                                = new LoginPage();
 		leftPanelpageobj                            = new LeftPanelPage();
 		reportpageobj                               = new ReportPage();
 		docupageobj                                 = new DocumentPage();
+		reportpageobj.initClass();
 
 
 	}
@@ -78,7 +80,7 @@ public class MIPSReport extends BaseTestClass {
 		logger.info("Adding report Name for MIPS Report");
 		reportpageobj.addReportName();
 		logger.info("selecting the Provider for Report");
-		reportpageobj.addProviderForReport(Providerfirstname,Providerlastname);
+		reportpageobj.addProviderForReport(ReportPage.existingProfileProviderfirstname,ReportPage.Providerlastname);
 		logger.info("verify Reporting Year should be current Year");
 		mipsAssert.assertTrue(reportpageobj.verifyReportingYear());
 		logger.info("adding message Recipient for the MIPS Report");

@@ -10,6 +10,7 @@ import org.testng.annotations.Test;
 import org.testng.asserts.Assertion;
 
 import com.gmed.AutoIT.GpinUserLogin;
+import com.gmed.base.BaseTestClass;
 import com.gmed.pages.DocumentPage;
 import com.gmed.pages.HomePage;
 import com.gmed.pages.LeftPanelPage;
@@ -41,39 +42,40 @@ public class MessagingTest extends BaseTestClass {
 	
 	/**contains the Messaging page data*/
 	public static Map<String, String> messagingData;
-	
-	/**These are the variables which are used to store different data for Messaging module*/
-	public static String firstLoggedUser;
-	public static String secondLoggedUser;
-	public static String attachementTitle;
-	public static String messageToText;
-	public static String chartNoteDescription1;
-	public static String chartNoteDescription2;
-	/** These are the variables which are present on "Messaging" sheet in the excel*/
-	public static final String USER1 				                                          = "user1";
-	public static final String USER2 				                                          = "user2";
-	public static final String ATTACHMENT_TITLE 				                              = "attachementTitle";
-	public static final String MESSAGE_TO_TEXT 				                                  = "messageToText";
-	public static final String CHART_DESCRIPTION_TEXT1 				                          = "chartNoteValue1";
-	public static final String CHART_DESCRIPTION_TEXT2 				                          = "chartNoteValue2";
+//	
+//	/**These are the variables which are used to store different data for Messaging module*/
+//	public static String firstLoggedUser;
+//	public static String secondLoggedUser;
+//	public static String attachementTitle;
+//	public static String messageToText;
+//	public static String chartNoteDescription1;
+//	public static String chartNoteDescription2;
+//	/** These are the variables which are present on "Messaging" sheet in the excel*/
+//	public static final String USER1 				                                          = "user1";
+//	public static final String USER2 				                                          = "user2";
+//	public static final String ATTACHMENT_TITLE 				                              = "attachementTitle";
+//	public static final String MESSAGE_TO_TEXT 				                                  = "messageToText";
+//	public static final String CHART_DESCRIPTION_TEXT1 				                          = "chartNoteValue1";
+//	public static final String CHART_DESCRIPTION_TEXT2 				                          = "chartNoteValue2";
 	
 	/** This method runs before the first test from the class runs */
 	@BeforeClass
 	public void initClass() throws Exception{
 		logger.info("inside the initClass method for DemographicsTest test class....");
-		messagingData                                    = ExcelFileUtilty.readExcelSheet("Messaging");
-		firstLoggedUser                                  = messagingData.get(USER1);
-		secondLoggedUser                                 = messagingData.get(USER2);
-		attachementTitle                                 = messagingData.get(ATTACHMENT_TITLE);
-		messageToText                                    = messagingData.get(MESSAGE_TO_TEXT);
-		chartNoteDescription1                            = messagingData.get(CHART_DESCRIPTION_TEXT1);
-		chartNoteDescription2                            = messagingData.get(CHART_DESCRIPTION_TEXT2);
+//		messagingData                                    = ExcelFileUtilty.readExcelSheet("Messaging");
+//		firstLoggedUser                                  = messagingData.get(USER1);
+//		secondLoggedUser                                 = messagingData.get(USER2);
+//		attachementTitle                                 = messagingData.get(ATTACHMENT_TITLE);
+//		messageToText                                    = messagingData.get(MESSAGE_TO_TEXT);
+//		chartNoteDescription1                            = messagingData.get(CHART_DESCRIPTION_TEXT1);
+//		chartNoteDescription2                            = messagingData.get(CHART_DESCRIPTION_TEXT2);
 		loginPageObj                                     = new LoginPage();
 		leftPanelpageobj                                 = new LeftPanelPage();		
 		homePageObj                                      = new HomePage();
 		taskPageObj                                      = new TaskPage();
 		docupageobj                                      = new DocumentPage();
 		messagePageObj                                   = new MessagingPage();
+		messagePageObj.initClass();
 	}
 	@Test(description = "To verify basic functionality of Messages . ",groups = { "Messaging_Regression" },priority=1)
 	public void verifyMessageFunctionality() throws Exception{
@@ -89,12 +91,12 @@ public class MessagingTest extends BaseTestClass {
 		homePageObj.switchIntoMessageFrame();
 		homePageObj.clickOnPlus("txtToAdd");
 		logger.info("searching & adding first user....");
-		homePageObj.addUser(firstLoggedUser);
+		homePageObj.addUser(MessagingPage.firstLoggedUser);
 		logger.info("clicking message to text box for adding second user....");
 		homePageObj.switchIntoMessageFrame();
 		homePageObj.clickOnPlus("txtToAdd");
 		logger.info("searching & adding second user....");
-		homePageObj.addUser(secondLoggedUser);
+		homePageObj.addUser(MessagingPage.secondLoggedUser);
 		logger.info("clicking on Attachement plus button....");
 		homePageObj.switchIntoMessageFrame();
 		homePageObj.clickOnPlus("txtAttachmentAdd");

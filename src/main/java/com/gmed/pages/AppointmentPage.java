@@ -27,8 +27,7 @@ import org.testng.TestNG;
 import com.gmed.Frames.DynamicFramePage;
 import com.gmed.Frames.Frames;
 import com.gmed.base.BaseAbstractPage;
-import com.gmed.test.BaseTestClass;
-import com.gmed.test.DemographicsTest;
+
 import com.gmed.utils.ConstantsFile;
 import com.gmed.utils.SeleniumUtil;
 import com.gpm.pages.BillingPage;

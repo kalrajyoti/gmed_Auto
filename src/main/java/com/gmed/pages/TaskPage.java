@@ -6,19 +6,21 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebElement;
 import org.sikuli.script.FindFailed;
+import org.testng.annotations.BeforeClass;
 
 import static com.gmed.helper.DriverFactory.driver;
 
 import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import com.gmed.Frames.DynamicFramePage;
 import com.gmed.Frames.Frames;
 import com.gmed.base.BaseAbstractPage;
-import com.gmed.test.ProfileTest;
-import com.gmed.test.TaskTest;
+
 import com.gmed.utils.ConstantsFile;
 import com.gmed.utils.DateUtil;
+import com.gmed.utils.ExcelFileUtilty;
 import com.gmed.utils.SeleniumUtil;
 import com.gpm.pages.BillingPage;
 
@@ -58,6 +60,57 @@ public class TaskPage extends BaseAbstractPage {
 
 
 	AppointmentPage app =new AppointmentPage();
+	/** contains the Profile page data */
+	public static Map<String, String> taskData;
+	/**
+	 * These are the variables which are used to store different data for
+	 * medical chart module
+	 */
+	public static String existingPatientfirstname;
+	public static String existingPatientlastname;
+	public static String recipientsForTask;
+	public static String completePatientName;
+	public static String secondUserName;
+	public static String secondUserPassword;
+	public static String reassignRecipientsForTask;
+	public static String reassignDetails;
+	public static String snoozeToolTipTitle;
+	public static String snoozeText;
+	public static String rejectDetails;
+	public static String recipientsNames;
+	
+	/**
+	 * These are the variables which are present on "Profile" sheet in the excel
+	 */
+	public static final String PATIENT_FIRSTNAME           = "patientfirstname";
+	public static final String PATIENT_LASTNAME            = "patientlastname";
+	public static final String RECIPIENT_NAME              = "taskRecipients";
+	public static final String PATIENT_COMPLETE_NAME       = "completePatientName";
+	public static final String SECOND_USERNAME             = "username";
+	public static final String SECOND_USERNAME_PASSWORD    = "password";
+	public static final String REASSIGN_RECIPIENT_NAME     = "reassignRecipients";
+	public static final String REASSIGN_DETAILS            = "reassignDetails";
+	public static final String TOOL_TIP_TITLE              = "snoozeToolTipTitle";
+	public static final String SNOOZE_TEXT                 = "snoozetextintaskhistory";
+	public static final String REJECT_DETAILS              = "rejectDetails";
+	public static final String RECIPIENS_NAMES              = "recipientsnames";
+	@BeforeClass
+	public void initClass() throws Exception {
+		logger.info("inside the initClass method for Task test class....");
+		taskData                           = ExcelFileUtilty.readExcelSheet("Task");
+		existingPatientfirstname           = taskData.get(PATIENT_FIRSTNAME);
+		existingPatientlastname            = taskData.get(PATIENT_LASTNAME);
+		recipientsForTask                  = taskData.get(RECIPIENT_NAME);
+		completePatientName                = taskData.get(PATIENT_COMPLETE_NAME);
+		secondUserName                     = taskData.get(SECOND_USERNAME);
+		secondUserPassword                 = taskData.get(SECOND_USERNAME_PASSWORD);
+		reassignRecipientsForTask          = taskData.get(REASSIGN_RECIPIENT_NAME);
+		reassignDetails                    = taskData.get(REASSIGN_DETAILS);
+		snoozeToolTipTitle                 = taskData.get(TOOL_TIP_TITLE);
+		snoozeText                         = taskData.get(SNOOZE_TEXT);
+		rejectDetails                      = taskData.get(REJECT_DETAILS);
+		recipientsNames                    = taskData.get(RECIPIENS_NAMES);
+	}
 	/**
 	 * This method is used for clicking on Task Section present in  patient chart
 	 * 
@@ -248,7 +301,7 @@ public class TaskPage extends BaseAbstractPage {
 		SeleniumUtil.getElementWithFluentWait(addRecipientButton).click();
 		SeleniumUtil.switchToParentFrame(Frames.PATIENT_SEARCHING);
 		SeleniumUtil.waitForProgressBar(Frames.PATIENT_SEARCHING);
-		SeleniumUtil.getElementWithFluentWait(recipientTextBox).sendKeys(TaskTest.recipientsForTask);
+		SeleniumUtil.getElementWithFluentWait(recipientTextBox).sendKeys(recipientsForTask);
 		SeleniumUtil.getElementWithFluentWait(recipientSearchIcon).click();
 		sleep(5000);
 		List<WebElement> noOfRecipientsrow = driver.findElements(AppointmentPage.totaltrtags);
@@ -263,7 +316,7 @@ public class TaskPage extends BaseAbstractPage {
 				String rowText = tdElement.getText();
 				System.out.println("row # " + row_num + ", col # " + col_num + "text=" + tdElement.getText());
 				col_num++;
-				if (rowText.equalsIgnoreCase(TaskTest.recipientsForTask)) {
+				if (rowText.equalsIgnoreCase(recipientsForTask)) {
 					System.out.println("corrected user is selected");
 					SeleniumUtil.doubleClick(tdElement);
 					break;
@@ -294,7 +347,7 @@ public class TaskPage extends BaseAbstractPage {
 		SeleniumUtil.waitForProgressBar(Frames.MEDICATION_LIST);
 		String patientNameInTask = SeleniumUtil.getElementWithFluentWait(taskPatientTextbox).getAttribute("value");
 		System.out.println("Patient name in task is " + patientNameInTask);
-		if (patientNameInTask.equalsIgnoreCase(TaskTest.completePatientName)) {
+		if (patientNameInTask.equalsIgnoreCase(completePatientName)) {
 			logger.info("correct patient name is populated in task");
 			isPatientSearch = true;
 		}
@@ -326,7 +379,7 @@ public class TaskPage extends BaseAbstractPage {
 		boolean isCreatedTaskDisplayed = false;
 		SeleniumUtil.switchToParentFrame(Frames.HOME);
 		String Task = SeleniumUtil.getElementWithFluentWait(taskSubject).getText();
-		if (Task.contains(ConstantsFile.TaskIntialName) && Task.contains(TaskTest.completePatientName)) {
+		if (Task.contains(ConstantsFile.TaskIntialName) && Task.contains(completePatientName)) {
 			System.out.println("Task with same subject entered in task subject is displayed in the task section");
 			return isCreatedTaskDisplayed = true;
 		}
@@ -364,7 +417,7 @@ public class TaskPage extends BaseAbstractPage {
 		SeleniumUtil.switchToParentFrame(Frames.CREATION);
 		SeleniumUtil.waitForProgressBar(Frames.CREATION);
 		SeleniumUtil.getElementWithFluentWait(By.id("txtCriteria_TextBox"))
-		.sendKeys(TaskTest.reassignRecipientsForTask);
+		.sendKeys(reassignRecipientsForTask);
 		SeleniumUtil.getElementWithFluentWait(By.id("txtCriteriaSearch")).click();
 		sleep(5000);
 		List<WebElement> searchdiagnosisrow = driver.findElements(AppointmentPage.totaltrtags);
@@ -379,7 +432,7 @@ public class TaskPage extends BaseAbstractPage {
 				String rowText = tdElement.getText();
 				System.out.println("row # " + row_num + ", col # " + col_num + "text=" + tdElement.getText());
 				col_num++;
-				if (rowText.equalsIgnoreCase(TaskTest.reassignRecipientsForTask)) {
+				if (rowText.equalsIgnoreCase(reassignRecipientsForTask)) {
 					System.out.println("corrected user is displayed");
 					SeleniumUtil.doubleClick(tdElement);
 					isUserFound = true;
@@ -412,11 +465,11 @@ public class TaskPage extends BaseAbstractPage {
 		boolean isTaskReassigned=false;
 		String taskReassign=SeleniumUtil.getElementWithFluentWait(taskStatusDetails).getText();
 		System.out.println("Task reassign detail is.."+taskReassign);
-		if(taskReassign.equalsIgnoreCase(TaskTest.reassignDetails) ){
+		if(taskReassign.equalsIgnoreCase(reassignDetails) ){
 			logger.info("correct reassign  details are added..");
 			isTaskReassigned=true;
 		}
-		else if(taskReassign.equalsIgnoreCase(TaskTest.rejectDetails)){
+		else if(taskReassign.equalsIgnoreCase(rejectDetails)){
 			logger.info("correct reject details are added..");
 			isTaskReassigned=true;
 		}
@@ -477,7 +530,7 @@ public class TaskPage extends BaseAbstractPage {
 		List<WebElement> searchPatientrow = driver.findElements(AppointmentPage.totaltrtags);
 		for(WebElement irows:searchPatientrow){
 			String rowtext =irows.getText();
-			if(rowtext.contains(TaskTest.existingPatientfirstname) && rowtext.contains(TaskTest.existingPatientlastname)){
+			if(rowtext.contains(existingPatientfirstname) && rowtext.contains(existingPatientlastname)){
 				System.out.println("corrected patient row is displayed");
 				SeleniumUtil.rightClick(irows);
 				SeleniumUtil.clickOnImageWithTargetOffsetInSikuli(optionName);
@@ -529,7 +582,7 @@ public class TaskPage extends BaseAbstractPage {
 				String rowText=tdElement.getText();
 				System.out.println("row # "+row_num+", col # "+col_num+ "text="+tdElement.getText());
 				col_num++;
-				if(rowText.contains(TaskTest.reassignRecipientsForTask)){
+				if(rowText.contains(reassignRecipientsForTask)){
 					System.out.println("corrected Recipients is present in Task"); 
 					tdElement.click();
 					SeleniumUtil.getElementWithFluentWait(removeButton).click();
@@ -610,7 +663,7 @@ public class TaskPage extends BaseAbstractPage {
 		List<WebElement> searchPatientrow = driver.findElements(AppointmentPage.totaltrtags);
 		for(WebElement irows:searchPatientrow){
 			String rowtext =irows.getText();
-			if(rowtext.contains(TaskTest.existingPatientfirstname) && rowtext.contains(TaskTest.existingPatientlastname) && rowtext.contains(statusName)){
+			if(rowtext.contains(existingPatientfirstname) && rowtext.contains(existingPatientlastname) && rowtext.contains(statusName)){
 				System.out.println("corrected patient row is displayed");
 				isTaskCompleted=true;
 				break;
@@ -648,7 +701,7 @@ public class TaskPage extends BaseAbstractPage {
 		List<WebElement> searchPatientrow = driver.findElements(AppointmentPage.totaltrtags);
 		for(WebElement irows:searchPatientrow){
 			String rowtext =irows.getText();
-			if(rowtext.contains(TaskTest.existingPatientfirstname) && rowtext.contains(TaskTest.existingPatientlastname)){
+			if(rowtext.contains(existingPatientfirstname) && rowtext.contains(existingPatientlastname)){
 				System.out.println("corrected patient row is displayed");
 				isTaskDeleted=true;
 				break;
@@ -664,7 +717,7 @@ public class TaskPage extends BaseAbstractPage {
 		SeleniumUtil.switchToParentFrame(Frames.LOGIN);
 		SeleniumUtil.waitForProgressBar(Frames.LOGIN);
 		String snoozeTitle=SeleniumUtil.getElementWithFluentWait(AppointmentPage.popUpTitle).getText();
-		if(snoozeTitle.equalsIgnoreCase(TaskTest.snoozeToolTipTitle)){
+		if(snoozeTitle.equalsIgnoreCase(snoozeToolTipTitle)){
 			logger.info("Follow up date Tool tip is opned...");
 		}
 		return snoozeTitle;
@@ -710,7 +763,7 @@ public class TaskPage extends BaseAbstractPage {
 		System.out.println("The Task History Text is:"+completeText);
 		String currentDate=DateUtil.getCurrentDateInDateFormatted("MM/d/yyyy");
 		String futureDate =DateUtil.getFutureDate();
-		String verifySnoozetext =TaskTest.snoozeText+futureDate;
+		String verifySnoozetext =snoozeText+futureDate;
 		if(completeText.contains(verifySnoozetext)){
 			logger.info("Task Is Snoozed in task window");
 			isTaskSnoozed=true;
@@ -745,11 +798,11 @@ public class TaskPage extends BaseAbstractPage {
 		    SeleniumUtil.switchToParentFrame(Frames.OUTBOUND);
 			String Task = SeleniumUtil.getElementWithFluentWait(taskHistoryContent).getText();
 			System.out.println("Task History content is"+Task);
-			if (Task.contains(TaskTest.recipientsNames) && Task.contains(ConstantsFile.TaskIntialName) && Task.contains(TaskTest.completePatientName) ) {
+			if (Task.contains(recipientsNames) && Task.contains(ConstantsFile.TaskIntialName) && Task.contains(completePatientName) ) {
                   System.out.println("sent task is availabe in my Tasks");
                   isTaskPresentInMyTask=true;
 		}
-			else if(Task.contains(ConstantsFile.TaskIntialName) && Task.contains(TaskTest.completePatientName)){
+			else if(Task.contains(ConstantsFile.TaskIntialName) && Task.contains(completePatientName)){
 				 System.out.println("sent task is availabe in Task Manager");
                  isTaskPresentInMyTask=true;
 			}
@@ -766,7 +819,7 @@ public class TaskPage extends BaseAbstractPage {
 		List<WebElement> searchPatientrow = driver.findElements(AppointmentPage.totaltrtags);
 		for(WebElement irows:searchPatientrow){
 			String rowtext =irows.getText();
-			if(rowtext.contains(ConstantsFile.TaskIntialName) && rowtext.contains(TaskTest.existingPatientfirstname) && rowtext.contains(TaskTest.existingPatientlastname)){
+			if(rowtext.contains(ConstantsFile.TaskIntialName) && rowtext.contains(existingPatientfirstname) && rowtext.contains(existingPatientlastname)){
 				System.out.println("corrected patient row is displayed");
 				SeleniumUtil.rightClick(irows);
 				SeleniumUtil.clickOnImageWithTargetOffsetInSikuli(optionName);
@@ -789,7 +842,7 @@ public class TaskPage extends BaseAbstractPage {
 		boolean isCreatedrecalled=false;
 		SeleniumUtil.switchToParentFrame(Frames.HOME);
 		String task=SeleniumUtil.getElementWithFluentWait(taskSubject).getText();
-		if(task.contains("Task recalled:") && task.contains(TaskTest.existingPatientfirstname) && task.contains(TaskTest.existingPatientlastname)){
+		if(task.contains("Task recalled:") && task.contains(existingPatientfirstname) && task.contains(existingPatientlastname)){
 			System.out.println("Task is recalled");
 			return isCreatedrecalled=true;
 		}
@@ -807,7 +860,7 @@ public class TaskPage extends BaseAbstractPage {
 		logger.info("searching  recipients...");
 		SeleniumUtil.switchToParentFrame(Frames.PATIENT_SEARCHING);
 		SeleniumUtil.waitForProgressBar(Frames.PATIENT_SEARCHING);
-		SeleniumUtil.getElementWithFluentWait(recipientTextBox).sendKeys(TaskTest.reassignRecipientsForTask);
+		SeleniumUtil.getElementWithFluentWait(recipientTextBox).sendKeys(reassignRecipientsForTask);
 		SeleniumUtil.getElementWithFluentWait(recipientSearchIcon).click();
 		sleep(5000);
 		
@@ -823,7 +876,7 @@ public class TaskPage extends BaseAbstractPage {
 				String rowText = tdElement.getText();
 				System.out.println("row # " + row_num + ", col # " + col_num + "text=" + tdElement.getText());
 				col_num++;
-				if (rowText.equalsIgnoreCase(TaskTest.reassignRecipientsForTask)) {
+				if (rowText.equalsIgnoreCase(reassignRecipientsForTask)) {
 					System.out.println("corrected user is selected");
 					SeleniumUtil.doubleClick(tdElement);
 					break;

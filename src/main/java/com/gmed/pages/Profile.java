@@ -3,28 +3,26 @@ package com.gmed.pages;
 import static com.gmed.helper.DriverFactory.action;
 import static com.gmed.helper.DriverFactory.driver;
 
-import java.text.DateFormat;
-import java.text.SimpleDateFormat;
-import java.util.Calendar;
-import java.util.Date;
-import java.util.HashMap;
+
 import java.util.List;
+import java.util.Map;
 
 import org.apache.log4j.LogManager;
 import org.apache.log4j.Logger;
 import org.openqa.selenium.By;
-import org.openqa.selenium.JavascriptExecutor;
+
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
 import org.sikuli.script.FindFailed;
+import org.testng.annotations.BeforeClass;
 
 import com.gmed.Frames.DynamicFramePage;
 import com.gmed.Frames.Frames;
 import com.gmed.base.BaseAbstractPage;
-import com.gmed.test.DemographicsTest;
-import com.gmed.test.ImmunizationTest;
-import  com.gmed.test.ProfileTest;
+
+
+
 import com.gmed.utils.ConstantsFile;
 import com.gmed.utils.DateUtil;
 import com.gmed.utils.ExcelFileUtilty;
@@ -177,6 +175,292 @@ public class Profile extends BaseAbstractPage {
 	public static By sexualTextBoxInProfile                       = By.id("txtPartners_TextBox");
 	public static By sexualNotesInProfile                       = By.id("txtNotes_TextBox");
 	
+	
+
+	/**contains the Profile page data*/
+	public static Map<String, String> profileData;
+
+	/**These are the variables which are used to store different data for medical chart module*/
+	public static String existingProfilePatientDateOfBirth;
+	public static String existingPatientAge;
+	public static String existingProfilepatientSSN;
+	public static String existingProfilepatientAddress;
+	public static String existingProfilepatientMailId;
+	public static String existingProfilePatientCompletename;
+	public static String existingProfilePatientInsurance;
+	public static String patientProfileMenuIcons;
+	public static String patientProfilerecipientName;
+	public static String patientProfilerfax0;
+	public static String patientProfilerfax1;
+	public static String patientProfilerfax2;
+	public static String patientProfilerDiagnosisvalue;
+	public static String patientProfilerDiagnosisICD10;
+	public static String patientProfilerDiagnosisUserListvalue;
+	public static String patientProfilerDiagnosisFromFirstVisit;
+	public static String problemTextinProfile;
+	public static String patientProfileGuidlinesName;
+	public static String guidlineTextinProfile;
+	public static String existingActivityForProfilePatient;
+	public static String existingProfileProviderfirstname;
+	public static String existingProfileProviderlastname;
+	public static String existingProfileRecallType;
+	public static String vitalSignWeightForProfilePatient;
+	public static String vitalSignHeightForProfilePatient;
+	public static String vitalSignHeightBMIForProfilePatient;
+	public static String userNameForAdvanceDirectiveProfile;
+	public static String notesForAdvanceDirectiveProfile;
+	public static String completeTextForAdvanceDirectiveProfile;
+	public static String currentDateForAdvanceDirectiveProfile;
+	public static String halfTextForAdvanceDirectiveProfile;
+	public static String halfTextForPIFProfile;
+	public static String completeTextForPIFProfile;
+	public static String medicationForProfile;
+	public static String recordExistingMedicationForProfile;
+	public static String medicationUsingUserListForProfile;
+	public static String recordExistingUsingUserListForProfile;
+	public static String addNewAllergyForPatient;
+	public static String selectAllergyFormMyAllergies;
+	public static String addNewMedicatiomInAllergyForPatient;
+	public static String selectAllergyForSearchBox;
+	public static String allergyValueFromFirstVisit;
+	public static String noAllergyTextForProfile;
+	public static String noDrugAllergyTextForProfile;
+	public static String noCondtionTextForProfile;
+	public static String addNewCondtionForPatient;
+	public static String condtionValueFromFirstVisit;
+	public static String noImmunizationTextForProfile;
+	public static String addNewImmunizationForPatient;
+	public static String searchExistingImmunization;
+	public static String immunizationValueFromFirstVisit;
+	public static String codingDescription;
+	public static String dxStudiesValueFromFirstVisit;
+	public static String searchdxStudiesProcedureName;
+	public static String noDXStudiesTextForProfile;
+	public static String cptCode;
+	public static String dxStudiesProcedureName;
+	public static String searchExistingProcedure;
+	public static String procedureValueFromFirstVisit;
+	public static String gmedLoaction;
+	public static String medicationtext1;
+	public static String medicationtext2;
+	public static String medicationtext3;
+	public static String medicationtext4;
+	public static String medicationtext5;
+	public static String medicationtext6;
+	public static String medicationtext7;
+	public static String medicationtext8;
+	public static String allergyTextinProfile;
+	public static String conditionTextinProfile;
+	public static String immunizationTextinProfile;
+	public static String dxStudiesTextinProfile;
+	public static String familytextinProfile;
+	public static String generalTextForProfile;
+	public static String alcholToolTipTitle;
+	public static String alcholQuantityForProfile;
+	public static String alcholFrequencyForProfile;
+	public static String alcholNoOfTimesForProfile;
+	public static String alcholTextForProfile;
+	public static String tabaccoToolTipTitle;
+	public static String tabacooTextForProfile;
+	public static String drugToolTipTitle;
+	public static String drugTextForProfile;
+	public static String exerciseToolTipTitle;
+	public static String exerciseTextForProfile;
+	public static String caffeineToolTipTitle;
+	public static String caffeineTextForProfile;
+	public static String caffeineTextForService;
+	public static String sexualToolTipTitle;
+	
+	/** These are the variables which are present on "Profile" sheet in the excel*/
+	
+	public static final String PROFILE_PATIENT_DATEOFBIRTH 				                   = "dateofbirth";
+	public static final String PROFILE_PATIENT_SSNNUMBER 				                   = "socialsecurity";
+	public static final String PROFILE_PATIENT_ADDRESS 				                       = "address";
+	public static final String PROFILE_PATIENT_MAILID 				                       = "mailId";
+	public static final String PROFILE_PATIENT_COMPLETE 				                   = "patientcompletename";
+	public static final String PROFILE_PATIENT_INSURANCE 				                   = "carriernames";
+	public static final String PROFILE_PATIENT_MENUICONSNAME 				               = "menusicons";
+	public static final String PROFILE_PATIENT_RECIPIENTNAME				               = "recipientName";
+	public static final String PROFILE_PATIENT_FAX0				                           = "fax0";
+	public static final String PROFILE_PATIENT_FAX1				                           = "fax1";
+	public static final String PROFILE_PATIENT_FAX2				                           = "fax2";
+	public static final String PROFILE_PATIENT_PROBLEM				                       = "problemvalue";
+	public static final String PROFILE_PATIENT_PROBLEM_ICD10				               = "ICD10";
+	public static final String PROFILE_PATIENT_PROBLEM_USERLISTVALUE				       = "addProblems";
+	public static final String PROFILE_PATIENT_PROBLEM_USERLIST_FROM_SERVICE			   = "addDiagnosis";
+	public static final String PROFILE_PATIENT_PROBLEM_TEXT				                   = "problemtextinprofile";
+	public static final String PROFILE_PATIENT_GUIDLINE_NAME			                   = "guidlineName";
+	public static final String PROFILE_PATIENT_GUIDLINE_TEXT				               = "guidlinetext";
+	public static final String PROFILE_PATIENT_ACTIVITY 				                   = "activityvalue";
+	public static final String PROFILE_PROVIDER_FIRSTNAME 				                   = "providerfirstname";
+	public static final String PROFILE_PROVIDER_LASTNAME 				                   = "providerlastname";
+	public static final String PROFILE_RECALL_TYPE 				                           = "recalltype";
+	public static final String PROFILE_VITAL_WEIGHT 				                       = "vitalsignsweight";
+	public static final String PROFILE_VITAL_HEIGHT 				                       = "vitalsignsheight";
+	public static final String PROFILE_VITAL_BMI 				                           = "bmivalue";
+	public static final String PROFILE_USER_NAME 				                           = "username";
+	public static final String DIRECTIVE_NOTES_NAME 				                       = "advancedirectivenote";
+	public static final String DIRECTIVE_COMPLETE_TEXT 				                       = "completetextforadvancedirective";
+	public static final String DIRECTIVE_CURRENT_DATE 				                       = "currentdate";
+	public static final String DIRECTIVE_HALF_TEXT 				                           = "advancereviewtext";
+	public static final String PIF_HALF_TEXT 				                               = "pifreviewtext";
+	public static final String PIF_COMPLETE_TEXT 				                           = "completetextforpif";
+	public static final String PROFILE_MEDICATION_NAME 				                       = "medicationname";
+	public static final String PROFILE_RECORDEXISTING_MEDICATIONNAME 				       = "recordingexistingmedication";
+	public static final String PRESCRIBE_MEDICATION_USERLIST 				               = "userlistmedication";
+	public static final String RECORDEXISTING_MEDICATION_USERLIST 				           = "recordingexistingmedicationusinglist";
+	public static final String ADD_NEW_ALLERGY 				                               = "addnewcustomallergy";
+	public static final String SELECT_MY_ALLERGY 				                           = "addallergiesfromMyallergy";
+	public static final String SEARCH_ALLERGY 				                               = "searchallergy";
+	public static final String ALLERGY_USERLIST_FROM_SERVICE			                   = "addallergyfromservice";
+	public static final String PROFILE_NO_ALLERGIES 				                       = "noallergies";
+	public static final String PROFILE_NO_DRUG_ALLERGIES 				                   = "nodrugallergies";
+	public static final String ADD_NEW_MEDICATION_INALLERGIES 				               = "searchmedicationinallergy";
+	public static final String PROFILE_NO_CONDTIONS 				                       = "nocondtions";
+	public static final String ADD_NEW_CONDTION 				                           = "addcondtioninsearchbox";
+	public static final String CONDTION_USERLIST_FROM_SERVICE			                   = "addcondtionfromservice";
+	public static final String PROFILE_NO_IMMUNIZATION 				                       = "noimmunizations";
+	public static final String ADD_NEW_IMMUNIZATION 				                       = "addnewcustomimmunization";
+	public static final String SEARCH_EXISTING_IMMUNIZATION 				                   = "searchexistingimmunization";
+	public static final String IMMUNIZATION_USERLIST_FROM_SERVICE			                   = "addimmunizationfromservice";
+	public static final String CODING_DESCRIPTION 				                           = "codingdescription";
+	public static final String DXSTUDIES_USERLIST_FROM_SERVICE			                   = "adddxstudiesfromservice";
+	public static final String PROCEDURE_NAME 				                           = "searchusingsearchbox";
+	public static final String PROFILE_NO_DXSTUDIES 				                       = "nodxstudies";
+	public static final String PROFILE_CPT_CODE 				                           = "cptcode";
+	public static final String DX_PROCEDURE_NAME 				                           = "procedurename";
+	public static final String SEARCH_EXISTING_PROCEDURE				                   = "searchexistingprocedure";
+	public static final String PROCEDURE_USERLIST_FROM_SERVICE			                   = "addprocedurefromservice";
+	public static final String GMED_LOCATION			                                   = "location";
+	public static final String MEDICATION_TEXT1			                                   = "medicationtext1";
+	public static final String MEDICATION_TEXT2			                                   = "medicationtext2";
+	public static final String MEDICATION_TEXT3			                                   = "medicationtext3";
+	public static final String MEDICATION_TEXT4			                                   = "medicationtext4";
+	public static final String MEDICATION_TEXT5			                                   = "medicationtext5";
+	public static final String MEDICATION_TEXT6			                                   = "medicationtext6";
+	public static final String MEDICATION_TEXT7			                                   = "medicationtext7";
+	public static final String MEDICATION_TEXT8			                                   = "medicationtext8";
+	public static final String PROFILE_ALLERGIES_TEXT				                   = "allergytextinprofile";
+	public static final String PROFILE_CONDITION_TEXT				                   = "condtiontextinprofile";
+	public static final String PROFILE_IMMUNIZATION_TEXT				                   = "immunizationtextinprofile";
+	public static final String PROFILE_DXSTUDIES_TEXT				                   = "dxstudiestextinprofile";
+	public static final String PROFILE_FAMILY_TEXT				                   = "familytextinprofile";
+	public static final String GENERAL_TEXT_FOR_PROFILE                                    = "generaltext";
+	public static final String ALCHOL_TITLE                                                = "alcholtitle";
+	public static final String ALCHOL_QUANTITY_FOR_PROFILE                                 = "quantity";
+	public static final String ALCHOL_FREQUENCY_FOR_PROFILE                                 = "frequency";
+	public static final String ALCHOL_NOOFTIMES_FOR_PROFILE                                 = "frequencytimes";
+	public static final String ALCHOL_TEXT_FOR_PROFILE                                    = "alcholtext";
+	public static final String TABACCO_TITLE                                                = "tabaccotitle";
+	public static final String TABACCO_TEXT_FOR_PROFILE                                    = "tabaccotext";
+	public static final String DRUG_TITLE                                                  = "drugtitle";
+	public static final String DRUG_TEXT_FOR_PROFILE                                       = "drugtext";
+	public static final String EXERCISE_TITLE                                              = "exercisetitle";
+	public static final String EXERCISE_TEXT_FOR_PROFILE                                    = "exercisetext";
+	public static final String CAFFEINE_TITLE                                              = "caffeinetitle";
+	public static final String CAFFEINE_TEXT_FOR_PROFILE                                    = "caffeinetext";
+	public static final String CAFFEINE_TEXT_FOR_SERVICE                                    = "caffeinetextforservice";
+	public static final String SEXUAL_TITLE                                                 = "sexualtitle";
+	@BeforeClass
+	public void initClass() throws Exception{
+		logger.info("inside the initClass method for DemographicsTest test class....");
+		profileData                                                 = ExcelFileUtilty.readExcelSheet("Profile");
+		DemographicsPage.demographicsData                           = ExcelFileUtilty.readExcelSheet("Demographics");
+		DemographicsPage.existingPatientfirstname                   = DemographicsPage.demographicsData.get(DemographicsPage.PATIENT_FIRSTNAME);
+		DemographicsPage.existingPatientlastname                    = DemographicsPage.demographicsData.get(DemographicsPage.PATIENT_LASTNAME);
+		existingProfilePatientDateOfBirth                           = profileData.get(PROFILE_PATIENT_DATEOFBIRTH);
+		existingPatientAge                                          = DemographicsPage.demographicsData.get(DemographicsPage.PATIENT_AGE);
+		DemographicsPage.existingPatientrecordnumber                = DemographicsPage.demographicsData.get(DemographicsPage.PATIENT_RECORDNUMBER);
+		existingProfilepatientSSN                                   = DemographicsPage.demographicsData.get(DemographicsPage.PATIENT_SSNNUMBER);
+		existingProfilepatientAddress                               = profileData.get(PROFILE_PATIENT_ADDRESS);
+		existingProfilepatientMailId                                = profileData.get(PROFILE_PATIENT_MAILID);
+		existingProfilePatientCompletename                          = profileData.get(PROFILE_PATIENT_COMPLETE);
+		existingProfilePatientInsurance                             = profileData.get(PROFILE_PATIENT_INSURANCE);
+		patientProfileMenuIcons                                     = profileData.get(PROFILE_PATIENT_MENUICONSNAME);
+		patientProfilerfax0                                         = profileData.get(PROFILE_PATIENT_FAX0);
+		patientProfilerfax1                                         = profileData.get(PROFILE_PATIENT_FAX1);
+		patientProfilerfax2                                         = profileData.get(PROFILE_PATIENT_FAX2);
+		patientProfilerecipientName                                 = profileData.get(PROFILE_PATIENT_RECIPIENTNAME);
+		patientProfilerDiagnosisvalue                               = profileData.get(PROFILE_PATIENT_PROBLEM);
+		patientProfilerDiagnosisICD10                               = profileData.get(PROFILE_PATIENT_PROBLEM_ICD10);
+		patientProfilerDiagnosisUserListvalue                       = profileData.get(PROFILE_PATIENT_PROBLEM_USERLISTVALUE);
+		patientProfilerDiagnosisFromFirstVisit                      = profileData.get(PROFILE_PATIENT_PROBLEM_USERLIST_FROM_SERVICE);
+		problemTextinProfile                                        = profileData.get(PROFILE_PATIENT_PROBLEM_TEXT);
+		patientProfileGuidlinesName                                 = profileData.get(PROFILE_PATIENT_GUIDLINE_NAME);
+		guidlineTextinProfile                                       = profileData.get(PROFILE_PATIENT_GUIDLINE_TEXT);
+		DemographicsPage.existingPatientFromAge                     = DemographicsPage.demographicsData.get(DemographicsPage.PATIENT_FROM_AGE);
+		DemographicsPage.existingPatientToAge                       = DemographicsPage.demographicsData.get(DemographicsPage.PATIENT_TO_AGE);
+		existingActivityForProfilePatient                           = profileData.get(PROFILE_PATIENT_ACTIVITY);
+		existingProfileProviderfirstname                            = profileData.get(PROFILE_PROVIDER_FIRSTNAME);
+		existingProfileProviderlastname                             = profileData.get(PROFILE_PROVIDER_LASTNAME);
+		existingProfileRecallType                                   = profileData.get(PROFILE_RECALL_TYPE);
+		vitalSignWeightForProfilePatient                            = profileData.get(PROFILE_VITAL_WEIGHT);
+		vitalSignHeightForProfilePatient                            = profileData.get(PROFILE_VITAL_HEIGHT);
+		vitalSignHeightBMIForProfilePatient                         = profileData.get(PROFILE_VITAL_BMI);
+		userNameForAdvanceDirectiveProfile                          = profileData.get(PROFILE_USER_NAME);
+		notesForAdvanceDirectiveProfile                             = profileData.get(DIRECTIVE_NOTES_NAME);
+		completeTextForAdvanceDirectiveProfile                      = profileData.get(DIRECTIVE_COMPLETE_TEXT);
+		currentDateForAdvanceDirectiveProfile                       = profileData.get(DIRECTIVE_CURRENT_DATE);
+		halfTextForAdvanceDirectiveProfile                          = profileData.get(DIRECTIVE_HALF_TEXT);
+		halfTextForPIFProfile                                       = profileData.get(PIF_HALF_TEXT);
+		completeTextForPIFProfile                                   = profileData.get(PIF_COMPLETE_TEXT);
+		medicationForProfile                                        = profileData.get(PROFILE_MEDICATION_NAME);
+		recordExistingMedicationForProfile                          = profileData.get(PROFILE_RECORDEXISTING_MEDICATIONNAME);
+		medicationUsingUserListForProfile                           = profileData.get(PRESCRIBE_MEDICATION_USERLIST);
+		recordExistingUsingUserListForProfile                       = profileData.get(RECORDEXISTING_MEDICATION_USERLIST);
+		addNewAllergyForPatient                                     = profileData.get(ADD_NEW_ALLERGY);
+		selectAllergyFormMyAllergies                                = profileData.get(SELECT_MY_ALLERGY);
+		selectAllergyForSearchBox                                   = profileData.get(SEARCH_ALLERGY);
+		allergyValueFromFirstVisit                                  = profileData.get(ALLERGY_USERLIST_FROM_SERVICE);
+		noAllergyTextForProfile                                     = profileData.get(PROFILE_NO_ALLERGIES);
+		noDrugAllergyTextForProfile                                 = profileData.get(PROFILE_NO_DRUG_ALLERGIES);
+		addNewMedicatiomInAllergyForPatient                         = profileData.get(ADD_NEW_MEDICATION_INALLERGIES);
+		noCondtionTextForProfile                                    = profileData.get(PROFILE_NO_CONDTIONS);
+		addNewCondtionForPatient                                    = profileData.get(ADD_NEW_CONDTION);
+		condtionValueFromFirstVisit                                 = profileData.get(CONDTION_USERLIST_FROM_SERVICE);
+		noImmunizationTextForProfile                                = profileData.get(PROFILE_NO_IMMUNIZATION);
+		addNewImmunizationForPatient                                = profileData.get(ADD_NEW_IMMUNIZATION);
+		searchExistingImmunization                                  = profileData.get(SEARCH_EXISTING_IMMUNIZATION);
+		immunizationValueFromFirstVisit                             = profileData.get(IMMUNIZATION_USERLIST_FROM_SERVICE);
+		codingDescription                                           = profileData.get(CODING_DESCRIPTION);
+		dxStudiesValueFromFirstVisit                                = profileData.get(DXSTUDIES_USERLIST_FROM_SERVICE);
+		searchdxStudiesProcedureName                                = profileData.get(PROCEDURE_NAME);
+		noDXStudiesTextForProfile                                   = profileData.get(PROFILE_NO_DXSTUDIES);
+		cptCode                                                     = profileData.get(PROFILE_CPT_CODE);
+		dxStudiesProcedureName                                      = profileData.get(DX_PROCEDURE_NAME);
+		searchExistingProcedure                                     = profileData.get(SEARCH_EXISTING_PROCEDURE);
+		procedureValueFromFirstVisit                                = profileData.get(PROCEDURE_USERLIST_FROM_SERVICE);
+		gmedLoaction                                                = profileData.get(GMED_LOCATION);
+		medicationtext1                                             = profileData.get(MEDICATION_TEXT1);
+		medicationtext2                                             = profileData.get(MEDICATION_TEXT2);
+		medicationtext3                                             = profileData.get(MEDICATION_TEXT3);
+		medicationtext4                                             = profileData.get(MEDICATION_TEXT4);
+		medicationtext5                                             = profileData.get(MEDICATION_TEXT5);
+		medicationtext6                                             = profileData.get(MEDICATION_TEXT6);
+		medicationtext7                                             = profileData.get(MEDICATION_TEXT7);
+		medicationtext8                                             = profileData.get(MEDICATION_TEXT8);
+		allergyTextinProfile                                        = profileData.get(PROFILE_ALLERGIES_TEXT);
+		conditionTextinProfile                                      = profileData.get(PROFILE_CONDITION_TEXT);
+		immunizationTextinProfile                                   = profileData.get(PROFILE_IMMUNIZATION_TEXT);
+		dxStudiesTextinProfile                                      = profileData.get(PROFILE_DXSTUDIES_TEXT);
+		familytextinProfile                                         = profileData.get(PROFILE_FAMILY_TEXT);
+		generalTextForProfile                                       = profileData.get(GENERAL_TEXT_FOR_PROFILE);
+		alcholToolTipTitle                                          = profileData.get(ALCHOL_TITLE);
+		alcholQuantityForProfile                                    = profileData.get(ALCHOL_QUANTITY_FOR_PROFILE);
+		alcholFrequencyForProfile                                   = profileData.get(ALCHOL_FREQUENCY_FOR_PROFILE);
+		alcholNoOfTimesForProfile                                   = profileData.get(ALCHOL_NOOFTIMES_FOR_PROFILE);
+		alcholTextForProfile                                        = profileData.get(ALCHOL_TEXT_FOR_PROFILE);
+		tabaccoToolTipTitle                                         = profileData.get(TABACCO_TITLE);
+		tabacooTextForProfile                                       = profileData.get(TABACCO_TEXT_FOR_PROFILE);
+		drugTextForProfile                                          = profileData.get(DRUG_TEXT_FOR_PROFILE);
+		drugToolTipTitle                                            = profileData.get(DRUG_TITLE);
+		exerciseToolTipTitle                                        = profileData.get(EXERCISE_TITLE);
+		exerciseTextForProfile                                      = profileData.get(EXERCISE_TEXT_FOR_PROFILE);
+		caffeineToolTipTitle                                        = profileData.get(CAFFEINE_TITLE);
+		caffeineTextForProfile                                      = profileData.get(CAFFEINE_TEXT_FOR_PROFILE);
+		caffeineTextForService                                      = profileData.get(CAFFEINE_TEXT_FOR_SERVICE);
+		sexualToolTipTitle                                          = profileData.get(SEXUAL_TITLE);
+	}
 	/**
 	 * This method is used for clicking on profile present in patient chart
 	 * @throws Exception
@@ -550,7 +834,7 @@ public class Profile extends BaseAbstractPage {
 		boolean isPatientNamePresent=false;
 		switchToProfileFrame();
 		String patientNameData=SeleniumUtil.getElementWithFluentWait(patientNameInProfile).getText();
-		if(patientNameData.equalsIgnoreCase(ProfileTest.existingProfilePatientCompletename) ){
+		if(patientNameData.equalsIgnoreCase(existingProfilePatientCompletename) ){
 			System.out.println("patient Name is present in Profile Screen");
 			isPatientNamePresent=true;
 		}
@@ -564,7 +848,7 @@ public class Profile extends BaseAbstractPage {
 		boolean isPatientDOBPresent=false;
 		//switchToProfileFrame();
 		String patientDOBData=SeleniumUtil.getElementWithFluentWait(patientDOBInProfile).getText();
-		if(patientDOBData.contains(ProfileTest.existingProfilePatientDateOfBirth) && patientDOBData.contains(ProfileTest.existingPatientAge) ){
+		if(patientDOBData.contains(existingProfilePatientDateOfBirth) && patientDOBData.contains(existingPatientAge) ){
 			System.out.println("correct date of birth is present in Profile Screen");
 			isPatientDOBPresent=true;
 		}
@@ -578,7 +862,7 @@ public class Profile extends BaseAbstractPage {
 		boolean isPatientRecordNumberPresent=false;
 		//switchToProfileFrame();
 		String patientMRNData=SeleniumUtil.getElementWithFluentWait(patientMRNInProfile).getText();
-		if(patientMRNData.contains(DemographicsTest.existingPatientrecordnumber) ){
+		if(patientMRNData.contains(DemographicsPage.existingPatientrecordnumber) ){
 			System.out.println("correct record number is present in Profile Screen");
 			isPatientRecordNumberPresent=true;
 		}
@@ -592,7 +876,7 @@ public class Profile extends BaseAbstractPage {
 		boolean isPatientSSNPresent=false;
 		//switchToProfileFrame();
 		String patientSSNData=SeleniumUtil.getElementWithFluentWait(patientSSNInProfile).getText();
-		if(patientSSNData.contains(ProfileTest.existingProfilepatientSSN) ){
+		if(patientSSNData.contains(existingProfilepatientSSN) ){
 			System.out.println("correct record number is present in Profile Screen");
 			isPatientSSNPresent=true;
 		}
@@ -606,7 +890,7 @@ public class Profile extends BaseAbstractPage {
 		boolean isPatientAddressPresent=false;
 		//switchToProfileFrame();
 		String patientAddressData=SeleniumUtil.getElementWithFluentWait(patientAddressInProfile).getText();
-		if(patientAddressData.contains(ProfileTest.existingProfilepatientAddress) ){
+		if(patientAddressData.contains(existingProfilepatientAddress) ){
 			System.out.println("correct address is present in Profile Screen");
 			isPatientAddressPresent=true;
 		}
@@ -620,7 +904,7 @@ public class Profile extends BaseAbstractPage {
 		boolean isPatientMailPresent=false;
 		//switchToProfileFrame();
 		String patientMailData=SeleniumUtil.getElementWithFluentWait(patientEmailInProfile).getText();
-		if(patientMailData.contains(ProfileTest.existingProfilepatientMailId) ){
+		if(patientMailData.contains(existingProfilepatientMailId) ){
 			System.out.println("correct mail ID is present in Profile Screen");
 			isPatientMailPresent=true;
 		}
@@ -638,7 +922,7 @@ public class Profile extends BaseAbstractPage {
 		{
 			String rowText=trElement.getText();
 			System.out.println(rowText);
-			if(rowText.equalsIgnoreCase(ProfileTest.existingProfilePatientInsurance)){
+			if(rowText.equalsIgnoreCase(existingProfilePatientInsurance)){
 				System.out.println("corrected patient insurance row is displayed");
 				isPatientInsurancePresent=true;
 				break;
@@ -656,7 +940,7 @@ public class Profile extends BaseAbstractPage {
 		switchToProfileFrame();
 		String menusvalues =SeleniumUtil.getElementWithFluentWait(menuIconsInProfile).getAttribute("ids");
 		System.out.println(menusvalues);
-		if(menusvalues.equalsIgnoreCase(ProfileTest.patientProfileMenuIcons)){
+		if(menusvalues.equalsIgnoreCase(patientProfileMenuIcons)){
 			System.out.println("all menu icons are present");
 			isMenuIconsPresent=true;
 		}
@@ -761,10 +1045,10 @@ public class Profile extends BaseAbstractPage {
 	public void addFaxDetailsForFaxing(){
 		SeleniumUtil.switchToParentFrame(Frames.CREATION);
 		SeleniumUtil.waitForProgressBar(Frames.CREATION);
-		SeleniumUtil.getElementWithFluentWait(recipientName).sendKeys(ProfileTest.patientProfilerecipientName);
-		SeleniumUtil.getElementWithFluentWait(faxDigit1).sendKeys(ProfileTest.patientProfilerfax0);
-		SeleniumUtil.getElementWithFluentWait(faxDigit2).sendKeys(ProfileTest.patientProfilerfax1);
-		SeleniumUtil.getElementWithFluentWait(faxDigit3).sendKeys(ProfileTest.patientProfilerfax2);
+		SeleniumUtil.getElementWithFluentWait(recipientName).sendKeys(patientProfilerecipientName);
+		SeleniumUtil.getElementWithFluentWait(faxDigit1).sendKeys(patientProfilerfax0);
+		SeleniumUtil.getElementWithFluentWait(faxDigit2).sendKeys(patientProfilerfax1);
+		SeleniumUtil.getElementWithFluentWait(faxDigit3).sendKeys(patientProfilerfax2);
 		clickOnFaxWindow();
 	}
 	/**
@@ -955,7 +1239,7 @@ public class Profile extends BaseAbstractPage {
 		SeleniumUtil.waitForProgressBar(Frames.MEDICATION_LIST);
 		SeleniumUtil.getElementWithFluentWait(reviewDiagnosisSearchBox).click();
 		SeleniumUtil.switchToParentFrame(Frames.PATIENT_SEARCHING);
-		SeleniumUtil.getElementWithFluentWait(AppointmentPage.patientnametextbox).sendKeys(ProfileTest.patientProfilerDiagnosisvalue);
+		SeleniumUtil.getElementWithFluentWait(AppointmentPage.patientnametextbox).sendKeys(patientProfilerDiagnosisvalue);
 		SeleniumUtil.getElementWithFluentWait(DocumentPage.searchbutton).click();
 		sleep(5000);
 		List<WebElement> searchdiagnosisrow = driver.findElements(totaltrtagsForProfile);
@@ -972,7 +1256,7 @@ public class Profile extends BaseAbstractPage {
 				String rowText=tdElement.getText();
 				System.out.println("row # "+row_num+", col # "+col_num+ "text="+tdElement.getText());
 				col_num++;
-				if(rowText.equalsIgnoreCase(ProfileTest.patientProfilerDiagnosisvalue)){
+				if(rowText.equalsIgnoreCase(patientProfilerDiagnosisvalue)){
 					System.out.println("corrected patient row is displayed");
 					SeleniumUtil.doubleClick(tdElement);
 					break;
@@ -1018,7 +1302,7 @@ public class Profile extends BaseAbstractPage {
 		for(WebElement irows:totaltrrows){
 			String rowtext =irows.getText();
 			System.out.println("row text is"+rowtext);
-			if(rowtext.contains(ProfileTest.patientProfilerDiagnosisvalue) || rowtext.contains(ProfileTest.patientProfilerDiagnosisUserListvalue) || rowtext.contains(ProfileTest.patientProfilerDiagnosisFromFirstVisit)){
+			if(rowtext.contains(patientProfilerDiagnosisvalue) || rowtext.contains(patientProfilerDiagnosisUserListvalue) || rowtext.contains(patientProfilerDiagnosisFromFirstVisit)){
 				System.out.println("Diagnosis already  added in demographics");
 				SeleniumUtil.rightClick(irows);
 				SeleniumUtil.clickOnImageWitScreenInSikuli("selectDelete");
@@ -1062,10 +1346,10 @@ public class Profile extends BaseAbstractPage {
 
 	public void addDiagnosisFromUserList(){
 		switchToUserListFrame();
-		SeleniumUtil.getElementWithFluentWait(patientnametextbox).sendKeys(ProfileTest.patientProfilerDiagnosisICD10);
+		SeleniumUtil.getElementWithFluentWait(patientnametextbox).sendKeys(patientProfilerDiagnosisICD10);
 		SeleniumUtil.getElementWithFluentWait(searchIcon).click();
 		sleep(9000);
-		WebElement plussign =SeleniumUtil.getElementWithFluentWait(By.xpath(".//*[contains(text(),'"+ ProfileTest.patientProfilerDiagnosisUserListvalue +"')]"));
+		WebElement plussign =SeleniumUtil.getElementWithFluentWait(By.xpath(".//*[contains(text(),'"+ patientProfilerDiagnosisUserListvalue +"')]"));
 		action.moveToElement(plussign).doubleClick().build().perform();
 	}
 	/**
@@ -1088,10 +1372,10 @@ public class Profile extends BaseAbstractPage {
 		SeleniumUtil.switchToFrame(driver, "panUserList_Frame");
 		sleep(5000);
 		SeleniumUtil.switchToFrame(driver, "fraUserListDiagnosis_Frame");
-		SeleniumUtil.getElementWithFluentWait(patientnametextbox).sendKeys(ProfileTest.patientProfilerDiagnosisFromFirstVisit);
+		SeleniumUtil.getElementWithFluentWait(patientnametextbox).sendKeys(patientProfilerDiagnosisFromFirstVisit);
 		SeleniumUtil.getElementWithFluentWait(searchIcon).click();
 		sleep(5000);
-		WebElement plussign =SeleniumUtil.getElementWithFluentWait(By.xpath(".//*[contains(text(),'"+ ProfileTest.patientProfilerDiagnosisFromFirstVisit +"')]"));
+		WebElement plussign =SeleniumUtil.getElementWithFluentWait(By.xpath(".//*[contains(text(),'"+ patientProfilerDiagnosisFromFirstVisit +"')]"));
 		action.moveToElement(plussign).doubleClick().build().perform();
 	}
 	/**
@@ -1114,7 +1398,7 @@ public class Profile extends BaseAbstractPage {
 		SeleniumUtil.switchToFrame(driver, "panProfile_Frame");
 		sleep(5000);
 		String textIs=SeleniumUtil.getElementWithFluentWait(diagnosisListInProfile).getText();
-		if(textIs.equalsIgnoreCase(ProfileTest.problemTextinProfile)){
+		if(textIs.equalsIgnoreCase(problemTextinProfile)){
 			System.out.println("corrected problems are added in profile"); 
 			isProblemAdded=true;
 		}
@@ -1126,7 +1410,7 @@ public class Profile extends BaseAbstractPage {
 	 */
 	public void createNewGuidlines(){
 		SeleniumUtil.switchToParentFrame(Frames.USERCREATION);
-		SeleniumUtil.getElementWithFluentWait(guidlinesTextBox).sendKeys(ProfileTest.patientProfileGuidlinesName);
+		SeleniumUtil.getElementWithFluentWait(guidlinesTextBox).sendKeys(patientProfileGuidlinesName);
 		addDemographicsCriteria();
 	}
 	/**
@@ -1134,10 +1418,10 @@ public class Profile extends BaseAbstractPage {
 	 *
 	 */
 	public void addDemographicsCriteria(){
-		SeleniumUtil.getElementWithFluentWait(guidlinesFromAgeTextBox).sendKeys(DemographicsTest.existingPatientFromAge);
+		SeleniumUtil.getElementWithFluentWait(guidlinesFromAgeTextBox).sendKeys(DemographicsPage.existingPatientFromAge);
 		SeleniumUtil.getElementWithFluentWait(guidlinesFromAgeTextBox).sendKeys(Keys.TAB);
 		SeleniumUtil.getElementWithFluentWait(guidlinesToAgeTextBox).sendKeys(Keys.TAB);
-		SeleniumUtil.getElementWithFluentWait(guidlinesToAgeTextBox).sendKeys(DemographicsTest.existingPatientToAge);	
+		SeleniumUtil.getElementWithFluentWait(guidlinesToAgeTextBox).sendKeys(DemographicsPage.existingPatientToAge);	
 
 	}
 	/**This method will verify if  recommendations  are added in profile module
@@ -1152,7 +1436,7 @@ public class Profile extends BaseAbstractPage {
 		String guidlinevalue =SeleniumUtil.getElementWithFluentWait(guildlineListInProfile).getText();
 		logger.info("guidline text is.. "+guidlinevalue);
 		String currentDate=DateUtil.getCurrentDateInDateFormatted("M/d/yyyy");
-		String text =ProfileTest.guidlineTextinProfile+currentDate;
+		String text =guidlineTextinProfile+currentDate;
 		if(guidlinevalue.equalsIgnoreCase(text)){
 			logger.info("correct guilines are displayed");
 			isRecommendationsAdded=true;
@@ -1171,7 +1455,7 @@ public class Profile extends BaseAbstractPage {
 		for(WebElement irows:totaltrrows){
 			String rowtext =irows.getText();
 			System.out.println("row text is"+rowtext);
-			if(rowtext.contains(ProfileTest.patientProfileGuidlinesName) ){
+			if(rowtext.contains(patientProfileGuidlinesName) ){
 				System.out.println("recommandations already  added in guidline module");
 				SeleniumUtil.rightClick(irows);
 				SeleniumUtil.clickOnImageWitScreenInSikuli("selectDelete");
@@ -1210,7 +1494,7 @@ public class Profile extends BaseAbstractPage {
 				String rowText=tdElement.getText();
 				System.out.println("row # "+row_num+", col # "+col_num+ "text="+tdElement.getText());
 				col_num++;
-				if(rowText.contains(ProfileTest.existingActivityForProfilePatient)){
+				if(rowText.contains(existingActivityForProfilePatient)){
 					System.out.println("corrected future appointment is present in profile"); 
 					isActivityPresent=true;
 					tdElement.click();
@@ -1238,7 +1522,7 @@ public class Profile extends BaseAbstractPage {
 		String futureAppointmentvalue =SeleniumUtil.getElementWithFluentWait(futureAppointmentListInProfile).getText();
 		logger.info("future Appointment text is.. "+futureAppointmentvalue);
 		String futureValue=DateUtil.getFutureDate();
-		String text =futureValue+" "+ProfileTest.existingActivityForProfilePatient+'\n'+ProfileTest.gmedLoaction;
+		String text =futureValue+" "+existingActivityForProfilePatient+'\n'+gmedLoaction;
 		System.out.println("text for appointment is"+text);
 		if(futureAppointmentvalue.contains(text)){
 			logger.info("correct Future appointment are displayed");
@@ -1272,7 +1556,7 @@ public class Profile extends BaseAbstractPage {
 		for(WebElement irows:totaltrrows){
 			String rowtext =irows.getText();
 			System.out.println(rowtext);
-			if(rowtext.contains(ProfileTest.existingProfileRecallType)){
+			if(rowtext.contains(existingProfileRecallType)){
 				System.out.println("recall queue are present");
 				SeleniumUtil.rightClick(irows);
 				sleep(3000);
@@ -1372,7 +1656,7 @@ public class Profile extends BaseAbstractPage {
 				String rowText=tdElement.getText();
 				System.out.println("row # "+row_num+", col # "+col_num+ "text="+tdElement.getText());
 				col_num++;
-				if(rowText.equalsIgnoreCase(ProfileTest.existingProfileRecallType)){
+				if(rowText.equalsIgnoreCase(existingProfileRecallType)){
 					System.out.println("corrected recall row is present in profile"); 
 					SeleniumUtil.doubleClick(tdElement);
 					isRecallTypePresent=true;
@@ -1395,9 +1679,9 @@ public class Profile extends BaseAbstractPage {
 	 */
 	public void searchProvider(){
 		boolean isProviderPresent=false;
-		SeleniumUtil.getElementWithFluentWait(AppointmentPage.providersearchtextbox).sendKeys(ProfileTest.existingProfileProviderfirstname);
+		SeleniumUtil.getElementWithFluentWait(AppointmentPage.providersearchtextbox).sendKeys(existingProfileProviderfirstname);
 		SeleniumUtil.getElementWithFluentWait(AppointmentPage.providersearchtextbox).sendKeys(Keys.SPACE);
-		SeleniumUtil.getElementWithFluentWait(AppointmentPage.providersearchtextbox).sendKeys(ProfileTest.existingProfileProviderlastname);
+		SeleniumUtil.getElementWithFluentWait(AppointmentPage.providersearchtextbox).sendKeys(existingProfileProviderlastname);
 		SeleniumUtil.getElementWithFluentWait(AppointmentPage.providersearchbutton).click();
 		SeleniumUtil.waitForProgressBar(Frames.TOOLTIP);
 		List <WebElement> providernamevalues =driver.findElements(AppointmentPage.totaltrtags);
@@ -1414,7 +1698,7 @@ public class Profile extends BaseAbstractPage {
 				String rowText=tdElement.getText();
 				System.out.println("row # "+row_num+", col # "+col_num+ "text="+tdElement.getText());
 				col_num++;
-				if(rowText.contains(ProfileTest.existingProfileProviderlastname)){
+				if(rowText.contains(existingProfileProviderlastname)){
 					System.out.println("corrected provider row is present in profile"); 
 					SeleniumUtil.doubleClick(tdElement);
 					isProviderPresent=true;
@@ -1452,7 +1736,7 @@ public class Profile extends BaseAbstractPage {
 		logger.info("recall text is.. "+recallvalue);
 		String futureYear=DateUtil.getFutureYear();
 		System.out.println(futureYear);
-		String text =ProfileTest.existingProfileRecallType+" "+futureYear/*+" "+ConstantsFile.recallMonthValue+"/"+ConstantsFile.recalldayValue+"/"+ConstantsFile.recallYearValue;*/;
+		String text =existingProfileRecallType+" "+futureYear/*+" "+ConstantsFile.recallMonthValue+"/"+ConstantsFile.recalldayValue+"/"+ConstantsFile.recallYearValue;*/;
 		if(recallvalue.contains(text)){
 			logger.info("correct recall  are displayed");
 			isRecallAdded=true;
@@ -1517,7 +1801,7 @@ public class Profile extends BaseAbstractPage {
 				String rowText=tdElement.getText();
 				System.out.println("row # "+row_num+", col # "+col_num+ "text="+tdElement.getText());
 				col_num++;
-				if(rowText.equalsIgnoreCase(ProfileTest.vitalSignWeightForProfilePatient) || rowText.equalsIgnoreCase(ProfileTest.vitalSignHeightForProfilePatient) || rowText.equalsIgnoreCase(ProfileTest.vitalSignHeightBMIForProfilePatient)){
+				if(rowText.equalsIgnoreCase(vitalSignWeightForProfilePatient) || rowText.equalsIgnoreCase(vitalSignHeightForProfilePatient) || rowText.equalsIgnoreCase(vitalSignHeightBMIForProfilePatient)){
 					System.out.println("corrected vital sign values are added in profile"); 
 					isVitalSignAdded=true;
 				}
@@ -1553,7 +1837,7 @@ public class Profile extends BaseAbstractPage {
 		String advanceDirectivevalue=SeleniumUtil.getElementWithFluentWait(advanceDirectivesTextInProfile).getText();
 		String currentDate=DateUtil.getCurrentDateInDateFormatted("M/d/yyyy");
 		System.out.println(advanceDirectivevalue);
-		String text =ProfileTest.halfTextForAdvanceDirectiveProfile+currentDate+" "+ProfileTest.completeTextForAdvanceDirectiveProfile;
+		String text =halfTextForAdvanceDirectiveProfile+currentDate+" "+completeTextForAdvanceDirectiveProfile;
 		if(advanceDirectivevalue.equalsIgnoreCase(text)){
 			System.out.println("advance directive value is present");
 			isAdvanceDirectiveAdded=true;
@@ -1563,7 +1847,7 @@ public class Profile extends BaseAbstractPage {
 
 	public void reviewNotes(){
 		SeleniumUtil.getElementWithFluentWait(advanceDirectivesNotesInProfile).clear();
-		SeleniumUtil.getElementWithFluentWait(advanceDirectivesNotesInProfile).sendKeys(ProfileTest.notesForAdvanceDirectiveProfile);
+		SeleniumUtil.getElementWithFluentWait(advanceDirectivesNotesInProfile).sendKeys(notesForAdvanceDirectiveProfile);
 		SeleniumUtil.getElementWithFluentWait(advanceDirectivesReviewButtonInProfile).click();
 	}
 	/**
@@ -1576,7 +1860,7 @@ public class Profile extends BaseAbstractPage {
 		String pifText=SeleniumUtil.getElementWithFluentWait(pifTextInProfile).getText();
 		String currentDate=DateUtil.getCurrentDateInDateFormatted("M/d/yyyy");
 		System.out.println(pifText);
-		String text =ProfileTest.halfTextForPIFProfile+currentDate+'\n'+ProfileTest.completeTextForPIFProfile;
+		String text =halfTextForPIFProfile+currentDate+'\n'+completeTextForPIFProfile;
 		if(pifText.equalsIgnoreCase(text)){
 			System.out.println("PIF Data is added");
 			isPIFAdded=true;
@@ -1605,7 +1889,7 @@ public class Profile extends BaseAbstractPage {
 			System.out.println("the rows are:"+irows.getText());
 			String rowtext =irows.getText();
 			System.out.println("row text is"+rowtext);
-			if(rowtext.contains(ProfileTest.medicationForProfile) || rowtext.contains(ProfileTest.recordExistingMedicationForProfile) || rowtext.contains(ProfileTest.medicationUsingUserListForProfile) || rowtext.contains(ProfileTest.recordExistingUsingUserListForProfile)){
+			if(rowtext.contains(medicationForProfile) || rowtext.contains(recordExistingMedicationForProfile) || rowtext.contains(medicationUsingUserListForProfile) || rowtext.contains(recordExistingUsingUserListForProfile)){
 				System.out.println("medications already  added in profile");
 				SeleniumUtil.rightClick(irows);
 				SeleniumUtil.clickOnImageWitScreenInSikuli("selectVoid");
@@ -1752,7 +2036,7 @@ public class Profile extends BaseAbstractPage {
 				String rowText=tdElement.getText();
 				System.out.println("row # "+row_num+", col # "+col_num+ "text="+tdElement.getText());
 				col_num++;
-				if(rowText.contains(ProfileTest.medicationForProfile) || rowText.contains(ProfileTest.recordExistingMedicationForProfile) || rowText.contains(ProfileTest.medicationUsingUserListForProfile)){
+				if(rowText.contains(medicationForProfile) || rowText.contains(recordExistingMedicationForProfile) || rowText.contains(medicationUsingUserListForProfile)){
 					System.out.println("corrected medication are added in profile"); 
 					isMedicationAdded=true;
 				}
@@ -1839,7 +2123,7 @@ public class Profile extends BaseAbstractPage {
 			System.out.println("the rows are:"+irows.getText());
 			String rowtext =irows.getText();
 			System.out.println("row text is"+rowtext);
-			if(rowtext.contains(ProfileTest.addNewAllergyForPatient) || rowtext.contains(ProfileTest.selectAllergyFormMyAllergies) || rowtext.contains(ProfileTest.selectAllergyForSearchBox) ||rowtext.contains(ProfileTest.addNewMedicatiomInAllergyForPatient) || rowtext.contains(ProfileTest.allergyValueFromFirstVisit)){
+			if(rowtext.contains(addNewAllergyForPatient) || rowtext.contains(selectAllergyFormMyAllergies) || rowtext.contains(selectAllergyForSearchBox) ||rowtext.contains(addNewMedicatiomInAllergyForPatient) || rowtext.contains(allergyValueFromFirstVisit)){
 				System.out.println("allergy already  added in demographics");
 				SeleniumUtil.rightClick(irows);
 				SeleniumUtil.clickOnImageWitScreenInSikuli("deleteUser");
@@ -1915,7 +2199,7 @@ public class Profile extends BaseAbstractPage {
 	public void addAllergyDetails(){
 		SeleniumUtil.switchToParentFrame(Frames.TOOLTIP);
 		SeleniumUtil.waitForProgressBar(Frames.TOOLTIP);
-		SeleniumUtil.getElementWithFluentWait(textBoxarea).sendKeys(ProfileTest.addNewAllergyForPatient);	
+		SeleniumUtil.getElementWithFluentWait(textBoxarea).sendKeys(addNewAllergyForPatient);	
 		addSeverityForAllergy();
 		addManifestation();
 	}
@@ -1932,7 +2216,7 @@ public class Profile extends BaseAbstractPage {
 		SeleniumUtil.getElementWithFluentWait(By.id("txtSnomedCode2Search")).click();
 		SeleniumUtil.switchToParentFrame(Frames.MEDICATION_LIST);
 		SeleniumUtil.waitForProgressBar(Frames.MEDICATION_LIST);
-		SeleniumUtil.getElementWithFluentWait(snomedCodeTextBox).sendKeys(ProfileTest.patientProfilerDiagnosisvalue);
+		SeleniumUtil.getElementWithFluentWait(snomedCodeTextBox).sendKeys(patientProfilerDiagnosisvalue);
 		SeleniumUtil.getElementWithFluentWait(snomedNameSearch).click();
 		sleep(5000);
 		List<WebElement> searchSnomedCoderow = driver.findElements(AppointmentPage.totaltrtags);
@@ -1949,7 +2233,7 @@ public class Profile extends BaseAbstractPage {
 				String rowText=tdElement.getText();
 				System.out.println("row # "+row_num+", col # "+col_num+ "text="+tdElement.getText());
 				col_num++;
-				if(rowText.equalsIgnoreCase(ProfileTest.patientProfilerDiagnosisvalue)){
+				if(rowText.equalsIgnoreCase(patientProfilerDiagnosisvalue)){
 					System.out.println("corrected patient row is displayed");
 					SeleniumUtil.doubleClick(tdElement);
 					break;
@@ -1965,7 +2249,7 @@ public class Profile extends BaseAbstractPage {
 	 */
 	public void addAllergyDataFromMyAllergiesUserList(){
 		switchToUserListFrame();
-		WebElement allergyNameValue =SeleniumUtil.getElementWithFluentWait(By.xpath(".//*[contains(text(),'"+ ProfileTest.selectAllergyFormMyAllergies +"')]"));
+		WebElement allergyNameValue =SeleniumUtil.getElementWithFluentWait(By.xpath(".//*[contains(text(),'"+ selectAllergyFormMyAllergies +"')]"));
 		action.moveToElement(allergyNameValue).doubleClick().build().perform();
 	}
 	/**
@@ -1973,11 +2257,11 @@ public class Profile extends BaseAbstractPage {
 	 */
 	public void searchAllergyUsingSearchBox(){
 		switchToUserListFrame();
-		SeleniumUtil.getElementWithFluentWait(AppointmentPage.patientnametextbox).sendKeys(ProfileTest.selectAllergyForSearchBox);
+		SeleniumUtil.getElementWithFluentWait(AppointmentPage.patientnametextbox).sendKeys(selectAllergyForSearchBox);
 		SeleniumUtil.getElementWithFluentWait(searchIcon).click();
 		sleep(9000);
 		SeleniumUtil.switchToFrame(driver, "fraSearch_Frame");
-		WebElement allergyvalue =SeleniumUtil.getElementWithFluentWait(By.xpath(".//*[contains(text(),'"+ ProfileTest.selectAllergyForSearchBox +"')]"));
+		WebElement allergyvalue =SeleniumUtil.getElementWithFluentWait(By.xpath(".//*[contains(text(),'"+ selectAllergyForSearchBox +"')]"));
 		action.moveToElement(allergyvalue).doubleClick().build().perform();
 	}
 	/**
@@ -1999,7 +2283,7 @@ public class Profile extends BaseAbstractPage {
 		SeleniumUtil.switchToFrame(driver, "panUserList_Frame");
 		sleep(5000);
 		SeleniumUtil.switchToFrame(driver, "fraSearch_Frame");
-		SeleniumUtil.getElementWithFluentWait(AppointmentPage.providersearchtextbox).sendKeys(ProfileTest.addNewMedicatiomInAllergyForPatient);
+		SeleniumUtil.getElementWithFluentWait(AppointmentPage.providersearchtextbox).sendKeys(addNewMedicatiomInAllergyForPatient);
 		SeleniumUtil.getElementWithFluentWait(AppointmentPage.providersearchbutton).click();
 		sleep(9000);
 		List<WebElement> searchMedicationrow = driver.findElements(By.xpath(".//table[@id='tblAllergyGroups_Table']/tbody/tr"));
@@ -2016,7 +2300,7 @@ public class Profile extends BaseAbstractPage {
 				String rowText=tdElement.getText();
 				System.out.println("row # "+row_num+", col # "+col_num+ "text="+tdElement.getText());
 				col_num++;
-				if(rowText.contains(ProfileTest.addNewMedicatiomInAllergyForPatient)){
+				if(rowText.contains(addNewMedicatiomInAllergyForPatient)){
 					System.out.println("corrected patient row is displayed");
 					SeleniumUtil.doubleClick(tdElement);
 					isMedicationPresent=true;
@@ -2041,11 +2325,11 @@ public class Profile extends BaseAbstractPage {
 		SeleniumUtil.switchToFrame(driver, "panUserList_Frame");
 		sleep(5000);
 		SeleniumUtil.switchToFrame(driver, "fraUserList_Frame");
-		SeleniumUtil.getElementWithFluentWait(patientnametextbox).sendKeys(ProfileTest.allergyValueFromFirstVisit);
+		SeleniumUtil.getElementWithFluentWait(patientnametextbox).sendKeys(allergyValueFromFirstVisit);
 		SeleniumUtil.getElementWithFluentWait(searchIcon).click();
 		sleep(5000);
 		SeleniumUtil.switchToFrame(driver, "fraSearch_Frame");
-		WebElement plussign =SeleniumUtil.getElementWithFluentWait(By.xpath(".//*[contains(text(),'"+ ProfileTest.allergyValueFromFirstVisit +"')]"));
+		WebElement plussign =SeleniumUtil.getElementWithFluentWait(By.xpath(".//*[contains(text(),'"+ allergyValueFromFirstVisit +"')]"));
 		action.moveToElement(plussign).doubleClick().build().perform();
 	}
 	/**
@@ -2060,7 +2344,7 @@ public class Profile extends BaseAbstractPage {
 		SeleniumUtil.switchToFrame(driver, "panProfile_Frame");
 		String allergyData=SeleniumUtil.getElementWithFluentWait(allergyInProfile).getText();
 		System.out.println("allergy data text is"+allergyData);
-		if(allergyData.equalsIgnoreCase(ProfileTest.allergyTextinProfile)){
+		if(allergyData.equalsIgnoreCase(allergyTextinProfile)){
 			logger.info("correct allergy data is added");
 			isAllergiesAdded=true;
 		}
@@ -2088,7 +2372,7 @@ public class Profile extends BaseAbstractPage {
 			System.out.println("the rows are:"+irows.getText());
 			String rowText =irows.getText();
 			System.out.println("row text is"+rowText);
-			if(rowText.contains(ProfileTest.addNewCondtionForPatient) || rowText.contains(ProfileTest.condtionValueFromFirstVisit) || rowText.equalsIgnoreCase(ProfileTest.patientProfilerDiagnosisvalue)){
+			if(rowText.contains(addNewCondtionForPatient) || rowText.contains(condtionValueFromFirstVisit) || rowText.equalsIgnoreCase(patientProfilerDiagnosisvalue)){
 				System.out.println("allergy already  added in demographics");
 				SeleniumUtil.rightClick(irows);
 				SeleniumUtil.clickOnImageWitScreenInSikuli("selectDelete");
@@ -2128,7 +2412,7 @@ public class Profile extends BaseAbstractPage {
 		DynamicFramePage.switchtoFraFrame();
 		SeleniumUtil.switchToFrame(driver, "panProfile_Frame");
 		String allergyText=SeleniumUtil.getElementWithFluentWait(condtionMsgInProfile).getText();
-		if(allergyText.equalsIgnoreCase(ProfileTest.noCondtionTextForProfile)){
+		if(allergyText.equalsIgnoreCase(noCondtionTextForProfile)){
 			System.out.println( "correct condtion text is doucmented ");
 			isNocondtionAdded=true;
 		}
@@ -2144,7 +2428,7 @@ public class Profile extends BaseAbstractPage {
 		SeleniumUtil.waitForProgressBar(Frames.TOOLTIP);
 		SeleniumUtil.getElementWithFluentWait(reviewDiagnosisSearchBox).click();
 		SeleniumUtil.switchToParentFrame(Frames.MEDICATION_LIST);
-		SeleniumUtil.getElementWithFluentWait(AppointmentPage.patientnametextbox).sendKeys(ProfileTest.patientProfilerDiagnosisvalue);
+		SeleniumUtil.getElementWithFluentWait(AppointmentPage.patientnametextbox).sendKeys(patientProfilerDiagnosisvalue);
 		SeleniumUtil.getElementWithFluentWait(DocumentPage.searchbutton).click();
 		sleep(5000);
 		List<WebElement> searchdiagnosisrow = driver.findElements(totaltrtagsForProfile);
@@ -2161,7 +2445,7 @@ public class Profile extends BaseAbstractPage {
 				String rowText=tdElement.getText();
 				System.out.println("row # "+row_num+", col # "+col_num+ "text="+tdElement.getText());
 				col_num++;
-				if(rowText.equalsIgnoreCase(ProfileTest.patientProfilerDiagnosisvalue)){
+				if(rowText.equalsIgnoreCase(patientProfilerDiagnosisvalue)){
 					System.out.println("corrected patient row is displayed");
 					SeleniumUtil.doubleClick(tdElement);
 					break;
@@ -2177,11 +2461,11 @@ public class Profile extends BaseAbstractPage {
 	 */
 	public void searchCondtionUsingSearchBox(){
 		switchToUserListFrame();
-		SeleniumUtil.getElementWithFluentWait(AppointmentPage.patientnametextbox).sendKeys(ProfileTest.addNewCondtionForPatient);
+		SeleniumUtil.getElementWithFluentWait(AppointmentPage.patientnametextbox).sendKeys(addNewCondtionForPatient);
 		SeleniumUtil.getElementWithFluentWait(searchIcon).click();
 		sleep(9000);
 		SeleniumUtil.switchToFrame(driver, "fraSearch_Frame");
-		WebElement allergyvalue =SeleniumUtil.getElementWithFluentWait(By.xpath(".//*[contains(text(),'"+ ProfileTest.addNewCondtionForPatient +"')]"));
+		WebElement allergyvalue =SeleniumUtil.getElementWithFluentWait(By.xpath(".//*[contains(text(),'"+ addNewCondtionForPatient +"')]"));
 		action.moveToElement(allergyvalue).doubleClick().build().perform();
 	}
 	/**
@@ -2192,11 +2476,11 @@ public class Profile extends BaseAbstractPage {
 		SeleniumUtil.switchToFrame(driver, "panUserList_Frame");
 		sleep(5000);
 		SeleniumUtil.switchToFrame(driver, "fraUserList_Frame");
-		SeleniumUtil.getElementWithFluentWait(patientnametextbox).sendKeys(ProfileTest.condtionValueFromFirstVisit);
+		SeleniumUtil.getElementWithFluentWait(patientnametextbox).sendKeys(condtionValueFromFirstVisit);
 		SeleniumUtil.getElementWithFluentWait(searchIcon).click();
 		sleep(5000);
 		SeleniumUtil.switchToFrame(driver, "fraSearch_Frame");
-		WebElement plussign =SeleniumUtil.getElementWithFluentWait(By.xpath(".//*[contains(text(),'"+ ProfileTest.condtionValueFromFirstVisit +"')]"));
+		WebElement plussign =SeleniumUtil.getElementWithFluentWait(By.xpath(".//*[contains(text(),'"+ condtionValueFromFirstVisit +"')]"));
 		action.moveToElement(plussign).doubleClick().build().perform();
 	}
 	/**
@@ -2225,7 +2509,7 @@ public class Profile extends BaseAbstractPage {
 				String rowText=tdElement.getText();
 				System.out.println("row # "+row_num+", col # "+col_num+ "text="+tdElement.getText());
 				col_num++;
-				if(rowText.contains(ProfileTest.addNewCondtionForPatient)){
+				if(rowText.contains(addNewCondtionForPatient)){
 					System.out.println("corrected condition are added in profile"); 
 					isconditionAdded1=true;
 					break;
@@ -2243,7 +2527,7 @@ public class Profile extends BaseAbstractPage {
 				String rowText=tdElement.getText();
 				System.out.println("row # "+row_num+", col # "+col_num+ "text="+tdElement.getText());
 				col_num++;
-				if(rowText.contains(ProfileTest.condtionValueFromFirstVisit)){
+				if(rowText.contains(condtionValueFromFirstVisit)){
 					System.out.println("corrected procedure are added in profile"); 
 					isconditionAdded2=true;
 					break;
@@ -2261,7 +2545,7 @@ public class Profile extends BaseAbstractPage {
 				String rowText=tdElement.getText();
 				System.out.println("row # "+row_num+", col # "+col_num+ "text="+tdElement.getText());
 				col_num++;
-				if(rowText.contains(ProfileTest.patientProfilerDiagnosisvalue)){
+				if(rowText.contains(patientProfilerDiagnosisvalue)){
 					System.out.println("corrected procedure are added in profile"); 
 					isconditionAdded3=true;
 				}
@@ -2296,7 +2580,7 @@ public class Profile extends BaseAbstractPage {
 			System.out.println("the rows are:"+irows.getText());
 			String rowText =irows.getText();
 			System.out.println("row text is"+rowText);
-			if(rowText.contains(ProfileTest.addNewImmunizationForPatient) || rowText.contains(ProfileTest.searchExistingImmunization) || rowText.contains(ProfileTest.immunizationValueFromFirstVisit)){
+			if(rowText.contains(addNewImmunizationForPatient) || rowText.contains(searchExistingImmunization) || rowText.contains(immunizationValueFromFirstVisit)){
 				System.out.println("immunization already  added in demographics");
 				SeleniumUtil.rightClick(irows);
 				SeleniumUtil.clickOnImageWitScreenInSikuli("deleteUser");
@@ -2337,7 +2621,7 @@ public class Profile extends BaseAbstractPage {
 		DynamicFramePage.switchtoFraFrame();
 		SeleniumUtil.switchToFrame(driver, "panProfile_Frame");
 		String immunizationText=SeleniumUtil.getElementWithFluentWait(immunizationsMsgInProfile).getText();
-		if(immunizationText.equalsIgnoreCase(ProfileTest.noImmunizationTextForProfile)){
+		if(immunizationText.equalsIgnoreCase(noImmunizationTextForProfile)){
 			System.out.println( "correct immunization text is doucmented ");
 			isNoImmunizationAdded=true;
 		}
@@ -2358,11 +2642,11 @@ public class Profile extends BaseAbstractPage {
 	 */
 	public void searchImmunizationUsingSearchBox(){
 		switchToUserListFrame();
-		SeleniumUtil.getElementWithFluentWait(AppointmentPage.patientnametextbox).sendKeys(ProfileTest.searchExistingImmunization);
+		SeleniumUtil.getElementWithFluentWait(AppointmentPage.patientnametextbox).sendKeys(searchExistingImmunization);
 		SeleniumUtil.getElementWithFluentWait(searchIcon).click();
 		sleep(9000);
 		SeleniumUtil.switchToFrame(driver, "fraSearch_Frame");
-		WebElement allergyvalue =SeleniumUtil.getElementWithFluentWait(By.xpath(".//*[contains(text(),'"+ ProfileTest.searchExistingImmunization +"')]"));
+		WebElement allergyvalue =SeleniumUtil.getElementWithFluentWait(By.xpath(".//*[contains(text(),'"+ searchExistingImmunization +"')]"));
 		action.moveToElement(allergyvalue).doubleClick().build().perform();
 	}
 	/**
@@ -2374,7 +2658,7 @@ public class Profile extends BaseAbstractPage {
 		sleep(5000);
 		SeleniumUtil.switchToFrame(driver, "fraUserList_Frame");
 
-		WebElement immunizationValue =SeleniumUtil.getElementWithFluentWait(By.xpath(".//*[contains(text(),'"+ ProfileTest.immunizationValueFromFirstVisit +"')]"));
+		WebElement immunizationValue =SeleniumUtil.getElementWithFluentWait(By.xpath(".//*[contains(text(),'"+ immunizationValueFromFirstVisit +"')]"));
 		if(immunizationValue.isDisplayed()){
 			System.out.println("right panel is opened");
 			action.moveToElement(immunizationValue).doubleClick().build().perform();
@@ -2396,7 +2680,7 @@ public class Profile extends BaseAbstractPage {
 		String immunizationData=SeleniumUtil.getElementWithFluentWait(immunizationInProfile).getText();
 		System.out.println("immunization data text is"+immunizationData);
 		String currentDate=DateUtil.getCurrentDateInDateFormatted("M/d/yyyy");
-		String immunizationTextValue=ProfileTest.addNewImmunizationForPatient+", "+currentDate+'\n'+ProfileTest.immunizationValueFromFirstVisit+'\n'+ProfileTest.searchExistingImmunization;
+		String immunizationTextValue=addNewImmunizationForPatient+", "+currentDate+'\n'+immunizationValueFromFirstVisit+'\n'+searchExistingImmunization;
 		if(immunizationData.equalsIgnoreCase(immunizationTextValue)){
 			System.out.println("correct immunization data is added");
 			isimmunizationAdded=true;
@@ -2457,7 +2741,7 @@ public class Profile extends BaseAbstractPage {
 				String rowText=tdElement.getText();
 				System.out.println("row # "+row_num+", col # "+col_num+ "text="+tdElement.getText());
 				col_num++;
-				if(rowText.equalsIgnoreCase(ProfileTest.addNewImmunizationForPatient) || rowText.equalsIgnoreCase(ImmunizationTest.addNewImmunizationForPatient)){
+				if(rowText.equalsIgnoreCase(addNewImmunizationForPatient) || rowText.equalsIgnoreCase(addNewImmunizationForPatient)){
 					System.out.println("corrected immunization row is displayed");
 					SeleniumUtil.doubleClick(tdElement);
 					isImmunizationPresent=true;
@@ -2496,7 +2780,7 @@ public class Profile extends BaseAbstractPage {
 			System.out.println("the rows are:"+irows.getText());
 			String rowText =irows.getText();
 			System.out.println("row text is"+rowText);
-			if(rowText.contains(ProfileTest.codingDescription) ||  rowText.contains(ProfileTest.dxStudiesValueFromFirstVisit) || rowText.contains(ProfileTest.searchdxStudiesProcedureName)){
+			if(rowText.contains(codingDescription) ||  rowText.contains(dxStudiesValueFromFirstVisit) || rowText.contains(searchdxStudiesProcedureName)){
 				System.out.println("immunization already  added in demographics");
 				SeleniumUtil.rightClick(irows);
 				SeleniumUtil.clickOnImageWitScreenInSikuli("selectDelete");
@@ -2536,7 +2820,7 @@ public class Profile extends BaseAbstractPage {
 		DynamicFramePage.switchtoFraFrame();
 		SeleniumUtil.switchToFrame(driver, "panProfile_Frame");
 		String DXText=SeleniumUtil.getElementWithFluentWait(diagnosticStudyMsgInProfile).getText();
-		if(DXText.equalsIgnoreCase(ProfileTest.noDXStudiesTextForProfile)){
+		if(DXText.equalsIgnoreCase(noDXStudiesTextForProfile)){
 			System.out.println( "correct dx studies text is doucmented ");
 			isNoDXAdded=true;
 		}
@@ -2553,7 +2837,7 @@ public class Profile extends BaseAbstractPage {
 		SeleniumUtil.waitForProgressBar(Frames.TOOLTIP);
 		SeleniumUtil.getElementWithFluentWait(cptCodeSearchBox).click();
 		SeleniumUtil.switchToParentFrame(Frames.MEDICATION_LIST);
-		SeleniumUtil.getElementWithFluentWait(searchCodeTextBox).sendKeys(ProfileTest.cptCode);
+		SeleniumUtil.getElementWithFluentWait(searchCodeTextBox).sendKeys(cptCode);
 		SeleniumUtil.getElementWithFluentWait(codingSearch).click();
 		sleep(5000);
 		List<WebElement> searchdiagnosisrow = driver.findElements(codingTableData);
@@ -2570,7 +2854,7 @@ public class Profile extends BaseAbstractPage {
 				String rowText=tdElement.getText();
 				System.out.println("row # "+row_num+", col # "+col_num+ "text="+tdElement.getText());
 				col_num++;
-				if(rowText.equalsIgnoreCase(ProfileTest.codingDescription)){
+				if(rowText.equalsIgnoreCase(codingDescription)){
 					System.out.println("corrected coding row is displayed");
 					SeleniumUtil.doubleClick(tdElement);
 					isDXStudiesDocumented=true;
@@ -2608,7 +2892,7 @@ public class Profile extends BaseAbstractPage {
 				String rowText=tdElement.getText();
 				System.out.println("row # "+row_num+", col # "+col_num+ "text="+tdElement.getText());
 				col_num++;
-				if(rowText.contains(ProfileTest.codingDescription)){
+				if(rowText.contains(codingDescription)){
 					System.out.println("corrected  values present"); 
 					isDxDocumented=true;
 					break;
@@ -2647,7 +2931,7 @@ public class Profile extends BaseAbstractPage {
 			}
 
 		}
-		WebElement e11= driver.findElement(By.xpath(".//*[contains(text(),'"+ ProfileTest.searchdxStudiesProcedureName +"')]"));
+		WebElement e11= driver.findElement(By.xpath(".//*[contains(text(),'"+ searchdxStudiesProcedureName +"')]"));
 		action.moveToElement(e11).doubleClick().build().perform();
 
 	}
@@ -2659,11 +2943,11 @@ public class Profile extends BaseAbstractPage {
 		SeleniumUtil.switchToFrame(driver, "panUserList_Frame");
 		sleep(5000);
 		SeleniumUtil.switchToFrame(driver, "fraUserList_Frame");
-		SeleniumUtil.getElementWithFluentWait(patientnametextbox).sendKeys(ProfileTest.dxStudiesValueFromFirstVisit);
+		SeleniumUtil.getElementWithFluentWait(patientnametextbox).sendKeys(dxStudiesValueFromFirstVisit);
 		SeleniumUtil.getElementWithFluentWait(searchIcon).click();
 		sleep(5000);
 		SeleniumUtil.switchToFrame(driver, "fraSearch_Frame");
-		WebElement plussign =SeleniumUtil.getElementWithFluentWait(By.xpath(".//*[contains(text(),'"+ ProfileTest.dxStudiesValueFromFirstVisit +"')]"));
+		WebElement plussign =SeleniumUtil.getElementWithFluentWait(By.xpath(".//*[contains(text(),'"+ dxStudiesValueFromFirstVisit +"')]"));
 		action.moveToElement(plussign).doubleClick().build().perform();
 	}
 	/**
@@ -2679,7 +2963,7 @@ public class Profile extends BaseAbstractPage {
 		String dxData=SeleniumUtil.getElementWithFluentWait(diagonticData).getText();
 		System.out.println("DX data text is"+dxData);
 		String currentDate=DateUtil.getCurrentDateInDateFormatted("M/d/yyyy");
-		String dxTextValue=ProfileTest.codingDescription+'\n'+ProfileTest.dxStudiesProcedureName+", "+currentDate+'\n'+ProfileTest.searchdxStudiesProcedureName+'\n'+ProfileTest.dxStudiesValueFromFirstVisit;
+		String dxTextValue=codingDescription+'\n'+dxStudiesProcedureName+", "+currentDate+'\n'+searchdxStudiesProcedureName+'\n'+dxStudiesValueFromFirstVisit;
 		if(dxData.equalsIgnoreCase(dxTextValue)){
 			System.out.println("correct immunization data is added");
 			isDxDataAdded=true;
@@ -2710,7 +2994,7 @@ public class Profile extends BaseAbstractPage {
 			System.out.println("the rows are:"+irows.getText());
 			String rowText =irows.getText();
 			System.out.println("row text is"+rowText);
-			if(rowText.contains(ProfileTest.codingDescription) ||  rowText.contains(ProfileTest.procedureValueFromFirstVisit) ||  rowText.contains(ProfileTest.searchExistingProcedure)){
+			if(rowText.contains(codingDescription) ||  rowText.contains(procedureValueFromFirstVisit) ||  rowText.contains(searchExistingProcedure)){
 				System.out.println("immunization already  added in demographics");
 				SeleniumUtil.rightClick(irows);
 				SeleniumUtil.clickOnImageWitScreenInSikuli("selectDelete");
@@ -2727,11 +3011,11 @@ public class Profile extends BaseAbstractPage {
 	 */
 	public void searchProcedureUsingSearchBox(){
 		switchToUserListFrame();
-		SeleniumUtil.getElementWithFluentWait(AppointmentPage.patientnametextbox).sendKeys(ProfileTest.searchExistingProcedure);
+		SeleniumUtil.getElementWithFluentWait(AppointmentPage.patientnametextbox).sendKeys(searchExistingProcedure);
 		SeleniumUtil.getElementWithFluentWait(searchIcon).click();
 		sleep(9000);
 		SeleniumUtil.switchToFrame(driver, "fraSearch_Frame");
-		WebElement allergyvalue =SeleniumUtil.getElementWithFluentWait(By.xpath(".//*[contains(text(),'"+ ProfileTest.searchExistingProcedure +"')]"));
+		WebElement allergyvalue =SeleniumUtil.getElementWithFluentWait(By.xpath(".//*[contains(text(),'"+ searchExistingProcedure +"')]"));
 		action.moveToElement(allergyvalue).doubleClick().build().perform();
 	}
 	/**
@@ -2777,7 +3061,7 @@ public class Profile extends BaseAbstractPage {
 		sleep(5000);
 		SeleniumUtil.switchToFrame(driver, "fraUserList_Frame");
 
-		WebElement immunizationValue =SeleniumUtil.getElementWithFluentWait(By.xpath(".//*[contains(text(),'"+ ProfileTest.procedureValueFromFirstVisit +"')]"));
+		WebElement immunizationValue =SeleniumUtil.getElementWithFluentWait(By.xpath(".//*[contains(text(),'"+ procedureValueFromFirstVisit +"')]"));
 		if(immunizationValue.isDisplayed()){
 			System.out.println("right panel is opened");
 			action.moveToElement(immunizationValue).doubleClick().build().perform();
@@ -2812,7 +3096,7 @@ public class Profile extends BaseAbstractPage {
 				String rowText=tdElement.getText();
 				System.out.println("row # "+row_num+", col # "+col_num+ "text="+tdElement.getText());
 				col_num++;
-				if(rowText.contains(ProfileTest.codingDescription)){
+				if(rowText.contains(codingDescription)){
 					System.out.println("corrected procedure are added in profile"); 
 					isprocedureAdded1=true;
 					break;
@@ -2830,7 +3114,7 @@ public class Profile extends BaseAbstractPage {
 				String rowText=tdElement.getText();
 				System.out.println("row # "+row_num+", col # "+col_num+ "text="+tdElement.getText());
 				col_num++;
-				if(rowText.contains(ProfileTest.searchExistingProcedure)){
+				if(rowText.contains(searchExistingProcedure)){
 					System.out.println("corrected procedure are added in profile"); 
 					isprocedureAdded2=true;
 					break;
@@ -2848,7 +3132,7 @@ public class Profile extends BaseAbstractPage {
 				String rowText=tdElement.getText();
 				System.out.println("row # "+row_num+", col # "+col_num+ "text="+tdElement.getText());
 				col_num++;
-				if(rowText.contains(ProfileTest.procedureValueFromFirstVisit)){
+				if(rowText.contains(procedureValueFromFirstVisit)){
 					System.out.println("corrected procedure are added in profile"); 
 					isprocedureAdded3=true;
 				}
@@ -2947,8 +3231,8 @@ public class Profile extends BaseAbstractPage {
 		SeleniumUtil.switchToFrame(driver, "panProfile_Frame");
 		String text =SeleniumUtil.getElementWithFluentWait(familySectionInProfile).getText();
 		System.out.println(text);
-		System.out.println("excel data is:"+ProfileTest.familytextinProfile);
-		if(text.equalsIgnoreCase(ProfileTest.familytextinProfile)){
+		System.out.println("excel data is:"+familytextinProfile);
+		if(text.equalsIgnoreCase(familytextinProfile)){
 			System.out.println("corrected data is displayed");
 			isFamilyHistoryAdded=true;
 		}
@@ -2987,7 +3271,7 @@ public class Profile extends BaseAbstractPage {
 		SeleniumUtil.switchToFrame(driver, "panProfile_Frame");
 		String text =SeleniumUtil.getElementWithFluentWait(generalData).getText();
 		System.out.println(text);
-		if(text.equalsIgnoreCase(ProfileTest.generalTextForProfile)){
+		if(text.equalsIgnoreCase(generalTextForProfile)){
 			System.out.println("corrected data is displayed");
 			isGeneralDataAdded=true;
 		}
@@ -3091,8 +3375,8 @@ public class Profile extends BaseAbstractPage {
 	public void enterAlcoholData(String value){
 		SeleniumUtil.switchToParentFrame(Frames.TOOLTIP);
 		SeleniumUtil.getElementWithFluentWait(PatientInterviewForm.pifTextBox).sendKeys(value);
-		SeleniumUtil.getElementWithFluentWait(PatientInterviewForm.quantityTextBox).sendKeys(ProfileTest.alcholQuantityForProfile);
-		SeleniumUtil.getElementWithFluentWait(PatientInterviewForm.freqTextBox).sendKeys(ProfileTest.alcholFrequencyForProfile);
+		SeleniumUtil.getElementWithFluentWait(PatientInterviewForm.quantityTextBox).sendKeys(alcholQuantityForProfile);
+		SeleniumUtil.getElementWithFluentWait(PatientInterviewForm.freqTextBox).sendKeys(alcholFrequencyForProfile);
         SeleniumUtil.addTextBoxValue("ddlFrequency_Text", "Times / week");
 		SeleniumUtil.getElementWithFluentWait(AppointmentPage.savebutton).click();
 	}
@@ -3115,7 +3399,7 @@ public class Profile extends BaseAbstractPage {
 		SeleniumUtil.switchToFrame(driver, "panProfile_Frame");
 		String text=SeleniumUtil.getElementWithFluentWait(DocumentPage.alcoholSection).getText();
 		System.out.println(text);
-		if(text.contains(ProfileTest.alcholTextForProfile)){
+		if(text.contains(alcholTextForProfile)){
 			System.out.println("corrected alchol are added in profile"); 
 			isAlcoholDataAdded=true;
 		}
@@ -3185,7 +3469,7 @@ public class Profile extends BaseAbstractPage {
 		SeleniumUtil.switchToFrame(driver, "panProfile_Frame");
 		String text=SeleniumUtil.getElementWithFluentWait(tabaccoDataForProfile).getText();
 		System.out.println(text);
-		if(text.contains(ProfileTest.tabacooTextForProfile) /*&&  rowText.contains(ProfileTest.alcholQuantityForProfile) &&  rowText.contains(ProfileTest.alcholFrequencyForProfile) && rowText.contains(ProfileTest.alcholNoOfTimesForProfile)*/){
+		if(text.contains(tabacooTextForProfile) /*&&  rowText.contains(alcholQuantityForProfile) &&  rowText.contains(alcholFrequencyForProfile) && rowText.contains(alcholNoOfTimesForProfile)*/){
 			System.out.println("corrected tabacco detail are added in profile"); 
 			istabaccoDataAdded=true;
 		}
@@ -3234,7 +3518,7 @@ public class Profile extends BaseAbstractPage {
 		SeleniumUtil.switchToFrame(driver, "panProfile_Frame");
 		String text=SeleniumUtil.getElementWithFluentWait(DocumentPage.drugSection).getText();
 		System.out.println(text);
-		if(text.contains(ProfileTest.drugTextForProfile) ){
+		if(text.contains(drugTextForProfile) ){
 			System.out.println("corrected Drug detail are added in profile"); 
 			isDrugDataAdded=true;
 		}
@@ -3332,7 +3616,7 @@ public class Profile extends BaseAbstractPage {
 		sleep(5000);
 		String text=SeleniumUtil.getElementWithFluentWait(DocumentPage.exerciseSection).getText();
 		System.out.println(text);
-		if(text.contains(ProfileTest.exerciseTextForProfile) ){
+		if(text.contains(exerciseTextForProfile) ){
 			System.out.println("corrected exercise detail are added in profile"); 
 			isExerciseDataAdded=true;
 		}
@@ -3402,7 +3686,7 @@ public class Profile extends BaseAbstractPage {
 		String text=SeleniumUtil.getElementWithFluentWait(DocumentPage.caffeineSection).getText();
 		System.out.println(text);
 		String currentDate=DateUtil.getCurrentDateInDateFormatted("MM/d/yyyy");
-		String caffeineValue =ProfileTest.caffeineTextForProfile+" "+currentDate+"."+" "+ProfileTest.caffeineTextForService+" "+currentDate+".";
+		String caffeineValue =caffeineTextForProfile+" "+currentDate+"."+" "+caffeineTextForService+" "+currentDate+".";
 		System.out.println("caffeine data value is"+caffeineValue);
 		if(text.contains(caffeineValue) ){
 			System.out.println("corrected caffeine detail are added in profile"); 

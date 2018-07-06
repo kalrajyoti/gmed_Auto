@@ -31,7 +31,7 @@ import com.gmed.utils.ConstantsFile;
 import com.gmed.utils.ExcelFileUtilty;
 
 
-public class PrescriptionTest extends BaseTestClass {
+public class PrescriptionTest extends BaseTestClass1 {
 	/** Logger to log the PrescriptionTest log messages */
 	private static Logger logger  = LogManager.getLogger(PrescriptionTest.class); 
 	/**Assertion to verify different elements of the page */
@@ -57,22 +57,22 @@ public class PrescriptionTest extends BaseTestClass {
 	/** Configuration page reference used for clicking on configuration option present in left panel */
 	private ConfigurationPage configpageobj;
 
-	/**contains the Prescription page data*/
+	/**contains the Prescription page data*//*
 	public static Map<String, String> preData;
 
 
-	/**contains the Medical Chart page data*/
+	*//**contains the Medical Chart page data*//*
 	public static Map<String, String> preData1;
 
-	/**contains the Profile page data*/
+	*//**contains the Profile page data*//*
 	public static Map<String, String> preData2;
 
 
 
-	/**These are the variables which are used to store different data for Prescription module*/
-	public static String existingPatientfirstname;
-	public static String existingPatientlastname;
-	public static String keflexMedication;
+	*//**These are the variables which are used to store different data for Prescription module*//*
+	public static String PrescriptionPage.existingPatientfirstname;
+	public static String PrescriptionPage.existingPatientlastname;
+	public static String PrescriptionPage.PrescriptionPage.keflexMedication;
 	public static String ketekMedication;
 	public static String sronyxMedication;
 	public static String feroconMedication;
@@ -91,8 +91,8 @@ public class PrescriptionTest extends BaseTestClass {
 	public static String timingForMedication;
 	public static String quantityForMedication;
 	public static String refillForMedication;
-	public static String existingPatientfirstname1;
-	public static String existingPatientlastname1;
+	public static String PrescriptionPage.existingPatientfirstname1;
+	public static String PrescriptionPage.existingPatientlastname1;
 	public static String alphabetName1;
 	public static String alphabetName2;
 	public static String patientcompleteName ;
@@ -109,7 +109,7 @@ public class PrescriptionTest extends BaseTestClass {
 	public static String unprescribeLastName;
 	public static String unprescribeCompleteName;
 	public static String providercomName;
-	/** These are the variables which are present on "Prescription" sheet in the excel*/
+	*//** These are the variables which are present on "Prescription" sheet in the excel*//*
 	public static final String PATIENT_FIRSTNAME 				                   = "patientfirstname";
 	public static final String PATIENT_LASTNAME 				                   = "patientlastname";
 	public static final String KEFLEX_MEDICATION 				                   = "medicationname1";
@@ -149,59 +149,59 @@ public class PrescriptionTest extends BaseTestClass {
 	public static final String UNPRESCRIBE_LASTNAME                                = "unprescribeUserLastName";
 	public static final String UNPRESCRIBE_COMPLETENAME                            = "unprescribeCompleteUseName";
 	public static final String PROVIDER_COMP_NAME 				                   = "providercompName";
-	
+	*/
 	
 	/** This method runs before the first test from the class runs */
 	@BeforeClass
 	public void initClass() throws Exception{
 		logger.info("inside the initClass method for Prescription test class....");
-		preData                                                     = ExcelFileUtilty.readExcelSheet("Prescription");
-		preData1                                                    = ExcelFileUtilty.readExcelSheet("Patients");
-		preData2                                                    = ExcelFileUtilty.readExcelSheet("Profile");
-		existingPatientfirstname                                    = preData.get(PATIENT_FIRSTNAME);
-		existingPatientlastname                                     = preData.get(PATIENT_LASTNAME);
-		keflexMedication                                            = preData.get(KEFLEX_MEDICATION);
-		ketekMedication                                             = preData.get(KETEK_MEDICATION);
-		sronyxMedication                                            = preData.get(SRONY_MEDICATION);
-		feroconMedication                                           = preData.get(FEROCON_MEDICATION);
-		medicationForHandwritten                                    = preData.get(HANDWRITTEN_MEDICATION);
-		medicationForSample                                         = preData.get(SAMPLE_MEDICATION);
-		completeKeflexMedicationName                                = preData.get(COMPLETE_MEDICATION_NAME1);
-		completeKetekMedicationName                                 = preData.get(COMPLETE_MEDICATION_NAME2);
-		sronyxCompleteName                                          = preData.get(COMPLETE_MEDICATION_NAME3);
-		medication4CompleteName                                     = preData.get(COMPLETE_MEDICATION_NAME4);
-		handwrittenMedicationCompleteName                           = preData.get(COMPLETE_MEDICATION_NAME5);
-		sampleMedicationCompleteName                                = preData.get(COMPLETE_MEDICATION_NAME6);
-		actionForMedication                                         = preData.get(MEDICATION_ACTION);
-		doseForMedication                                           = preData.get(MEDICATION_DOSE);
-		unitForMedication                                           = preData.get(MEDICATION_UNIT);
-		routeForMedication                                          = preData.get(MEDICATION_ROUTE);
-		timingForMedication                                         = preData.get(MEDICATION_TIMING);
-		quantityForMedication                                       = preData.get(MEDICATION_QUANTIY);
-		refillForMedication                                         = preData.get(REFILL_VALUE);
-		existingPatientfirstname1                                   = preData1.get(PATIENT_FIRSTNAME1);
-		existingPatientlastname1                                    = preData1.get(PATIENT_LASTNAME1);
-		alphabetName1                                               = preData.get(ALPHABET_NAME1);
-		alphabetName2                                               = preData.get(ALPHABET_NAME2);
-		ProfileTest.recordExistingMedicationForProfile              = preData2.get(ProfileTest.PROFILE_RECORDEXISTING_MEDICATIONNAME);
-		ProfileTest.existingActivityForProfilePatient               = preData2.get(ProfileTest.PROFILE_PATIENT_ACTIVITY);
-		ProfileTest.selectAllergyFormMyAllergies                    = preData2.get(ProfileTest.SELECT_MY_ALLERGY);
-		ProfileTest.userNameForAdvanceDirectiveProfile              = preData2.get(ProfileTest.PROFILE_USER_NAME);
-		patientcompleteName                                         = preData.get(PATIENT_COMPLETE_NAME);
-		medicationForDrugInteraction                                = preData.get(DRUG_MEDICATION); 
-		ProfileTest.medicationUsingUserListForProfile               = preData2.get(ProfileTest.PRESCRIBE_MEDICATION_USERLIST);
-		currentMedicationName                                       = preData.get(CURRENT_MEDICATION); 
-		providercompleteName                                        = preData2.get(PROVIDER_COMPLETE_NAME); 
-		historyHeader                                               = preData.get(HISTORY_DATA);
-		historyMainHeader                                           = preData.get(HISTORY_COLOUM);
-		unprescribeUser                                             = preData.get(UNPRESCRIBE_USERNAME);
-		unprescribePassword                                         = preData.get(UNPRESCRIBE_PASSWORD);
-		memberFirstName                                             = preData.get(MEMBER_FIRSTNAME);
-		memberLastName                                              = preData.get(MEMBER_LASTNAME);
-		unprescribeFirstName                                        = preData.get(UNPRESCRIBE_FIRSTNAME);
-		unprescribeLastName                                         = preData.get(UNPRESCRIBE_LASTNAME);
-		unprescribeCompleteName                                      = preData.get(UNPRESCRIBE_COMPLETENAME);
-		providercomName                                            = preData2.get(PROVIDER_COMP_NAME); 
+//		preData                                                     = ExcelFileUtilty.readExcelSheet("Prescription");
+//		preData1                                                    = ExcelFileUtilty.readExcelSheet("Patients");
+//		preData2                                                    = ExcelFileUtilty.readExcelSheet("Profile");
+//		PrescriptionPage.existingPatientfirstname                                    = preData.get(PATIENT_FIRSTNAME);
+//		PrescriptionPage.existingPatientlastname                                     = preData.get(PATIENT_LASTNAME);
+//		PrescriptionPage.PrescriptionPage.keflexMedication                                            = preData.get(KEFLEX_MEDICATION);
+//		ketekMedication                                             = preData.get(KETEK_MEDICATION);
+//		sronyxMedication                                            = preData.get(SRONY_MEDICATION);
+//		feroconMedication                                           = preData.get(FEROCON_MEDICATION);
+//		medicationForHandwritten                                    = preData.get(HANDWRITTEN_MEDICATION);
+//		medicationForSample                                         = preData.get(SAMPLE_MEDICATION);
+//		completeKeflexMedicationName                                = preData.get(COMPLETE_MEDICATION_NAME1);
+//		completeKetekMedicationName                                 = preData.get(COMPLETE_MEDICATION_NAME2);
+//		sronyxCompleteName                                          = preData.get(COMPLETE_MEDICATION_NAME3);
+//		medication4CompleteName                                     = preData.get(COMPLETE_MEDICATION_NAME4);
+//		handwrittenMedicationCompleteName                           = preData.get(COMPLETE_MEDICATION_NAME5);
+//		sampleMedicationCompleteName                                = preData.get(COMPLETE_MEDICATION_NAME6);
+//		actionForMedication                                         = preData.get(MEDICATION_ACTION);
+//		doseForMedication                                           = preData.get(MEDICATION_DOSE);
+//		unitForMedication                                           = preData.get(MEDICATION_UNIT);
+//		routeForMedication                                          = preData.get(MEDICATION_ROUTE);
+//		timingForMedication                                         = preData.get(MEDICATION_TIMING);
+//		quantityForMedication                                       = preData.get(MEDICATION_QUANTIY);
+//		refillForMedication                                         = preData.get(REFILL_VALUE);
+//		PrescriptionPage.existingPatientfirstname1                                   = preData1.get(PATIENT_FIRSTNAME1);
+//		PrescriptionPage.existingPatientlastname1                                    = preData1.get(PATIENT_LASTNAME1);
+//		alphabetName1                                               = preData.get(ALPHABET_NAME1);
+//		alphabetName2                                               = preData.get(ALPHABET_NAME2);
+//		ProfileTest.recordExistingMedicationForProfile              = preData2.get(ProfileTest.PROFILE_RECORDEXISTING_MEDICATIONNAME);
+//		ProfileTest.existingActivityForProfilePatient               = preData2.get(ProfileTest.PROFILE_PATIENT_ACTIVITY);
+//		ProfileTest.selectAllergyFormMyAllergies                    = preData2.get(ProfileTest.SELECT_MY_ALLERGY);
+//		ProfileTest.userNameForAdvanceDirectiveProfile              = preData2.get(ProfileTest.PROFILE_USER_NAME);
+//		patientcompleteName                                         = preData.get(PATIENT_COMPLETE_NAME);
+//		medicationForDrugInteraction                                = preData.get(DRUG_MEDICATION); 
+//		ProfileTest.medicationUsingUserListForProfile               = preData2.get(ProfileTest.PRESCRIBE_MEDICATION_USERLIST);
+//		currentMedicationName                                       = preData.get(CURRENT_MEDICATION); 
+//		providercompleteName                                        = preData2.get(PROVIDER_COMPLETE_NAME); 
+//		historyHeader                                               = preData.get(HISTORY_DATA);
+//		historyMainHeader                                           = preData.get(HISTORY_COLOUM);
+//		unprescribeUser                                             = preData.get(UNPRESCRIBE_USERNAME);
+//		unprescribePassword                                         = preData.get(UNPRESCRIBE_PASSWORD);
+//		memberFirstName                                             = preData.get(MEMBER_FIRSTNAME);
+//		memberLastName                                              = preData.get(MEMBER_LASTNAME);
+//		unprescribeFirstName                                        = preData.get(UNPRESCRIBE_FIRSTNAME);
+//		unprescribeLastName                                         = preData.get(UNPRESCRIBE_LASTNAME);
+//		unprescribeCompleteName                                      = preData.get(UNPRESCRIBE_COMPLETENAME);
+//		providercomName                                            = preData2.get(PROVIDER_COMP_NAME); 
 		loginPageObj                                                = new LoginPage();
 		leftPanelpageobj                                            = new LeftPanelPage();
 		medicalchartpage                                            = new MedicalChartPage();
@@ -211,6 +211,7 @@ public class PrescriptionTest extends BaseTestClass {
 		reportpageobj                                               = new ReportPage();
 		documentobj                                                 = new DocumentPage();
 		configpageobj                                               = new ConfigurationPage();
+		profilepageobj.initClass();
 	}
 
 	@Test(description = "To verify that user have permission to prescribe and user is able to prescirbe medicaiton [not CS] by using  methods verbal Instruction ",groups = { "Prescription_Regression" },priority=1)
@@ -224,12 +225,12 @@ public class PrescriptionTest extends BaseTestClass {
 		medicalchartpage.switchToMedicalFrame();
 
 		logger.info("Searching the patient with first name & last name in medical chart...");
-		medicalchartpage.searchExistingPatientWithName(existingPatientfirstname,existingPatientlastname);
-		preAssert.assertTrue(medicalchartpage.verifyPatientIsSerchedWithName(existingPatientfirstname,existingPatientlastname));
+		medicalchartpage.searchExistingPatientWithName(PrescriptionPage.existingPatientfirstname,PrescriptionPage.existingPatientlastname);
+		preAssert.assertTrue(medicalchartpage.verifyPatientIsSerchedWithName(PrescriptionPage.existingPatientfirstname,PrescriptionPage.existingPatientlastname));
 		logger.info("selecting the patient...");
 		medicalchartpage.switchToMedicalFrame();
 		medicalchartpage.selectPatient();
-		preAssert.assertTrue(patientpageobj.verifyPatientChartIsOpened1(existingPatientfirstname,existingPatientlastname));
+		preAssert.assertTrue(patientpageobj.verifyPatientChartIsOpened1(PrescriptionPage.existingPatientfirstname,PrescriptionPage.existingPatientlastname));
 		medicalchartpage.dismissGuideline();
 
 		logger.info("clicking on Prescription  menu present in left panel...");
@@ -243,7 +244,7 @@ public class PrescriptionTest extends BaseTestClass {
 		preAssert.assertTrue(prescriptionobj.verifyPrescriptionDetailsPopup());
 
 		logger.info("entering required details for Prescribing any medication...");
-		prescriptionobj.createRequireDetailsForPrescription(keflexMedication);
+		prescriptionobj.createRequireDetailsForPrescription(PrescriptionPage.keflexMedication);
 		logger.info("verify provider is associated before prescribing medication");
 		preAssert.assertTrue(prescriptionobj.verifyProvider());
 
@@ -253,7 +254,7 @@ public class PrescriptionTest extends BaseTestClass {
 		prescriptionobj.checkDoseAlert();
 		profilepageobj.switchToSocialHistoryFrame();
 		logger.info("verify prescribe medication is documented in r panel");
-		preAssert.assertTrue(prescriptionobj.verifyPrescriptionIsDocumented(completeKeflexMedicationName));
+		preAssert.assertTrue(prescriptionobj.verifyPrescriptionIsDocumented(PrescriptionPage.completeKeflexMedicationName));
 		logger.info("logging out from the application");
 		leftPanelpageobj.clickOnLogout();
 	}
@@ -268,12 +269,12 @@ public class PrescriptionTest extends BaseTestClass {
 		medicalchartpage.switchToMedicalFrame();
 
 		logger.info("Searching the patient with first name & last name in medical chart...");
-		medicalchartpage.searchExistingPatientWithName(existingPatientfirstname,existingPatientlastname);
-		preAssert.assertTrue(medicalchartpage.verifyPatientIsSerchedWithName(existingPatientfirstname,existingPatientlastname));
+		medicalchartpage.searchExistingPatientWithName(PrescriptionPage.existingPatientfirstname,PrescriptionPage.existingPatientlastname);
+		preAssert.assertTrue(medicalchartpage.verifyPatientIsSerchedWithName(PrescriptionPage.existingPatientfirstname,PrescriptionPage.existingPatientlastname));
 		logger.info("selecting the patient...");
 		medicalchartpage.switchToMedicalFrame();
 		medicalchartpage.selectPatient();
-		preAssert.assertTrue(patientpageobj.verifyPatientChartIsOpened1(existingPatientfirstname,existingPatientlastname));
+		preAssert.assertTrue(patientpageobj.verifyPatientChartIsOpened1(PrescriptionPage.existingPatientfirstname,PrescriptionPage.existingPatientlastname));
 		medicalchartpage.dismissGuideline();
 
 		logger.info("clicking on Prescription  menu present in left panel...");
@@ -287,7 +288,7 @@ public class PrescriptionTest extends BaseTestClass {
 		preAssert.assertTrue(prescriptionobj.verifyPrescriptionDetailsPopup());
 
 		logger.info("entering required details for Prescribing any medication...");
-		prescriptionobj.createRequireDetailsForPrescription(ProfileTest.medicationUsingUserListForProfile);
+		prescriptionobj.createRequireDetailsForPrescription(Profile.medicationUsingUserListForProfile);
 		logger.info("verify provider is associated before prescribing medication");
 		preAssert.assertTrue(prescriptionobj.verifyProvider());
 
@@ -297,7 +298,7 @@ public class PrescriptionTest extends BaseTestClass {
 		prescriptionobj.checkDoseAlert();
 		profilepageobj.switchToSocialHistoryFrame();
 		logger.info("verify prescribe medication is documented in r panel");
-		preAssert.assertTrue(prescriptionobj.verifyPrescriptionIsDocumented(completeKetekMedicationName));
+		preAssert.assertTrue(prescriptionobj.verifyPrescriptionIsDocumented(PrescriptionPage.completeKetekMedicationName));
 
 		logger.info("clicking on E-Prescription from Queue Management");
 		leftPanelpageobj.clickOnQueueManagement("EPrescription");
@@ -319,12 +320,12 @@ public class PrescriptionTest extends BaseTestClass {
 		medicalchartpage.switchToMedicalFrame();
 
 		logger.info("Searching the patient with first name & last name in medical chart...");
-		medicalchartpage.searchExistingPatientWithName(existingPatientfirstname,existingPatientlastname);
-		preAssert.assertTrue(medicalchartpage.verifyPatientIsSerchedWithName(existingPatientfirstname,existingPatientlastname));
+		medicalchartpage.searchExistingPatientWithName(PrescriptionPage.existingPatientfirstname,PrescriptionPage.existingPatientlastname);
+		preAssert.assertTrue(medicalchartpage.verifyPatientIsSerchedWithName(PrescriptionPage.existingPatientfirstname,PrescriptionPage.existingPatientlastname));
 		logger.info("selecting the patient...");
 		medicalchartpage.switchToMedicalFrame();
 		medicalchartpage.selectPatient();
-		preAssert.assertTrue(patientpageobj.verifyPatientChartIsOpened1(existingPatientfirstname,existingPatientlastname));
+		preAssert.assertTrue(patientpageobj.verifyPatientChartIsOpened1(PrescriptionPage.existingPatientfirstname,PrescriptionPage.existingPatientlastname));
 		medicalchartpage.dismissGuideline();
 
 		logger.info("clicking on Prescription  menu present in left panel...");
@@ -338,7 +339,7 @@ public class PrescriptionTest extends BaseTestClass {
 		preAssert.assertTrue(prescriptionobj.verifyPrescriptionDetailsPopup());
 
 		logger.info("entering required details for Prescribing any medication...");
-		prescriptionobj.createRequireDetailsForPrescription(sronyxMedication);
+		prescriptionobj.createRequireDetailsForPrescription(PrescriptionPage.sronyxMedication);
 		logger.info("verify provider is associated before prescribing medication");
 		preAssert.assertTrue(prescriptionobj.verifyProvider());
 
@@ -348,7 +349,7 @@ public class PrescriptionTest extends BaseTestClass {
 		prescriptionobj.checkDoseAlert();
 		profilepageobj.switchToSocialHistoryFrame();
 		logger.info("verify prescribe medication is documented in r panel");
-		preAssert.assertTrue(prescriptionobj.verifyPrescriptionIsDocumented(sronyxCompleteName));
+		preAssert.assertTrue(prescriptionobj.verifyPrescriptionIsDocumented(PrescriptionPage.sronyxCompleteName));
 		logger.info("logging out from the application");
 		leftPanelpageobj.clickOnLogout();
 	}
@@ -363,12 +364,12 @@ public class PrescriptionTest extends BaseTestClass {
 		medicalchartpage.switchToMedicalFrame();
 
 		logger.info("Searching the patient with first name & last name in medical chart...");
-		medicalchartpage.searchExistingPatientWithName(existingPatientfirstname,existingPatientlastname);
-		preAssert.assertTrue(medicalchartpage.verifyPatientIsSerchedWithName(existingPatientfirstname,existingPatientlastname));
+		medicalchartpage.searchExistingPatientWithName(PrescriptionPage.existingPatientfirstname,PrescriptionPage.existingPatientlastname);
+		preAssert.assertTrue(medicalchartpage.verifyPatientIsSerchedWithName(PrescriptionPage.existingPatientfirstname,PrescriptionPage.existingPatientlastname));
 		logger.info("selecting the patient...");
 		medicalchartpage.switchToMedicalFrame();
 		medicalchartpage.selectPatient();
-		preAssert.assertTrue(patientpageobj.verifyPatientChartIsOpened1(existingPatientfirstname,existingPatientlastname));
+		preAssert.assertTrue(patientpageobj.verifyPatientChartIsOpened1(PrescriptionPage.existingPatientfirstname,PrescriptionPage.existingPatientlastname));
 		medicalchartpage.dismissGuideline();
 
 		logger.info("clicking on Prescription  menu present in left panel...");
@@ -382,7 +383,7 @@ public class PrescriptionTest extends BaseTestClass {
 		preAssert.assertTrue(prescriptionobj.verifyPrescriptionDetailsPopup());
 
 		logger.info("entering required details for Prescribing any medication...");
-		prescriptionobj.createRequireDetailsForPrescription(feroconMedication);
+		prescriptionobj.createRequireDetailsForPrescription(PrescriptionPage.feroconMedication);
 		logger.info("verify provider is associated before prescribing medication");
 		preAssert.assertTrue(prescriptionobj.verifyProvider());
 
@@ -393,7 +394,7 @@ public class PrescriptionTest extends BaseTestClass {
 		prescriptionobj.clickPrint();
 		profilepageobj.switchToSocialHistoryFrame();
 		logger.info("verify prescribe medication is documented in r panel");
-		preAssert.assertTrue(prescriptionobj.verifyPrescriptionIsDocumented(medication4CompleteName));
+		preAssert.assertTrue(prescriptionobj.verifyPrescriptionIsDocumented(PrescriptionPage.medication4CompleteName));
 		logger.info("logging out from the application");
 		leftPanelpageobj.clickOnLogout();
 	}
@@ -408,12 +409,12 @@ public class PrescriptionTest extends BaseTestClass {
 		medicalchartpage.switchToMedicalFrame();
 
 		logger.info("Searching the patient with first name & last name in medical chart...");
-		medicalchartpage.searchExistingPatientWithName(existingPatientfirstname,existingPatientlastname);
-		preAssert.assertTrue(medicalchartpage.verifyPatientIsSerchedWithName(existingPatientfirstname,existingPatientlastname));
+		medicalchartpage.searchExistingPatientWithName(PrescriptionPage.existingPatientfirstname,PrescriptionPage.existingPatientlastname);
+		preAssert.assertTrue(medicalchartpage.verifyPatientIsSerchedWithName(PrescriptionPage.existingPatientfirstname,PrescriptionPage.existingPatientlastname));
 		logger.info("selecting the patient...");
 		medicalchartpage.switchToMedicalFrame();
 		medicalchartpage.selectPatient();
-		preAssert.assertTrue(patientpageobj.verifyPatientChartIsOpened1(existingPatientfirstname,existingPatientlastname));
+		preAssert.assertTrue(patientpageobj.verifyPatientChartIsOpened1(PrescriptionPage.existingPatientfirstname,PrescriptionPage.existingPatientlastname));
 		medicalchartpage.dismissGuideline();
 
 		logger.info("clicking on Prescription  menu present in left panel...");
@@ -427,7 +428,7 @@ public class PrescriptionTest extends BaseTestClass {
 		preAssert.assertTrue(prescriptionobj.verifyPrescriptionDetailsPopup());
 
 		logger.info("entering required details for Prescribing any medication...");
-		prescriptionobj.createRequireDetailsForPrescription(medicationForHandwritten);
+		prescriptionobj.createRequireDetailsForPrescription(PrescriptionPage.medicationForHandwritten);
 		logger.info("verify provider is associated before prescribing medication");
 		preAssert.assertTrue(prescriptionobj.verifyProvider());
 
@@ -437,7 +438,7 @@ public class PrescriptionTest extends BaseTestClass {
 		prescriptionobj.checkDoseAlert();
 		profilepageobj.switchToSocialHistoryFrame();
 		logger.info("verify prescribe medication is documented in r panel");
-		preAssert.assertTrue(prescriptionobj.verifyPrescriptionIsDocumented(handwrittenMedicationCompleteName));
+		preAssert.assertTrue(prescriptionobj.verifyPrescriptionIsDocumented(PrescriptionPage.handwrittenMedicationCompleteName));
 		logger.info("logging out from the application");
 		leftPanelpageobj.clickOnLogout();
 	}
@@ -452,12 +453,12 @@ public class PrescriptionTest extends BaseTestClass {
 		medicalchartpage.switchToMedicalFrame();
 
 		logger.info("Searching the patient with first name & last name in medical chart...");
-		medicalchartpage.searchExistingPatientWithName(existingPatientfirstname,existingPatientlastname);
-		preAssert.assertTrue(medicalchartpage.verifyPatientIsSerchedWithName(existingPatientfirstname,existingPatientlastname));
+		medicalchartpage.searchExistingPatientWithName(PrescriptionPage.existingPatientfirstname,PrescriptionPage.existingPatientlastname);
+		preAssert.assertTrue(medicalchartpage.verifyPatientIsSerchedWithName(PrescriptionPage.existingPatientfirstname,PrescriptionPage.existingPatientlastname));
 		logger.info("selecting the patient...");
 		medicalchartpage.switchToMedicalFrame();
 		medicalchartpage.selectPatient();
-		preAssert.assertTrue(patientpageobj.verifyPatientChartIsOpened1(existingPatientfirstname,existingPatientlastname));
+		preAssert.assertTrue(patientpageobj.verifyPatientChartIsOpened1(PrescriptionPage.existingPatientfirstname,PrescriptionPage.existingPatientlastname));
 		medicalchartpage.dismissGuideline();
 
 		logger.info("clicking on Prescription  menu present in left panel...");
@@ -471,7 +472,7 @@ public class PrescriptionTest extends BaseTestClass {
 		preAssert.assertTrue(prescriptionobj.verifyPrescriptionDetailsPopup());
 
 		logger.info("entering required details for Prescribing any medication...");
-		prescriptionobj.createRequireDetailsForPrescription(medicationForSample);
+		prescriptionobj.createRequireDetailsForPrescription(PrescriptionPage.medicationForSample);
 		logger.info("verify provider is associated before prescribing medication");
 		preAssert.assertTrue(prescriptionobj.verifyProvider());
 
@@ -481,7 +482,7 @@ public class PrescriptionTest extends BaseTestClass {
 		prescriptionobj.checkDoseAlert();
 		profilepageobj.switchToSocialHistoryFrame();
 		logger.info("verify prescribe medication is documented in r panel");
-		preAssert.assertTrue(prescriptionobj.verifyPrescriptionIsDocumented(sampleMedicationCompleteName));
+		preAssert.assertTrue(prescriptionobj.verifyPrescriptionIsDocumented(PrescriptionPage.sampleMedicationCompleteName));
 		logger.info("logging out from the application");
 		leftPanelpageobj.clickOnLogout();
 	}
@@ -496,12 +497,12 @@ public class PrescriptionTest extends BaseTestClass {
 		medicalchartpage.switchToMedicalFrame();
 
 		logger.info("Searching the patient with first name & last name in medical chart...");
-		medicalchartpage.searchExistingPatientWithName(existingPatientfirstname,existingPatientlastname);
-		preAssert.assertTrue(medicalchartpage.verifyPatientIsSerchedWithName(existingPatientfirstname,existingPatientlastname));
+		medicalchartpage.searchExistingPatientWithName(PrescriptionPage.existingPatientfirstname,PrescriptionPage.existingPatientlastname);
+		preAssert.assertTrue(medicalchartpage.verifyPatientIsSerchedWithName(PrescriptionPage.existingPatientfirstname,PrescriptionPage.existingPatientlastname));
 		logger.info("selecting the patient...");
 		medicalchartpage.switchToMedicalFrame();
 		medicalchartpage.selectPatient();
-		preAssert.assertTrue(patientpageobj.verifyPatientChartIsOpened1(existingPatientfirstname,existingPatientlastname));
+		preAssert.assertTrue(patientpageobj.verifyPatientChartIsOpened1(PrescriptionPage.existingPatientfirstname,PrescriptionPage.existingPatientlastname));
 		medicalchartpage.dismissGuideline();
 
 		logger.info("clicking on Prescription  menu present in left panel...");
@@ -525,13 +526,13 @@ public class PrescriptionTest extends BaseTestClass {
 		medicalchartpage.switchToMedicalFrame();
 
 		logger.info("Searching the patient with first name & last name in medical chart...");
-		medicalchartpage.searchExistingPatientWithName(existingPatientfirstname,existingPatientlastname);
-		preAssert.assertTrue(medicalchartpage.verifyPatientIsSerchedWithName(existingPatientfirstname,existingPatientlastname));
+		medicalchartpage.searchExistingPatientWithName(PrescriptionPage.existingPatientfirstname,PrescriptionPage.existingPatientlastname);
+		preAssert.assertTrue(medicalchartpage.verifyPatientIsSerchedWithName(PrescriptionPage.existingPatientfirstname,PrescriptionPage.existingPatientlastname));
 		logger.info("selecting the patient...");
 		medicalchartpage.switchToMedicalFrame();
 		medicalchartpage.selectPatient();
 		logger.info("verify patient chart is opened...");
-		preAssert.assertTrue(patientpageobj.verifyPatientChartIsOpened1(existingPatientfirstname,existingPatientlastname));
+		preAssert.assertTrue(patientpageobj.verifyPatientChartIsOpened1(PrescriptionPage.existingPatientfirstname,PrescriptionPage.existingPatientlastname));
 		medicalchartpage.dismissGuideline();
 
 		logger.info("clicking on Prescription  menu present in left panel...");
@@ -579,13 +580,13 @@ public class PrescriptionTest extends BaseTestClass {
 		medicalchartpage.switchToMedicalFrame();
 
 		logger.info("Searching the patient with first name & last name in medical chart...");
-		medicalchartpage.searchExistingPatientWithName(existingPatientfirstname,existingPatientlastname);
-		preAssert.assertTrue(medicalchartpage.verifyPatientIsSerchedWithName(existingPatientfirstname,existingPatientlastname));
+		medicalchartpage.searchExistingPatientWithName(PrescriptionPage.existingPatientfirstname,PrescriptionPage.existingPatientlastname);
+		preAssert.assertTrue(medicalchartpage.verifyPatientIsSerchedWithName(PrescriptionPage.existingPatientfirstname,PrescriptionPage.existingPatientlastname));
 		logger.info("selecting the patient...");
 		medicalchartpage.switchToMedicalFrame();
 		medicalchartpage.selectPatient();
 		logger.info("verify patient chart is opened...");
-		preAssert.assertTrue(patientpageobj.verifyPatientChartIsOpened1(existingPatientfirstname,existingPatientlastname));
+		preAssert.assertTrue(patientpageobj.verifyPatientChartIsOpened1(PrescriptionPage.existingPatientfirstname,PrescriptionPage.existingPatientlastname));
 		medicalchartpage.dismissGuideline();
 
 		logger.info("clicking on Prescription  menu present in left panel...");
@@ -613,13 +614,13 @@ public class PrescriptionTest extends BaseTestClass {
 		medicalchartpage.switchToMedicalFrame();
 
 		logger.info("Searching the patient with first name & last name in medical chart...");
-		medicalchartpage.searchExistingPatientWithName(existingPatientfirstname1,existingPatientlastname1);
-		preAssert.assertTrue(medicalchartpage.verifyPatientIsSerchedWithName(existingPatientfirstname1,existingPatientlastname1));
+		medicalchartpage.searchExistingPatientWithName(PrescriptionPage.existingPatientfirstname1,PrescriptionPage.existingPatientlastname1);
+		preAssert.assertTrue(medicalchartpage.verifyPatientIsSerchedWithName(PrescriptionPage.existingPatientfirstname1,PrescriptionPage.existingPatientlastname1));
 		logger.info("selecting the patient...");
 		medicalchartpage.switchToMedicalFrame();
 		medicalchartpage.selectPatient();
 		logger.info("verify patient chart is opened...");
-		preAssert.assertTrue(patientpageobj.verifyPatientChartIsOpened1(existingPatientfirstname1,existingPatientlastname1));
+		preAssert.assertTrue(patientpageobj.verifyPatientChartIsOpened1(PrescriptionPage.existingPatientfirstname1,PrescriptionPage.existingPatientlastname1));
 		medicalchartpage.dismissGuideline();
 
 		logger.info("clicking on Prescription  menu present in left panel...");
@@ -645,12 +646,12 @@ public class PrescriptionTest extends BaseTestClass {
 		medicalchartpage.switchToMedicalFrame();
 
 		logger.info("Searching the patient with first name & last name in medical chart...");
-		medicalchartpage.searchExistingPatientWithName(existingPatientfirstname,existingPatientlastname);
-		preAssert.assertTrue(medicalchartpage.verifyPatientIsSerchedWithName(existingPatientfirstname,existingPatientlastname));
+		medicalchartpage.searchExistingPatientWithName(PrescriptionPage.existingPatientfirstname,PrescriptionPage.existingPatientlastname);
+		preAssert.assertTrue(medicalchartpage.verifyPatientIsSerchedWithName(PrescriptionPage.existingPatientfirstname,PrescriptionPage.existingPatientlastname));
 		logger.info("selecting the patient...");
 		medicalchartpage.switchToMedicalFrame();
 		medicalchartpage.selectPatient();
-		preAssert.assertTrue(patientpageobj.verifyPatientChartIsOpened1(existingPatientfirstname,existingPatientlastname));
+		preAssert.assertTrue(patientpageobj.verifyPatientChartIsOpened1(PrescriptionPage.existingPatientfirstname,PrescriptionPage.existingPatientlastname));
 		medicalchartpage.dismissGuideline();
 
 		logger.info("clicking on Prescription  menu present in left panel...");
@@ -665,10 +666,10 @@ public class PrescriptionTest extends BaseTestClass {
 
 		logger.info("clicking on search icon for searching the medication with alphabet names");
 		prescriptionobj.clickOnSearchIcon();
-		logger.info("Selecting the "+alphabetName1 +"for searching the medication");
-		prescriptionobj.searchMedicationByAlaphabet(alphabetName1);
-		logger.info("verify all the medications list starts with "+alphabetName1);
-		preAssert.assertTrue(prescriptionobj.verifyRow(alphabetName1));
+		logger.info("Selecting the "+PrescriptionPage.alphabetName1 +"for searching the medication");
+		prescriptionobj.searchMedicationByAlaphabet(PrescriptionPage.alphabetName1);
+		logger.info("verify all the medications list starts with "+PrescriptionPage.alphabetName1);
+		preAssert.assertTrue(prescriptionobj.verifyRow(PrescriptionPage.alphabetName1));
 
 		logger.info("closing the medication window");
 		prescriptionobj.closeMedicationWindow();
@@ -676,8 +677,8 @@ public class PrescriptionTest extends BaseTestClass {
 		prescriptionobj.clickOnSearchIcon();
 		logger.info("Searching the medication in medication text box");
 		prescriptionobj.searchMedicationByName();
-		logger.info("verify all the medications list starts with "+keflexMedication);
-		preAssert.assertTrue(prescriptionobj.verifyRow(keflexMedication));
+		logger.info("verify all the medications list starts with "+PrescriptionPage.keflexMedication);
+		preAssert.assertTrue(prescriptionobj.verifyRow(PrescriptionPage.keflexMedication));
 		prescriptionobj.closeMedicationWindow();
 		logger.info("closing the medication window");
 		profilepageobj.closePrintWindow();
@@ -696,12 +697,12 @@ public class PrescriptionTest extends BaseTestClass {
 		medicalchartpage.switchToMedicalFrame();
 
 		logger.info("Searching the patient with first name & last name in medical chart...");
-		medicalchartpage.searchExistingPatientWithName(existingPatientfirstname,existingPatientlastname);
-		preAssert.assertTrue(medicalchartpage.verifyPatientIsSerchedWithName(existingPatientfirstname,existingPatientlastname));
+		medicalchartpage.searchExistingPatientWithName(PrescriptionPage.existingPatientfirstname,PrescriptionPage.existingPatientlastname);
+		preAssert.assertTrue(medicalchartpage.verifyPatientIsSerchedWithName(PrescriptionPage.existingPatientfirstname,PrescriptionPage.existingPatientlastname));
 		logger.info("selecting the patient...");
 		medicalchartpage.switchToMedicalFrame();
 		medicalchartpage.selectPatient();
-		preAssert.assertTrue(patientpageobj.verifyPatientChartIsOpened1(existingPatientfirstname,existingPatientlastname));
+		preAssert.assertTrue(patientpageobj.verifyPatientChartIsOpened1(PrescriptionPage.existingPatientfirstname,PrescriptionPage.existingPatientlastname));
 		medicalchartpage.dismissGuideline();
 
 		logger.info("clicking on Prescription  menu present in left panel...");
@@ -709,9 +710,9 @@ public class PrescriptionTest extends BaseTestClass {
 		logger.info("verify prescription rPanel is opened...");
 		preAssert.assertTrue(prescriptionobj.verifyprescriptionRPanel());
 		prescriptionobj.switchToPrescriptionRightPanelFrame();
-		logger.info("Selecting the "+alphabetName1 +"for searching the medication");
-		prescriptionobj.searchMedicationByAlaphabet(alphabetName1);
-		preAssert.assertTrue(prescriptionobj.verifyRow(alphabetName1));
+		logger.info("Selecting the "+PrescriptionPage.alphabetName1 +"for searching the medication");
+		prescriptionobj.searchMedicationByAlaphabet(PrescriptionPage.alphabetName1);
+		preAssert.assertTrue(prescriptionobj.verifyRow(PrescriptionPage.alphabetName1));
 		leftPanelpageobj.clickOnLogout();
 	}
 	@Test(description = "To verify that user can search the medication by entering medication name in the 'Medicaiton' field ",groups = { "Prescription_Regression" },priority=13)
@@ -725,12 +726,12 @@ public class PrescriptionTest extends BaseTestClass {
 		medicalchartpage.switchToMedicalFrame();
 
 		logger.info("Searching the patient with first name & last name in medical chart...");
-		medicalchartpage.searchExistingPatientWithName(existingPatientfirstname,existingPatientlastname);
-		preAssert.assertTrue(medicalchartpage.verifyPatientIsSerchedWithName(existingPatientfirstname,existingPatientlastname));
+		medicalchartpage.searchExistingPatientWithName(PrescriptionPage.existingPatientfirstname,PrescriptionPage.existingPatientlastname);
+		preAssert.assertTrue(medicalchartpage.verifyPatientIsSerchedWithName(PrescriptionPage.existingPatientfirstname,PrescriptionPage.existingPatientlastname));
 		logger.info("selecting the patient...");
 		medicalchartpage.switchToMedicalFrame();
 		medicalchartpage.selectPatient();
-		preAssert.assertTrue(patientpageobj.verifyPatientChartIsOpened1(existingPatientfirstname,existingPatientlastname));
+		preAssert.assertTrue(patientpageobj.verifyPatientChartIsOpened1(PrescriptionPage.existingPatientfirstname,PrescriptionPage.existingPatientlastname));
 		medicalchartpage.dismissGuideline();
 
 		logger.info("clicking on Prescription  menu present in left panel...");
@@ -738,9 +739,9 @@ public class PrescriptionTest extends BaseTestClass {
 		logger.info("verify prescription rPanel is opened...");
 		preAssert.assertTrue(prescriptionobj.verifyprescriptionRPanel());
 		prescriptionobj.switchToPrescriptionRightPanelFrame();
-		logger.info("Selecting the "+alphabetName1 +"for searching the medication");
-		prescriptionobj.searchMedicationByAlaphabet(alphabetName1);
-		preAssert.assertTrue(prescriptionobj.verifyRow(alphabetName1));
+		logger.info("Selecting the "+PrescriptionPage.alphabetName1 +"for searching the medication");
+		prescriptionobj.searchMedicationByAlaphabet(PrescriptionPage.alphabetName1);
+		preAssert.assertTrue(prescriptionobj.verifyRow(PrescriptionPage.alphabetName1));
 		leftPanelpageobj.clickOnLogout();
 	}
 	@Test(description = "To verify that user can search medication from 'Search' field in 'Configure My Medication' Tab",groups = { "Prescription_Regression" },priority=14)
@@ -754,12 +755,12 @@ public class PrescriptionTest extends BaseTestClass {
 		medicalchartpage.switchToMedicalFrame();
 
 		logger.info("Searching the patient with first name & last name in medical chart...");
-		medicalchartpage.searchExistingPatientWithName(existingPatientfirstname,existingPatientlastname);
-		preAssert.assertTrue(medicalchartpage.verifyPatientIsSerchedWithName(existingPatientfirstname,existingPatientlastname));
+		medicalchartpage.searchExistingPatientWithName(PrescriptionPage.existingPatientfirstname,PrescriptionPage.existingPatientlastname);
+		preAssert.assertTrue(medicalchartpage.verifyPatientIsSerchedWithName(PrescriptionPage.existingPatientfirstname,PrescriptionPage.existingPatientlastname));
 		logger.info("selecting the patient...");
 		medicalchartpage.switchToMedicalFrame();
 		medicalchartpage.selectPatient();
-		preAssert.assertTrue(patientpageobj.verifyPatientChartIsOpened1(existingPatientfirstname,existingPatientlastname));
+		preAssert.assertTrue(patientpageobj.verifyPatientChartIsOpened1(PrescriptionPage.existingPatientfirstname,PrescriptionPage.existingPatientlastname));
 		medicalchartpage.dismissGuideline();
 
 		logger.info("clicking on Prescription  menu present in left panel...");
@@ -772,10 +773,10 @@ public class PrescriptionTest extends BaseTestClass {
 		leftPanelpageobj.switchToDifferentTab(" Configure My Medications ");
 
 		prescriptionobj.switchToConfigureMyMedicatioFrame();
-		prescriptionobj.searchMedicineInConfigureMyMedicationTab(ProfileTest.recordExistingMedicationForProfile);
-		logger.info("Selecting the "+ProfileTest.recordExistingMedicationForProfile +"for searching the medication");
+		prescriptionobj.searchMedicineInConfigureMyMedicationTab(Profile.recordExistingMedicationForProfile);
+		logger.info("Selecting the "+Profile.recordExistingMedicationForProfile +"for searching the medication");
 		prescriptionobj.switchToTabFrame();
-		preAssert.assertTrue(prescriptionobj.verifyRow(ProfileTest.recordExistingMedicationForProfile));
+		preAssert.assertTrue(prescriptionobj.verifyRow(Profile.recordExistingMedicationForProfile));
 		leftPanelpageobj.clickOnLogout();
 	}
 	@Test(description = "To verify that user can search medication by selecting alphabet on 'Configure my Medication' tab",groups = { "Prescription_Regression" },priority=15)
@@ -789,12 +790,12 @@ public class PrescriptionTest extends BaseTestClass {
 		medicalchartpage.switchToMedicalFrame();
 
 		logger.info("Searching the patient with first name & last name in medical chart...");
-		medicalchartpage.searchExistingPatientWithName(existingPatientfirstname,existingPatientlastname);
-		preAssert.assertTrue(medicalchartpage.verifyPatientIsSerchedWithName(existingPatientfirstname,existingPatientlastname));
+		medicalchartpage.searchExistingPatientWithName(PrescriptionPage.existingPatientfirstname,PrescriptionPage.existingPatientlastname);
+		preAssert.assertTrue(medicalchartpage.verifyPatientIsSerchedWithName(PrescriptionPage.existingPatientfirstname,PrescriptionPage.existingPatientlastname));
 		logger.info("selecting the patient...");
 		medicalchartpage.switchToMedicalFrame();
 		medicalchartpage.selectPatient();
-		preAssert.assertTrue(patientpageobj.verifyPatientChartIsOpened1(existingPatientfirstname,existingPatientlastname));
+		preAssert.assertTrue(patientpageobj.verifyPatientChartIsOpened1(PrescriptionPage.existingPatientfirstname,PrescriptionPage.existingPatientlastname));
 		medicalchartpage.dismissGuideline();
 
 		logger.info("clicking on Prescription  menu present in left panel...");
@@ -808,11 +809,11 @@ public class PrescriptionTest extends BaseTestClass {
 		leftPanelpageobj.switchToDifferentTab(" Configure My Medications ");
 		prescriptionobj.switchToConfigureMyMedicatioFrame();
 
-		logger.info("Selecting the "+alphabetName1 +"for searching the medication in Configure My Medication Tab");
-		prescriptionobj.searchMedicationByAlaphabet(alphabetName1);
+		logger.info("Selecting the "+PrescriptionPage.alphabetName1 +"for searching the medication in Configure My Medication Tab");
+		prescriptionobj.searchMedicationByAlaphabet(PrescriptionPage.alphabetName1);
 		prescriptionobj.switchToTabFrame();
 		logger.info("verify that user can search medication by selecting alphabet on 'Configure my Medication' tab");
-		preAssert.assertTrue(prescriptionobj.verifyRow(alphabetName1));
+		preAssert.assertTrue(prescriptionobj.verifyRow(PrescriptionPage.alphabetName1));
 		logger.info("logging out from the application");
 		leftPanelpageobj.clickOnLogout();
 	}
@@ -827,12 +828,12 @@ public class PrescriptionTest extends BaseTestClass {
 		medicalchartpage.switchToMedicalFrame();
 
 		logger.info("Searching the patient with first name & last name in medical chart...");
-		medicalchartpage.searchExistingPatientWithName(existingPatientfirstname,existingPatientlastname);
-		preAssert.assertTrue(medicalchartpage.verifyPatientIsSerchedWithName(existingPatientfirstname,existingPatientlastname));
+		medicalchartpage.searchExistingPatientWithName(PrescriptionPage.existingPatientfirstname,PrescriptionPage.existingPatientlastname);
+		preAssert.assertTrue(medicalchartpage.verifyPatientIsSerchedWithName(PrescriptionPage.existingPatientfirstname,PrescriptionPage.existingPatientlastname));
 		logger.info("selecting the patient...");
 		medicalchartpage.switchToMedicalFrame();
 		medicalchartpage.selectPatient();
-		preAssert.assertTrue(patientpageobj.verifyPatientChartIsOpened1(existingPatientfirstname,existingPatientlastname));
+		preAssert.assertTrue(patientpageobj.verifyPatientChartIsOpened1(PrescriptionPage.existingPatientfirstname,PrescriptionPage.existingPatientlastname));
 		medicalchartpage.dismissGuideline();
 
 		logger.info("clicking on Prescription  menu present in left panel...");
@@ -841,10 +842,10 @@ public class PrescriptionTest extends BaseTestClass {
 		preAssert.assertTrue(prescriptionobj.verifyprescriptionRPanel());
 		prescriptionobj.switchToPrescriptionRightPanelFrame();
 
-		logger.info("Selecting the "+alphabetName1 +"for searching the medication");
-		prescriptionobj.searchMedicationByAlaphabet(alphabetName1);
+		logger.info("Selecting the "+PrescriptionPage.alphabetName1 +"for searching the medication");
+		prescriptionobj.searchMedicationByAlaphabet(PrescriptionPage.alphabetName1);
 		logger.info("Right click on the medication row & select Modify item menu");
-		preAssert.assertTrue(prescriptionobj.rClickInSearchTab(alphabetName1,"modifyItem"));
+		preAssert.assertTrue(prescriptionobj.rClickInSearchTab(PrescriptionPage.alphabetName1,"modifyItem"));
 		profilepageobj.switchToTooltip();
 		logger.info("Modify the medication details...");
 		prescriptionobj.modifyMedication();
@@ -867,12 +868,12 @@ public class PrescriptionTest extends BaseTestClass {
 		medicalchartpage.switchToMedicalFrame();
 
 		logger.info("Searching the patient with first name & last name in medical chart...");
-		medicalchartpage.searchExistingPatientWithName(existingPatientfirstname,existingPatientlastname);
-		preAssert.assertTrue(medicalchartpage.verifyPatientIsSerchedWithName(existingPatientfirstname,existingPatientlastname));
+		medicalchartpage.searchExistingPatientWithName(PrescriptionPage.existingPatientfirstname,PrescriptionPage.existingPatientlastname);
+		preAssert.assertTrue(medicalchartpage.verifyPatientIsSerchedWithName(PrescriptionPage.existingPatientfirstname,PrescriptionPage.existingPatientlastname));
 		logger.info("selecting the patient...");
 		medicalchartpage.switchToMedicalFrame();
 		medicalchartpage.selectPatient();
-		preAssert.assertTrue(patientpageobj.verifyPatientChartIsOpened1(existingPatientfirstname,existingPatientlastname));
+		preAssert.assertTrue(patientpageobj.verifyPatientChartIsOpened1(PrescriptionPage.existingPatientfirstname,PrescriptionPage.existingPatientlastname));
 		medicalchartpage.dismissGuideline();
 
 		logger.info("clicking on Prescription  menu present in left panel...");
@@ -881,10 +882,10 @@ public class PrescriptionTest extends BaseTestClass {
 		preAssert.assertTrue(prescriptionobj.verifyprescriptionRPanel());
 		prescriptionobj.switchToPrescriptionRightPanelFrame();
 
-		logger.info("Selecting the "+alphabetName2 +"for searching the medication");
-		prescriptionobj.searchMedicationByAlaphabet(alphabetName2);
+		logger.info("Selecting the "+PrescriptionPage.alphabetName2 +"for searching the medication");
+		prescriptionobj.searchMedicationByAlaphabet(PrescriptionPage.alphabetName2);
 		logger.info("Right click on the medication row & select Modify item menu");
-		preAssert.assertTrue(prescriptionobj.rClickInSearchTab(alphabetName2,"deleteItem"));
+		preAssert.assertTrue(prescriptionobj.rClickInSearchTab(PrescriptionPage.alphabetName2,"deleteItem"));
 
 		leftPanelpageobj.clickOnYesPopUp();
 		logger.info("verify Medication is deleted..");
@@ -903,12 +904,12 @@ public class PrescriptionTest extends BaseTestClass {
 		medicalchartpage.switchToMedicalFrame();
 
 		logger.info("Searching the patient with first name & last name in medical chart...");
-		medicalchartpage.searchExistingPatientWithName(existingPatientfirstname,existingPatientlastname);
-		preAssert.assertTrue(medicalchartpage.verifyPatientIsSerchedWithName(existingPatientfirstname,existingPatientlastname));
+		medicalchartpage.searchExistingPatientWithName(PrescriptionPage.existingPatientfirstname,PrescriptionPage.existingPatientlastname);
+		preAssert.assertTrue(medicalchartpage.verifyPatientIsSerchedWithName(PrescriptionPage.existingPatientfirstname,PrescriptionPage.existingPatientlastname));
 		logger.info("selecting the patient...");
 		medicalchartpage.switchToMedicalFrame();
 		medicalchartpage.selectPatient();
-		preAssert.assertTrue(patientpageobj.verifyPatientChartIsOpened1(existingPatientfirstname,existingPatientlastname));
+		preAssert.assertTrue(patientpageobj.verifyPatientChartIsOpened1(PrescriptionPage.existingPatientfirstname,PrescriptionPage.existingPatientlastname));
 		medicalchartpage.dismissGuideline();
 
 		logger.info("clicking on Prescription  menu present in left panel...");
@@ -917,24 +918,24 @@ public class PrescriptionTest extends BaseTestClass {
 		preAssert.assertTrue(prescriptionobj.verifyprescriptionRPanel());
 		prescriptionobj.switchToPrescriptionRightPanelFrame();
 
-		logger.info("Selecting the "+alphabetName2 +"for searching the medication");
-		prescriptionobj.searchMedicationByAlaphabet(alphabetName2);
+		logger.info("Selecting the "+PrescriptionPage.alphabetName2 +"for searching the medication");
+		prescriptionobj.searchMedicationByAlaphabet(PrescriptionPage.alphabetName2);
 		logger.info("Right click on the medication row & select Context item menu");
-		preAssert.assertTrue(prescriptionobj.rClickInSearchTab(alphabetName2,"contextItem"));
+		preAssert.assertTrue(prescriptionobj.rClickInSearchTab(PrescriptionPage.alphabetName2,"contextItem"));
 
 		profilepageobj.switchToTooltip();
-		logger.info("Selecting the  service Type "+ProfileTest.existingActivityForProfilePatient );
-		prescriptionobj.clickOnProcedure(ProfileTest.existingActivityForProfilePatient);
+		logger.info("Selecting the  service Type "+Profile.existingActivityForProfilePatient );
+		prescriptionobj.clickOnProcedure(Profile.existingActivityForProfilePatient);
 		logger.info("Saving the service details");
 		medicalchartpage.clickOnSaveButton();
 
 
 		profilepageobj.switchToSocialHistoryFrame();
 		prescriptionobj.switchToPrescriptionRightPanelFrame();
-		logger.info("Selecting the "+alphabetName2 +"for searching the medication");
-		prescriptionobj.searchMedicationByAlaphabet(alphabetName2);
+		logger.info("Selecting the "+PrescriptionPage.alphabetName2 +"for searching the medication");
+		prescriptionobj.searchMedicationByAlaphabet(PrescriptionPage.alphabetName2);
 		logger.info("Right click on the medication row & select Property item menu");
-		preAssert.assertTrue(prescriptionobj.rClickInSearchTab(alphabetName2,"propertyItem"));
+		preAssert.assertTrue(prescriptionobj.rClickInSearchTab(PrescriptionPage.alphabetName2,"propertyItem"));
 		profilepageobj.switchToTooltip();
 		logger.info("System should open the Properties window with the Created on & Service Type details ");
 		assertTrue(prescriptionobj.verifyPropertyDetails());
@@ -952,12 +953,12 @@ public class PrescriptionTest extends BaseTestClass {
 		medicalchartpage.switchToMedicalFrame();
 
 		logger.info("Searching the patient with first name & last name in medical chart...");
-		medicalchartpage.searchExistingPatientWithName(existingPatientfirstname,existingPatientlastname);
-		preAssert.assertTrue(medicalchartpage.verifyPatientIsSerchedWithName(existingPatientfirstname,existingPatientlastname));
+		medicalchartpage.searchExistingPatientWithName(PrescriptionPage.existingPatientfirstname,PrescriptionPage.existingPatientlastname);
+		preAssert.assertTrue(medicalchartpage.verifyPatientIsSerchedWithName(PrescriptionPage.existingPatientfirstname,PrescriptionPage.existingPatientlastname));
 		logger.info("selecting the patient...");
 		medicalchartpage.switchToMedicalFrame();
 		medicalchartpage.selectPatient();
-		preAssert.assertTrue(patientpageobj.verifyPatientChartIsOpened1(existingPatientfirstname,existingPatientlastname));
+		preAssert.assertTrue(patientpageobj.verifyPatientChartIsOpened1(PrescriptionPage.existingPatientfirstname,PrescriptionPage.existingPatientlastname));
 		medicalchartpage.dismissGuideline();
 
 		logger.info("clicking on Prescription  menu present in left panel...");
@@ -971,11 +972,11 @@ public class PrescriptionTest extends BaseTestClass {
 		leftPanelpageobj.switchToDifferentTab(" Configure My Medications ");
 		prescriptionobj.switchToConfigureMyMedicatioFrame();
 
-		logger.info("Selecting the "+alphabetName2 +"for searching the medication in Configure My Medication Tab");
-		prescriptionobj.searchMedicationByAlaphabet(alphabetName2);
+		logger.info("Selecting the "+PrescriptionPage.alphabetName2 +"for searching the medication in Configure My Medication Tab");
+		prescriptionobj.searchMedicationByAlaphabet(PrescriptionPage.alphabetName2);
 		prescriptionobj.switchToTabFrame();
 		logger.info("Right click on the medication row & select Property item menu");
-		preAssert.assertTrue(prescriptionobj.rClickInSearchTab(alphabetName2,"favorites"));
+		preAssert.assertTrue(prescriptionobj.rClickInSearchTab(PrescriptionPage.alphabetName2,"favorites"));
 		profilepageobj.switchToSocialHistoryFrame();
 		prescriptionobj.switchToTabFrame();
 		prescriptionobj.switchToConfigureMyMedicatioFrame();
@@ -993,23 +994,23 @@ public class PrescriptionTest extends BaseTestClass {
 		medicalchartpage.clickOnMedicalChartFromLeftPanel();
 		medicalchartpage.switchToMedicalFrame();
 		logger.info("Searching the patient with first name & last name in medical chart...");
-		medicalchartpage.searchExistingPatientWithName(existingPatientfirstname,existingPatientlastname);
-		preAssert.assertTrue(medicalchartpage.verifyPatientIsSerchedWithName(existingPatientfirstname,existingPatientlastname));
+		medicalchartpage.searchExistingPatientWithName(PrescriptionPage.existingPatientfirstname,PrescriptionPage.existingPatientlastname);
+		preAssert.assertTrue(medicalchartpage.verifyPatientIsSerchedWithName(PrescriptionPage.existingPatientfirstname,PrescriptionPage.existingPatientlastname));
 		logger.info("selecting the patient...");
 		medicalchartpage.selectPatient();
-		preAssert.assertTrue(patientpageobj.verifyPatientChartIsOpened1(existingPatientfirstname,existingPatientlastname));
+		preAssert.assertTrue(patientpageobj.verifyPatientChartIsOpened1(PrescriptionPage.existingPatientfirstname,PrescriptionPage.existingPatientlastname));
 
 		logger.info("Delete if existing service present in patient chart");
 		profilepageobj.verifyAddedServicesDetails();
 		logger.info("creating Colonoscopy service in patient chart...");
-		patientpageobj.clickOnProcedure(ProfileTest.existingActivityForProfilePatient);
+		patientpageobj.clickOnProcedure(Profile.existingActivityForProfilePatient);
 		logger.info("Switching to Colonoscopy document after opening it");
 		documentobj.switchToFraDocumentFrame();
 		logger.info("Adding the administered medication to colonoscopy");
-		documentobj.addAdministeredMedication(keflexMedication);
+		documentobj.addAdministeredMedication(PrescriptionPage.keflexMedication);
 		documentobj.switchToFraDocumentFrame();
 		logger.info("Verifying that Administered Medication is added successfully in the document");
-		preAssert.assertTrue(documentobj.getElementText(DocumentPage.administmedication).contains(keflexMedication));
+		preAssert.assertTrue(documentobj.getElementText(DocumentPage.administmedication).contains(PrescriptionPage.keflexMedication));
 
 		logger.info("Clicking On Report Button...");
 		leftPanelpageobj.clickOnReport("clickReport");
@@ -1021,9 +1022,9 @@ public class PrescriptionTest extends BaseTestClass {
 		logger.info("verify On all the default checkboxes are selected in Administered Medications Report ...");
 		preAssert.assertTrue(reportpageobj.verifyDefaultCheckboxValueInPatientAgeReport());
 
-		reportpageobj.enterMedicationName(keflexMedication);
+		reportpageobj.enterMedicationName(PrescriptionPage.keflexMedication);
 		logger.info("finding the patient  in administered Medications Reportt ...");
-		reportpageobj.findTextInPatientAgeReport(existingPatientfirstname);
+		reportpageobj.findTextInPatientAgeReport(PrescriptionPage.existingPatientfirstname);
 		preAssert.assertTrue(reportpageobj.verifyHighlightedTextInPatientAgeReport());
 
 		logger.info("clicking forward and backward for opening the different pages  in Pdministered Medications Report ...");
@@ -1033,7 +1034,7 @@ public class PrescriptionTest extends BaseTestClass {
 		logger.info("clicking on Export Menu in dministered Medications Report ...");
 		reportpageobj.clickOnExportButton();
 		logger.info("verify report content in administered Medications Report ...");
-		preAssert.assertTrue(reportpageobj.verifyRecords(existingPatientfirstname,existingPatientlastname));
+		preAssert.assertTrue(reportpageobj.verifyRecords(PrescriptionPage.existingPatientfirstname,PrescriptionPage.existingPatientlastname));
 		leftPanelpageobj.clickOnLogout();
 	}
 	@Test(description = "To verify that Drug Alergy Intractions",groups = { "Prescription_Regression" },priority=21)
@@ -1047,12 +1048,12 @@ public class PrescriptionTest extends BaseTestClass {
 		medicalchartpage.switchToMedicalFrame();
 
 		logger.info("Searching the patient with first name & last name in medical chart...");
-		medicalchartpage.searchExistingPatientWithName(existingPatientfirstname,existingPatientlastname);
-		preAssert.assertTrue(medicalchartpage.verifyPatientIsSerchedWithName(existingPatientfirstname,existingPatientlastname));
+		medicalchartpage.searchExistingPatientWithName(PrescriptionPage.existingPatientfirstname,PrescriptionPage.existingPatientlastname);
+		preAssert.assertTrue(medicalchartpage.verifyPatientIsSerchedWithName(PrescriptionPage.existingPatientfirstname,PrescriptionPage.existingPatientlastname));
 		logger.info("selecting the patient...");
 		medicalchartpage.switchToMedicalFrame();
 		medicalchartpage.selectPatient();
-		preAssert.assertTrue(patientpageobj.verifyPatientChartIsOpened1(existingPatientfirstname,existingPatientlastname));
+		preAssert.assertTrue(patientpageobj.verifyPatientChartIsOpened1(PrescriptionPage.existingPatientfirstname,PrescriptionPage.existingPatientlastname));
 		medicalchartpage.dismissGuideline();
 
 		logger.info("clicking on Profile  menu present in left panel...");
@@ -1076,11 +1077,11 @@ public class PrescriptionTest extends BaseTestClass {
 		logger.info("verify prescribe popup is opened...");
 		preAssert.assertTrue(prescriptionobj.verifyPrescriptionDetailsPopup());
 
-		logger.info("Entering the medication " +ProfileTest.selectAllergyFormMyAllergies);
-		prescriptionobj.enterMedicationName(ProfileTest.selectAllergyFormMyAllergies);
+		logger.info("Entering the medication " +Profile.selectAllergyFormMyAllergies);
+		prescriptionobj.enterMedicationName(Profile.selectAllergyFormMyAllergies);
 		profilepageobj.switchToProblemFrame();
 		logger.info("Selecting the medication from list");
-		prescriptionobj.searchMedicationFromList(ProfileTest.selectAllergyFormMyAllergies);
+		prescriptionobj.searchMedicationFromList(Profile.selectAllergyFormMyAllergies);
 		logger.info(" verify that Drug Allergy Intractions pop up");
 		prescriptionobj.switchToInteractionAlertFrame();
 		preAssert.assertTrue(prescriptionobj.checkDrugAllergyAlerts());
@@ -1143,7 +1144,7 @@ public class PrescriptionTest extends BaseTestClass {
 		preAssert.assertTrue(reportpageobj.verifyTopMenuItemsInPatientAgeReport());
 		logger.info("verify On all the default checkboxes are selected in Reports: Medication Per Patient ...");
 		preAssert.assertTrue(reportpageobj.verifyDefaultCheckboxValueInPatientAgeReport());
-		prescriptionobj.selectMedicationForMedicationPerPatientReport(keflexMedication);
+		prescriptionobj.selectMedicationForMedicationPerPatientReport(PrescriptionPage.keflexMedication);
 
 		logger.info("clicking on run report button");
 		prescriptionobj.runReport();
@@ -1153,7 +1154,7 @@ public class PrescriptionTest extends BaseTestClass {
 		logger.info("clicking on Export Menu in Medication Per Patient Report  ...");
 		reportpageobj.clickOnExportButton();
 		logger.info("verify report content in Medication Per Patient Report  ...");
-		preAssert.assertTrue(prescriptionobj.verifyRecordsForMedicationPerPatientReport(patientcompleteName));
+		preAssert.assertTrue(prescriptionobj.verifyRecordsForMedicationPerPatientReport(PrescriptionPage.patientcompleteName));
 		logger.info("logging out from the application");	
 		leftPanelpageobj.clickOnLogout();
 	}
@@ -1177,12 +1178,12 @@ public class PrescriptionTest extends BaseTestClass {
 		medicalchartpage.clickOnMedicalChartFromLeftPanel();
 		medicalchartpage.switchToMedicalFrame();		
 		logger.info("Searching the patient with first name & last name in medical chart...");
-		medicalchartpage.searchExistingPatientWithName(existingPatientfirstname,existingPatientlastname);
-		preAssert.assertTrue(medicalchartpage.verifyPatientIsSerchedWithName(existingPatientfirstname,existingPatientlastname));
+		medicalchartpage.searchExistingPatientWithName(PrescriptionPage.existingPatientfirstname,PrescriptionPage.existingPatientlastname);
+		preAssert.assertTrue(medicalchartpage.verifyPatientIsSerchedWithName(PrescriptionPage.existingPatientfirstname,PrescriptionPage.existingPatientlastname));
 		logger.info("selecting the patient...");
 		medicalchartpage.switchToMedicalFrame();
 		medicalchartpage.selectPatient();
-		preAssert.assertTrue(patientpageobj.verifyPatientChartIsOpened1(existingPatientfirstname,existingPatientlastname));
+		preAssert.assertTrue(patientpageobj.verifyPatientChartIsOpened1(PrescriptionPage.existingPatientfirstname,PrescriptionPage.existingPatientlastname));
 		medicalchartpage.dismissGuideline();
 
 		logger.info("clicking on Prescription  menu present in left panel...");
@@ -1195,11 +1196,11 @@ public class PrescriptionTest extends BaseTestClass {
 		logger.info("verify prescribe popup is opened...");
 		preAssert.assertTrue(prescriptionobj.verifyPrescriptionDetailsPopup());
 
-		logger.info("Entering the medication " +keflexMedication);
-		prescriptionobj.enterMedicationName(keflexMedication);
+		logger.info("Entering the medication " +PrescriptionPage.keflexMedication);
+		prescriptionobj.enterMedicationName(PrescriptionPage.keflexMedication);
 		profilepageobj.switchToProblemFrame();
 		logger.info("Selecting the medication from list");
-		prescriptionobj.searchMedicationFromList(keflexMedication);
+		prescriptionobj.searchMedicationFromList(PrescriptionPage.keflexMedication);
 		logger.info(" verify that Drug Drug Intractions pop up");
 		prescriptionobj.switchToInteractionAlertFrame();
 		preAssert.assertTrue(prescriptionobj.checkDrugAllergyAlerts());
@@ -1217,13 +1218,13 @@ public class PrescriptionTest extends BaseTestClass {
 		medicalchartpage.switchToMedicalFrame();
 
 		logger.info("Searching the patient with first name & last name in medical chart...");
-		medicalchartpage.searchExistingPatientWithName(existingPatientfirstname,existingPatientlastname);
-		preAssert.assertTrue(medicalchartpage.verifyPatientIsSerchedWithName(existingPatientfirstname,existingPatientlastname));
+		medicalchartpage.searchExistingPatientWithName(PrescriptionPage.existingPatientfirstname,PrescriptionPage.existingPatientlastname);
+		preAssert.assertTrue(medicalchartpage.verifyPatientIsSerchedWithName(PrescriptionPage.existingPatientfirstname,PrescriptionPage.existingPatientlastname));
 		logger.info("selecting the patient...");
 		medicalchartpage.switchToMedicalFrame();
 		medicalchartpage.selectPatient();
 		logger.info("verify patient chart is opened...");
-		preAssert.assertTrue(patientpageobj.verifyPatientChartIsOpened1(existingPatientfirstname,existingPatientlastname));
+		preAssert.assertTrue(patientpageobj.verifyPatientChartIsOpened1(PrescriptionPage.existingPatientfirstname,PrescriptionPage.existingPatientlastname));
 		medicalchartpage.dismissGuideline();
 
 		logger.info("clicking on Prescription  menu present in left panel...");
@@ -1242,11 +1243,11 @@ public class PrescriptionTest extends BaseTestClass {
 		prescriptionobj.enterCurrentMedData();
 		profilepageobj.switchToProblemFrame();
 		logger.info("Selecting the medication from list");
-		prescriptionobj.searchMedicationFromList(currentMedicationName);
+		prescriptionobj.searchMedicationFromList(PrescriptionPage.currentMedicationName);
 		medicalchartpage.clickOnSaveButton();
 		logger.info("verify current medication is documented in r panel");
 		profilepageobj.switchToSocialHistoryFrame();
-		preAssert.assertTrue(prescriptionobj.verifyCurrentMedIsDocumented(currentMedicationName));
+		preAssert.assertTrue(prescriptionobj.verifyCurrentMedIsDocumented(PrescriptionPage.currentMedicationName));
 		logger.info("logging out from the application");
 		leftPanelpageobj.clickOnLogout();
 	}
@@ -1261,12 +1262,12 @@ public class PrescriptionTest extends BaseTestClass {
 		medicalchartpage.switchToMedicalFrame();
 
 		logger.info("Searching the patient with first name & last name in medical chart...");
-		medicalchartpage.searchExistingPatientWithName(existingPatientfirstname,existingPatientlastname);
-		preAssert.assertTrue(medicalchartpage.verifyPatientIsSerchedWithName(existingPatientfirstname,existingPatientlastname));
+		medicalchartpage.searchExistingPatientWithName(PrescriptionPage.existingPatientfirstname,PrescriptionPage.existingPatientlastname);
+		preAssert.assertTrue(medicalchartpage.verifyPatientIsSerchedWithName(PrescriptionPage.existingPatientfirstname,PrescriptionPage.existingPatientlastname));
 		logger.info("selecting the patient...");
 		medicalchartpage.switchToMedicalFrame();
 		medicalchartpage.selectPatient();
-		preAssert.assertTrue(patientpageobj.verifyPatientChartIsOpened1(existingPatientfirstname,existingPatientlastname));
+		preAssert.assertTrue(patientpageobj.verifyPatientChartIsOpened1(PrescriptionPage.existingPatientfirstname,PrescriptionPage.existingPatientlastname));
 		medicalchartpage.dismissGuideline();
 
 		logger.info("clicking on Prescription  menu present in left panel...");
@@ -1274,7 +1275,7 @@ public class PrescriptionTest extends BaseTestClass {
 		logger.info("verify prescription rPanel is opened...");
 		preAssert.assertTrue(prescriptionobj.verifyprescriptionRPanel());
 		logger.info("R clicking on medication & select Renew Option");
-		prescriptionobj.rClickMedicationOptions(keflexMedication,"renew");
+		prescriptionobj.rClickMedicationOptions(PrescriptionPage.keflexMedication,"renew");
 		profilepageobj.switchToTooltip();
 		logger.info("Override if any interaction Alert is present");
 		prescriptionobj.checkDrugAllergyAlerts();
@@ -1289,7 +1290,7 @@ public class PrescriptionTest extends BaseTestClass {
 		
 		profilepageobj.switchToSocialHistoryFrame();
 		logger.info("Right click the medication and select history option");
-		prescriptionobj.rClickMedicationOptions(keflexMedication,"rclickHistory");
+		prescriptionobj.rClickMedicationOptions(PrescriptionPage.keflexMedication,"rclickHistory");
 		logger.info("verify the medication status should be renew in history");
 		preAssert.assertTrue(prescriptionobj.checkMedicationStatusInHistory());	
 		logger.info("logging out from the application");
@@ -1306,12 +1307,12 @@ public class PrescriptionTest extends BaseTestClass {
 		medicalchartpage.switchToMedicalFrame();
 
 		logger.info("Searching the patient with first name & last name in medical chart...");
-		medicalchartpage.searchExistingPatientWithName(existingPatientfirstname,existingPatientlastname);
-		preAssert.assertTrue(medicalchartpage.verifyPatientIsSerchedWithName(existingPatientfirstname,existingPatientlastname));
+		medicalchartpage.searchExistingPatientWithName(PrescriptionPage.existingPatientfirstname,PrescriptionPage.existingPatientlastname);
+		preAssert.assertTrue(medicalchartpage.verifyPatientIsSerchedWithName(PrescriptionPage.existingPatientfirstname,PrescriptionPage.existingPatientlastname));
 		logger.info("selecting the patient...");
 		medicalchartpage.switchToMedicalFrame();
 		medicalchartpage.selectPatient();
-		preAssert.assertTrue(patientpageobj.verifyPatientChartIsOpened1(existingPatientfirstname,existingPatientlastname));
+		preAssert.assertTrue(patientpageobj.verifyPatientChartIsOpened1(PrescriptionPage.existingPatientfirstname,PrescriptionPage.existingPatientlastname));
 		medicalchartpage.dismissGuideline();
 
 		logger.info("clicking on Prescription  menu present in left panel...");
@@ -1319,7 +1320,7 @@ public class PrescriptionTest extends BaseTestClass {
 		logger.info("verify prescription rPanel is opened...");
 		preAssert.assertTrue(prescriptionobj.verifyprescriptionRPanel());
 		logger.info("R clicking on medication & select Renew Option");
-		prescriptionobj.rClickMedicationOptions(sronyxMedication,"stopMedication");
+		prescriptionobj.rClickMedicationOptions(PrescriptionPage.sronyxMedication,"stopMedication");
 		profilepageobj.switchToTooltip();
 		logger.info("stopping the presribed medication");
 		prescriptionobj.stopMedication();
@@ -1340,12 +1341,12 @@ public class PrescriptionTest extends BaseTestClass {
 		medicalchartpage.switchToMedicalFrame();
 
 		logger.info("Searching the patient with first name & last name in medical chart...");
-		medicalchartpage.searchExistingPatientWithName(existingPatientfirstname,existingPatientlastname);
-		preAssert.assertTrue(medicalchartpage.verifyPatientIsSerchedWithName(existingPatientfirstname,existingPatientlastname));
+		medicalchartpage.searchExistingPatientWithName(PrescriptionPage.existingPatientfirstname,PrescriptionPage.existingPatientlastname);
+		preAssert.assertTrue(medicalchartpage.verifyPatientIsSerchedWithName(PrescriptionPage.existingPatientfirstname,PrescriptionPage.existingPatientlastname));
 		logger.info("selecting the patient...");
 		medicalchartpage.switchToMedicalFrame();
 		medicalchartpage.selectPatient();
-		preAssert.assertTrue(patientpageobj.verifyPatientChartIsOpened1(existingPatientfirstname,existingPatientlastname));
+		preAssert.assertTrue(patientpageobj.verifyPatientChartIsOpened1(PrescriptionPage.existingPatientfirstname,PrescriptionPage.existingPatientlastname));
 		medicalchartpage.dismissGuideline();
 
 		logger.info("clicking on Prescription  menu present in left panel...");
@@ -1353,10 +1354,10 @@ public class PrescriptionTest extends BaseTestClass {
 		logger.info("verify prescription rPanel is opened...");
 		preAssert.assertTrue(prescriptionobj.verifyprescriptionRPanel());
 		logger.info("R clicking on medication & select History Option");
-		prescriptionobj.rClickMedicationOptions(keflexMedication,"history");
+		prescriptionobj.rClickMedicationOptions(PrescriptionPage.keflexMedication,"history");
 		profilepageobj.switchToTooltip();
 		logger.info("verify all the correct headers are present in history page");
-		preAssert.assertTrue(stringContainsCsv(prescriptionobj.verifyHistoryData(), historyHeader));
+		preAssert.assertTrue(stringContainsCsv(prescriptionobj.verifyHistoryData(), PrescriptionPage.historyHeader));
 		logger.info("logging out from the application");
 		leftPanelpageobj.clickOnLogout();
 	}
@@ -1371,13 +1372,13 @@ public class PrescriptionTest extends BaseTestClass {
 		medicalchartpage.switchToMedicalFrame();
 
 		logger.info("Searching the patient with first name & last name in medical chart...");
-		medicalchartpage.searchExistingPatientWithName(existingPatientfirstname,existingPatientlastname);
-		preAssert.assertTrue(medicalchartpage.verifyPatientIsSerchedWithName(existingPatientfirstname,existingPatientlastname));
+		medicalchartpage.searchExistingPatientWithName(PrescriptionPage.existingPatientfirstname,PrescriptionPage.existingPatientlastname);
+		preAssert.assertTrue(medicalchartpage.verifyPatientIsSerchedWithName(PrescriptionPage.existingPatientfirstname,PrescriptionPage.existingPatientlastname));
 		logger.info("selecting the patient...");
 		medicalchartpage.switchToMedicalFrame();
 		medicalchartpage.selectPatient();
 		logger.info("verify patient chart is opened...");
-		preAssert.assertTrue(patientpageobj.verifyPatientChartIsOpened1(existingPatientfirstname,existingPatientlastname));
+		preAssert.assertTrue(patientpageobj.verifyPatientChartIsOpened1(PrescriptionPage.existingPatientfirstname,PrescriptionPage.existingPatientlastname));
 		medicalchartpage.dismissGuideline();
 
 		logger.info("clicking on Prescription  menu present in left panel...");
@@ -1389,7 +1390,7 @@ public class PrescriptionTest extends BaseTestClass {
 		profilepageobj.switchToTooltip();
 	
 		logger.info("verify all the correct headers are present in history page");
-		preAssert.assertTrue(stringContainsCsv(prescriptionobj.verifyHistoryData(), historyMainHeader));
+		preAssert.assertTrue(stringContainsCsv(prescriptionobj.verifyHistoryData(), PrescriptionPage.historyMainHeader));
 		logger.info("close the history window");
 		profilepageobj.closePrintWindow();
 		logger.info("logging out from the application");
@@ -1399,7 +1400,7 @@ public class PrescriptionTest extends BaseTestClass {
 	public void prescribeByAgent() throws Exception{
 		logger.info("logging into gmed application...");
 		logger.info(" Login with another user which we used as Recipients while creating new Task");
-		loginPageObj.loginToGmedWithBreakTheGlassUser(unprescribeUser,unprescribePassword);
+		loginPageObj.loginToGmedWithBreakTheGlassUser(PrescriptionPage.unprescribeUser,PrescriptionPage.unprescribePassword);
 		preAssert.assertTrue(loginPageObj.verifyHomePageTitle(),"Title should contain gMed gGastro");
 		logger.info("clicking on configuration menu present in left panel");
 		
@@ -1418,12 +1419,12 @@ public class PrescriptionTest extends BaseTestClass {
 		medicalchartpage.clickOnMedicalChartFromLeftPanel();
 		medicalchartpage.switchToMedicalFrame();
 		logger.info("Searching the patient with first name & last name in medical chart...");
-		medicalchartpage.searchExistingPatientWithName(existingPatientfirstname,existingPatientlastname);
-		preAssert.assertTrue(medicalchartpage.verifyPatientIsSerchedWithName(existingPatientfirstname,existingPatientlastname));
+		medicalchartpage.searchExistingPatientWithName(PrescriptionPage.existingPatientfirstname,PrescriptionPage.existingPatientlastname);
+		preAssert.assertTrue(medicalchartpage.verifyPatientIsSerchedWithName(PrescriptionPage.existingPatientfirstname,PrescriptionPage.existingPatientlastname));
 		logger.info("selecting the patient...");
 		medicalchartpage.switchToMedicalFrame();
 		medicalchartpage.selectPatient();
-		preAssert.assertTrue(patientpageobj.verifyPatientChartIsOpened1(existingPatientfirstname,existingPatientlastname));
+		preAssert.assertTrue(patientpageobj.verifyPatientChartIsOpened1(PrescriptionPage.existingPatientfirstname,PrescriptionPage.existingPatientlastname));
 		medicalchartpage.dismissGuideline();
 
 		logger.info("clicking on Prescription  menu present in left panel...");
@@ -1437,7 +1438,7 @@ public class PrescriptionTest extends BaseTestClass {
 		preAssert.assertTrue(prescriptionobj.verifyPrescriptionDetailsPopup());
 
 		logger.info("entering required details for Prescribing any medication...");
-		prescriptionobj.createRequireDetailsForPrescription(keflexMedication);
+		prescriptionobj.createRequireDetailsForPrescription(PrescriptionPage.keflexMedication);
 		logger.info("verify provider is associated before prescribing medication");
 		preAssert.assertTrue(prescriptionobj.verifyProvider());
 
@@ -1447,7 +1448,7 @@ public class PrescriptionTest extends BaseTestClass {
 		prescriptionobj.checkDoseAlert();
 		profilepageobj.switchToSocialHistoryFrame();
 		logger.info("verify prescribe medication is documented in r panel");
-		preAssert.assertTrue(prescriptionobj.verifyPrescriptionIsDocumented(completeKeflexMedicationName));
+		preAssert.assertTrue(prescriptionobj.verifyPrescriptionIsDocumented(PrescriptionPage.completeKeflexMedicationName));
 		logger.info("logging out from the application");
 		leftPanelpageobj.clickOnLogout();
 	}
@@ -1462,12 +1463,12 @@ public class PrescriptionTest extends BaseTestClass {
 		medicalchartpage.switchToMedicalFrame();
 
 		logger.info("Searching the patient with first name & last name in medical chart...");
-		medicalchartpage.searchExistingPatientWithName(existingPatientfirstname,existingPatientlastname);
-		preAssert.assertTrue(medicalchartpage.verifyPatientIsSerchedWithName(existingPatientfirstname,existingPatientlastname));
+		medicalchartpage.searchExistingPatientWithName(PrescriptionPage.existingPatientfirstname,PrescriptionPage.existingPatientlastname);
+		preAssert.assertTrue(medicalchartpage.verifyPatientIsSerchedWithName(PrescriptionPage.existingPatientfirstname,PrescriptionPage.existingPatientlastname));
 		logger.info("selecting the patient...");
 		medicalchartpage.switchToMedicalFrame();
 		medicalchartpage.selectPatient();
-		preAssert.assertTrue(patientpageobj.verifyPatientChartIsOpened1(existingPatientfirstname,existingPatientlastname));
+		preAssert.assertTrue(patientpageobj.verifyPatientChartIsOpened1(PrescriptionPage.existingPatientfirstname,PrescriptionPage.existingPatientlastname));
 		medicalchartpage.dismissGuideline();
 
 		logger.info("clicking on Prescription  menu present in left panel...");
@@ -1481,7 +1482,7 @@ public class PrescriptionTest extends BaseTestClass {
 		preAssert.assertTrue(prescriptionobj.verifyPrescriptionDetailsPopupForExistingMedication());
 
 		logger.info("entering required details for Prescribing any medication...");
-		prescriptionobj.createRequireDetailsForPrescription(keflexMedication);
+		prescriptionobj.createRequireDetailsForPrescription(PrescriptionPage.keflexMedication);
 		
 
 		logger.info("clicking on save button");
@@ -1490,7 +1491,7 @@ public class PrescriptionTest extends BaseTestClass {
 		prescriptionobj.checkDoseAlert();
 		profilepageobj.switchToSocialHistoryFrame();
 		logger.info("verify prescribe medication is documented in r panel");
-		preAssert.assertTrue(prescriptionobj.verifyPrescriptionIsDocumented(completeKeflexMedicationName));
+		preAssert.assertTrue(prescriptionobj.verifyPrescriptionIsDocumented(PrescriptionPage.completeKeflexMedicationName));
 		logger.info("logging out from the application");
 		leftPanelpageobj.clickOnLogout();
 	}

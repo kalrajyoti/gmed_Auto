@@ -73,7 +73,8 @@ public class DriverFactory {
 	public static EventFiringWebDriver createDriver(String URL )
 	{
 		DesiredCapabilities ieCapabilities = DesiredCapabilities.internetExplorer();
-		ieCapabilities.setCapability("nativeEvents", false);    
+		ieCapabilities.setCapability("nativeEvents", false);   
+		ieCapabilities.setCapability("ignoreZoomSetting", true);
 		ieCapabilities.setCapability("unexpectedAlertBehaviour", "accept");
 		ieCapabilities.setCapability("ignoreProtectedModeSettings", true);
 		ieCapabilities.setCapability("disable-popup-blocking", true);

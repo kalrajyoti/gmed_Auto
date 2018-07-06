@@ -15,16 +15,16 @@
 	
 	<test name="Base_Test" preserve-order="true">
 		<classes>
-			<class name="com.gmed.test.BaseTestClass" />
+			<class name="com.gmed.base.BaseTestClass" />
 		</classes>
 	</test>
  	  
-  <!-- <test name="MedicalChartTest" preserve-order="true">
+<!--  <test name="MedicalChartTest" preserve-order="true">
 		<classes>
 			<class name="com.gmed.test.MedicalChartTest"/>	
 		</classes>
 		
-</test>  
+</test>  --> 
  <test name="DemographicsTest" preserve-order="true">
 		<classes>
 			<class name="com.gmed.test.DemographicsTest"/>
@@ -32,7 +32,7 @@
 		</classes>
 	
 </test>    
- -->
+
 
 
  <!-- <test name="ProfileTest" preserve-order="true">
@@ -269,7 +269,7 @@
 		
 </test> -->
 
-<test name="OutputMangerTest" preserve-order="true">
+<!-- <test name="OutputMangerTest" preserve-order="true">
 		<classes>
 			<class name="com.gmed.test.OutputManagerTest">
 			
@@ -290,6 +290,20 @@
 <test name="RecallTest" preserve-order="true">
 		<classes>
 			<class name="com.gmed.test.RecallTest"/>
+			
+		</classes>
+		
+</test> -->
+<!-- <test name="ChargesTest" preserve-order="true">
+		<classes>
+			<class name="com.billing.test.ChargeTest"/>
+			
+		</classes>
+		
+</test> -->
+<test name="pifTest" preserve-order="true">
+		<classes>
+			<class name="com.gmed.test.PifTest"/>
 			
 		</classes>
 		

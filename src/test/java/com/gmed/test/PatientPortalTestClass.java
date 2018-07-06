@@ -17,7 +17,7 @@ import com.gmed.patientportal.JavaMail;
 import com.gmed.patientportal.PatientPortalLogin;
 import com.gmed.utils.ConstantsFile;
 import com.gpm.pages.BillingPage;
-public class PatientPortalTestClass extends BaseTestClass{
+public class PatientPortalTestClass extends BaseTestClass1{
 	private static Logger logger  = LogManager.getLogger(PatientPortalTestClass.class);
 	private LoginPage loginPageObj;
 	private GpinUserLogin gpinpageobj;

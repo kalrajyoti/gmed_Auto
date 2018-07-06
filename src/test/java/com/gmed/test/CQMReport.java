@@ -2,7 +2,7 @@ package com.gmed.test;
 
 import static com.gmed.utils.StringUtility.stringContainsCsv;
 
-import java.util.Map;
+
 
 import org.apache.log4j.LogManager;
 import org.apache.log4j.Logger;
@@ -11,13 +11,14 @@ import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 import org.testng.asserts.Assertion;
 
+import com.gmed.base.BaseTestClass;
 import com.gmed.pages.DocumentPage;
 import com.gmed.pages.LeftPanelPage;
 import com.gmed.pages.LoginPage;
-import com.gmed.pages.Profile;
+
 import com.gmed.pages.ReportPage;
 import com.gmed.utils.ConstantsFile;
-import com.gmed.utils.ExcelFileUtilty;
+
 
 public class CQMReport extends BaseTestClass {
 		/** Logger to log the MUReport log messages */
@@ -33,34 +34,35 @@ public class CQMReport extends BaseTestClass {
 		private DocumentPage docupageobj;
 	
 		
-		/**contains the MU page data*/
-		public static Map<String, String> CQMData;
-		
-		/**These are the variables which are used to store different data for MU Report module*/
-		public static String existingProfileProviderfirstname;
-		public static String existingProfileProviderlastname;
-		public static String cqmMeasures;
-		public static String destinationFolder;
-		
-		/** These are the variables which are present on "MUReport" sheet in the excel*/
-		public static final String PROVIDER_FIRSTNAME 				                   = "providerfirstname";
-		public static final String PROVIDER_LASTNAME 				                   = "providerlastname";
-		public static final String CQM_MEASURES 				                       = "cqmMeasures";
-		public static final String DESTINATION_FOLDER 				                   = "destinationfolder";
+//		/**contains the MU page data*/
+//		public static Map<String, String> CQMData;
+//		
+//		/**These are the variables which are used to store different data for MU Report module*/
+//		public static String existingProfileProviderfirstname;
+//		public static String existingProfileProviderlastname;
+//		public static String cqmMeasures;
+//		public static String destinationFolder;
+//		
+//		/** These are the variables which are present on "MUReport" sheet in the excel*/
+//		public static final String PROVIDER_FIRSTNAME 				                   = "providerfirstname";
+//		public static final String PROVIDER_LASTNAME 				                   = "providerlastname";
+//		public static final String CQM_MEASURES 				                       = "cqmMeasures";
+//		public static final String DESTINATION_FOLDER 				                   = "destinationfolder";
 	
 		
 		@BeforeClass
 		public void initClass() throws Exception{
 			logger.info("inside the initClass method for DemographicsTest test class....");
-			CQMData                                     = ExcelFileUtilty.readExcelSheet("Report");
-			existingProfileProviderfirstname            = CQMData.get(PROVIDER_FIRSTNAME);
-			existingProfileProviderlastname             = CQMData.get(PROVIDER_LASTNAME);
-			cqmMeasures                                 = CQMData.get(CQM_MEASURES);
-			destinationFolder                           = CQMData.get(DESTINATION_FOLDER);
+//			CQMData                                     = ExcelFileUtilty.readExcelSheet("Report");
+//			existingProfileProviderfirstname            = CQMData.get(PROVIDER_FIRSTNAME);
+//			existingProfileProviderlastname             = CQMData.get(PROVIDER_LASTNAME);
+//			cqmMeasures                                 = CQMData.get(CQM_MEASURES);
+//			destinationFolder                           = CQMData.get(DESTINATION_FOLDER);
 			loginPageObj                                = new LoginPage();
 			leftPanelpageobj                            = new LeftPanelPage();
 			reportpageobj                               = new ReportPage();
 			docupageobj                                 = new DocumentPage();
+			reportpageobj.initClass();
 			
 			
 
@@ -78,10 +80,10 @@ public class CQMReport extends BaseTestClass {
 			logger.info("select provider ,desination & date range in the cqm report");
 			reportpageobj.switchToCQMFrame();
 			logger.info("adding report details for generationg data..");
-			reportpageobj.addReportDetails(existingProfileProviderfirstname,existingProfileProviderlastname);
+			reportpageobj.addReportDetails(ReportPage.existingProfileProviderfirstname,ReportPage.existingProfileProviderlastname);
 			docupageobj.clickOnOkay();
 			logger.info("verify all the results show for selected  measures for selected provider.");
-			cqmAssert.assertTrue(stringContainsCsv(reportpageobj.verifyCQMData(), cqmMeasures));
+			cqmAssert.assertTrue(stringContainsCsv(reportpageobj.verifyCQMData(), ReportPage.cqmMeasures));
 			logger.info("logging out from the application");
 			leftPanelpageobj.clickOnLogout();
 		}

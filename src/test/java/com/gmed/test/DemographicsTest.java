@@ -9,6 +9,7 @@ import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 import org.testng.asserts.Assertion;
 
+import com.gmed.base.BaseTestClass;
 import com.gmed.pages.AppointmentPage;
 import com.gmed.pages.DemographicsPage;
 import com.gmed.pages.DocumentPage;
@@ -41,57 +42,59 @@ public class DemographicsTest extends BaseTestClass {
 	private MedicalChartPage medicalchartobj;
 	/** Appointment page reference used for creating appointment  data for  demographics module*/
 	private AppointmentPage appointmentpageobj;
+	/** Report page reference used for generating report data in report  module*/
+ 	private ReportPage reportpageobj;
 	/** DocumentPage page reference used for documenting   data for  demographics module*/
 	private DocumentPage documentobj;
+	
 
-	/**contains the Demographics page data*/
-	public static Map<String, String> demographicsData;
-
-
-	/** Report page reference used for generating report data in report  module*/
-	private ReportPage reportpageobj;
-
-
-
-	public static String existingPatientzipaddress;
-	public static String existingPatientfirstname;
-	public static String existingPatientlastname;
-	public static String existingPatientrecordnumber;
-	public static String existingPatientssn0;
-	public static String existingPatientssn1;
-	public static String existingPatientssn2;
-	public static String existingPrimaryInsurance;
-	public static String existingSecondaryInsurance;
-	public static String existingPatientFromAge;
-	public static String existingPatientToAge;
-	public static String existingPatientdateofbirthmonth;
-	public static String existingPatientdateofbirthday;
-	public static String existingPatientdateofbirthyear;
-
-	/** These are the variables which are present on "Demographics" sheet in the excel*/
-	public static final String PATIENT_FIRSTNAME 				                   = "patientfirstname";
-	public static final String PATIENT_LASTNAME 				                   = "patientlastname";
-	public static final String PATIENT_RECORDNUMBER 				               = "recordnumber";
-	public static final String PATIENT_ZIPADDRESS 				                   = "zipaddress";
-	public static final String PATIENT_SSN0 				                       = "ssn0";
-	public static final String PATIENT_SSN1 				                       = "ssn1";
-	public static final String PATIENT_SSN2 				                       = "ssn2";
-	public static final String PRIMARY_INSURANCE 				                   = "primarycarriername";
-	public static final String SECONDARY_INSURANCE 				                   = "secondarycarriername";
-	public static final String PATIENT_FROM_AGE 				                   = "patientFromAge";
-	public static final String PATIENT_TO_AGE 				                       = "patientToAge";
-	public static final String PATIENT_DATEOFBIRTHMONTH 				           = "month";
-	public static final String PATIENT_DATEOFBIRTHDAY 				               = "day";
-	public static final String PATIENT_DATEOFBIRTHYEAR 				               = "year";
-	public static final String PATIENT_SSNNUMBER 				                  =  "socialsecurity";
-	public static final String PATIENT_AGE 				                           = "patientAge";
+//	/**contains the Demographics page data*/
+//	public static Map<String, String> demographicsData;
+//
+//
+//	
+//
+//
+//
+//	public static String existingPatientzipaddress;
+//	public static String existingPatientfirstname;
+//	public static String existingPatientlastname;
+//	public static String existingPatientrecordnumber;
+//	public static String existingPatientssn0;
+//	public static String existingPatientssn1;
+//	public static String existingPatientssn2;
+//	public static String existingPrimaryInsurance;
+//	public static String existingSecondaryInsurance;
+//	public static String existingPatientFromAge;
+//	public static String existingPatientToAge;
+//	public static String existingPatientdateofbirthmonth;
+//	public static String existingPatientdateofbirthday;
+//	public static String existingPatientdateofbirthyear;
+//
+//	/** These are the variables which are present on "Demographics" sheet in the excel*/
+//	public static final String PATIENT_FIRSTNAME 				                   = "patientfirstname";
+//	public static final String PATIENT_LASTNAME 				                   = "patientlastname";
+//	public static final String PATIENT_RECORDNUMBER 				               = "recordnumber";
+//	public static final String PATIENT_ZIPADDRESS 				                   = "zipaddress";
+//	public static final String PATIENT_SSN0 				                       = "ssn0";
+//	public static final String PATIENT_SSN1 				                       = "ssn1";
+//	public static final String PATIENT_SSN2 				                       = "ssn2";
+//	public static final String PRIMARY_INSURANCE 				                   = "primarycarriername";
+//	public static final String SECONDARY_INSURANCE 				                   = "secondarycarriername";
+//	public static final String PATIENT_FROM_AGE 				                   = "patientFromAge";
+//	public static final String PATIENT_TO_AGE 				                       = "patientToAge";
+//	public static final String PATIENT_DATEOFBIRTHMONTH 				           = "month";
+//	public static final String PATIENT_DATEOFBIRTHDAY 				               = "day";
+//	public static final String PATIENT_DATEOFBIRTHYEAR 				               = "year";
+//	public static final String PATIENT_SSNNUMBER 				                  =  "socialsecurity";
+//	public static final String PATIENT_AGE 				                           = "patientAge";
 	
 
 	/** This method runs before the first test from the class runs */
 	@BeforeClass
 	public void initClass() throws Exception{
 		logger.info("inside the initClass method for DemographicsTest test class....");
-		demographicsData                                 = ExcelFileUtilty.readExcelSheet("Demographics");
+		/*demographicsData                                 = ExcelFileUtilty.readExcelSheet("Demographics");
 		existingPatientfirstname                         = demographicsData.get(PATIENT_FIRSTNAME);
 		existingPatientlastname                          = demographicsData.get(PATIENT_LASTNAME);
 		existingPatientrecordnumber                      = demographicsData.get(PATIENT_RECORDNUMBER);
@@ -105,7 +108,7 @@ public class DemographicsTest extends BaseTestClass {
 		existingPatientToAge                             = demographicsData.get(PATIENT_TO_AGE);
 		existingPatientdateofbirthmonth                  = demographicsData.get(PATIENT_DATEOFBIRTHMONTH);
 		existingPatientdateofbirthday                    = demographicsData.get(PATIENT_DATEOFBIRTHDAY);
-		existingPatientdateofbirthyear                   = demographicsData.get(PATIENT_DATEOFBIRTHYEAR);
+		existingPatientdateofbirthyear                   = demographicsData.get(PATIENT_DATEOFBIRTHYEAR);*/
 		loginPageObj                                     = new LoginPage();
 		medicalchartpage                                 = new MedicalChartPage();
 		patientpageobj                                   = new PatientChart();
@@ -115,6 +118,7 @@ public class DemographicsTest extends BaseTestClass {
 		reportpageobj                                    = new ReportPage();
 		appointmentpageobj                               = new AppointmentPage();
 		documentobj                                      = new DocumentPage();
+		demographicspageobj.initClass();
 
 	}
 	@Test(description = "To verify that user can modify demographic details ,Insurance and Guarantor information in Demographics ",groups = { "Demographics_Regression" },priority=1)
@@ -126,11 +130,11 @@ public class DemographicsTest extends BaseTestClass {
 		medicalchartpage.clickOnMedicalChartFromLeftPanel();
 		medicalchartpage.switchToMedicalFrame();
 		logger.info("Searching the patient with first name & last name in medical chart...");
-		medicalchartpage.searchExistingPatientWithName(existingPatientfirstname,existingPatientlastname);
-		demographicsAssert.assertEquals(medicalchartpage.verifyPatientIsSerchedWithName(existingPatientfirstname,existingPatientlastname), true);
+		medicalchartpage.searchExistingPatientWithName(DemographicsPage.existingPatientfirstname,DemographicsPage.existingPatientlastname);
+		demographicsAssert.assertEquals(medicalchartpage.verifyPatientIsSerchedWithName(DemographicsPage.existingPatientfirstname,DemographicsPage.existingPatientlastname), true);
 		logger.info("selecting the patient...");
 		medicalchartpage.selectPatient();
-		demographicsAssert.assertEquals(patientpageobj.verifyPatientChartIsOpened1(existingPatientfirstname,existingPatientlastname), true);
+		demographicsAssert.assertEquals(patientpageobj.verifyPatientChartIsOpened1(DemographicsPage.existingPatientfirstname,DemographicsPage.existingPatientlastname), true);
 		logger.info("clicking on demographic present in left panel in patient chart...");
 		leftPanelpageobj.clickLeftNavigationPanelValue("Demographics");
 		demographicsAssert.assertEquals(demographicspageobj.verifyDemographicsModuleOpened(), true);
@@ -185,7 +189,7 @@ public class DemographicsTest extends BaseTestClass {
 		logger.info("Entering valid Age(5-7) for the patient  in Patient By Age Report ...");
 		reportpageobj.enterValidAgeInReport();
 		logger.info("finding the patient  in Patient By Age Report ...");
-		reportpageobj.findTextInPatientAgeReport(DemographicsTest.existingPatientfirstname);
+		reportpageobj.findTextInPatientAgeReport(DemographicsPage.existingPatientfirstname);
 		demographicsAssert.assertEquals(reportpageobj.verifyHighlightedTextInPatientAgeReport(), true);
 		logger.info("clicking forward and backward for opening the different pages  in Patient By Age Report ...");
 		reportpageobj.clickOnNextAndBackButtonInPatientAgeReport();
@@ -194,7 +198,7 @@ public class DemographicsTest extends BaseTestClass {
 		logger.info("clicking on Export Menu in Patient By Age Report ...");
 		reportpageobj.clickOnExportButton();
 		logger.info("verify report content in Patient By Age Report ...");
-		demographicsAssert.assertEquals(reportpageobj.verifyRecords(DemographicsTest.existingPatientfirstname,DemographicsTest.existingPatientlastname), true);
+		demographicsAssert.assertEquals(reportpageobj.verifyRecords(DemographicsPage.existingPatientfirstname,DemographicsPage.existingPatientlastname), true);
 		leftPanelpageobj.clickOnLogout();
 	}
 	@Test(description = "To verify that patient by Zip Address Report for demographics Module ",groups = { "Demographics_Regression" },priority=3)
@@ -213,8 +217,8 @@ public class DemographicsTest extends BaseTestClass {
 		logger.info("Select the patient for scheduling any Appointment...");
 		appointmentpageobj.clickonPatientNameDropDown();
 		demographicsAssert.assertEquals(appointmentpageobj.verifyPatientScreenInAppointment(), true);
-		appointmentpageobj.searchExistingPatientName(existingPatientfirstname,existingPatientlastname);
-		demographicsAssert.assertEquals(medicalchartpage.verifyPatientIsSerchedWithName(existingPatientfirstname,existingPatientlastname),  true);
+		appointmentpageobj.searchExistingPatientName(DemographicsPage.existingPatientfirstname,DemographicsPage.existingPatientlastname);
+		demographicsAssert.assertEquals(medicalchartpage.verifyPatientIsSerchedWithName(DemographicsPage.existingPatientfirstname,DemographicsPage.existingPatientlastname),  true);
 		logger.info("selecting the patient...");
 		medicalchartpage.selectPatient();
 		demographicsAssert.assertEquals(appointmentpageobj.verifyPatientIsSearched(), true);
@@ -235,7 +239,7 @@ public class DemographicsTest extends BaseTestClass {
 		logger.info("Entering valid zip address for the patient  in Patient By zip address Report ...");
 		reportpageobj.enterValidZipCodeInReport();
 		logger.info("finding the patient  in Patient By Zip Address Report ...");
-		reportpageobj.findTextInPatientAgeReport(DemographicsTest.existingPatientfirstname);
+		reportpageobj.findTextInPatientAgeReport(DemographicsPage.existingPatientfirstname);
 		//demographicsAssert.assertEquals(reportpageobj.verifyHighlightedTextInPatientAgeReport(), true);
 		logger.info("clicking forward and backward for opening the different pages  in Patient By Zip Address Report ...");
 		reportpageobj.clickOnNextAndBackButtonInPatientAgeReport();
@@ -244,7 +248,7 @@ public class DemographicsTest extends BaseTestClass {
 		logger.info("clicking on Export Menu in  Patient By Zip Address Report ...");
 		reportpageobj.clickOnExportButton();
 		logger.info("verify report content in  Patient By Zip Address Report ...");
-		demographicsAssert.assertEquals(reportpageobj.verifyRecords(DemographicsTest.existingPatientfirstname,DemographicsTest.existingPatientlastname), true);
+		demographicsAssert.assertEquals(reportpageobj.verifyRecords(DemographicsPage.existingPatientfirstname,DemographicsPage.existingPatientlastname), true);
 		leftPanelpageobj.clickOnLogout();
 	}
 	@AfterClass()

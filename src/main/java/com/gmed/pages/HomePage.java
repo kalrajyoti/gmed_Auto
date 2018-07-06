@@ -11,8 +11,8 @@ import org.openqa.selenium.WebElement;
 import org.sikuli.script.FindFailed;
 
 import com.gmed.Frames.Frames;
-import com.gmed.test.MessagingTest;
-import com.gmed.test.TaskTest;
+
+
 import com.gmed.utils.ConstantsFile;
 import com.gmed.utils.SeleniumUtil;
 
@@ -119,18 +119,18 @@ public class HomePage  extends com.gmed.base.BaseAbstractPage {
 		String subjectText=SeleniumUtil.getElementWithFluentWait(TaskPage.taskSubjectTextbox).getAttribute("value");
 		System.out.println("subject text"+subjectText);
 
-		if(messageText.equalsIgnoreCase(MessagingTest.messageToText) && attachmentText.equalsIgnoreCase(MessagingTest.attachementTitle) ){
+		if(messageText.equalsIgnoreCase(MessagingPage.messageToText) && attachmentText.equalsIgnoreCase(MessagingPage.attachementTitle) ){
 			logger.info("correct users & Attachement are added");
 			isMessagingDeatilsAdded=true;
 		}
-		else if(messageText.equalsIgnoreCase(MessagingTest.messageToText)  ){
+		else if(messageText.equalsIgnoreCase(MessagingPage.messageToText)  ){
 			logger.info("correct reply all user is added..");
 			SeleniumUtil.switchToParentFrame(Frames.LOGIN);
 			SeleniumUtil.getElementWithFluentWait(MessagingPage.closePopup).click();
 			SeleniumUtil.clickOnImageWitScreenInSikuli("clickOnYes");
 			isMessagingDeatilsAdded=true;
 		}
-		else if(messageText.equalsIgnoreCase(MessagingTest.firstLoggedUser)  ){
+		else if(messageText.equalsIgnoreCase(MessagingPage.firstLoggedUser)  ){
 			logger.info("correct reply user is added..");
 			SeleniumUtil.switchToParentFrame(Frames.LOGIN);
 			SeleniumUtil.getElementWithFluentWait(MessagingPage.closePopup).click();
@@ -183,7 +183,7 @@ public class HomePage  extends com.gmed.base.BaseAbstractPage {
 		SeleniumUtil.switchToParentFrame(Frames.HOME);
 		SeleniumUtil.waitForProgressBar(Frames.HOME);
 		String receivedtext=SeleniumUtil.getElementWithFluentWait(MessagingPage.messageContent).getText();
-		if(receivedtext.contains(ConstantsFile.messageIntialName) && receivedtext.contains(MessagingTest.firstLoggedUser)){
+		if(receivedtext.contains(ConstantsFile.messageIntialName) && receivedtext.contains(MessagingPage.firstLoggedUser)){
 			System.out.println("correct message is receieved..");
 			ismessageReceived=true;
 		}

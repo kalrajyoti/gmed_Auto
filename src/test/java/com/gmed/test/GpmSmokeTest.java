@@ -7,6 +7,7 @@ import org.testng.annotations.Test;
 import org.testng.asserts.Assertion;
 
 import com.gmed.AutoIT.GpinUserLogin;
+import com.gmed.base.BaseTestClass;
 import com.gmed.pages.AppointmentPage;
 import com.gmed.pages.ConfigurationPage;
 import com.gmed.pages.DemographicsPage;

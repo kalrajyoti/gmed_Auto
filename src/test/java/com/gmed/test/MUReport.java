@@ -19,7 +19,7 @@ import com.gmed.pages.ReportPage;
 import com.gmed.utils.ConstantsFile;
 import com.gmed.utils.ExcelFileUtilty;
 
-public class MUReport extends BaseTestClass {
+public class MUReport extends BaseTestClass1 {
 		/** Logger to log the MUReport log messages */
 		private static Logger logger  = LogManager.getLogger(MUReport.class); 
 		/**Assertion to verify different elements of the page */
@@ -34,26 +34,27 @@ public class MUReport extends BaseTestClass {
 		public static Map<String, String> MUData;
 		
 		/**These are the variables which are used to store different data for MU Report module*/
-		public static String existingProfileProviderfirstname;
-		public static String existingProfileProviderlastname;
-		public static String muMeasures;
-		
-		/** These are the variables which are present on "MUReport" sheet in the excel*/
-		public static final String PROFILE_PROVIDER_FIRSTNAME 				                   = "providerfirstname";
-		public static final String PROFILE_PROVIDER_LASTNAME 				                   = "providerlastname";
-		public static final String MU_MEASURES 				                                   = "muMeasures";
+//		public static String existingProfileProviderfirstname;
+//		public static String existingProfileProviderlastname;
+//		public static String muMeasures;
+//		
+//		/** These are the variables which are present on "MUReport" sheet in the excel*/
+//		public static final String PROFILE_PROVIDER_FIRSTNAME 				                   = "providerfirstname";
+//		public static final String PROFILE_PROVIDER_LASTNAME 				                   = "providerlastname";
+//		public static final String MU_MEASURES 				                                   = "muMeasures";
 	
 		
 		@BeforeClass
 		public void initClass() throws Exception{
 			logger.info("inside the initClass method for DemographicsTest test class....");
 			MUData                                      = ExcelFileUtilty.readExcelSheet("Report");
-			existingProfileProviderfirstname            = MUData.get(PROFILE_PROVIDER_FIRSTNAME);
-			existingProfileProviderlastname             = MUData.get(PROFILE_PROVIDER_LASTNAME);
-			muMeasures                                  = MUData.get(MU_MEASURES);
+//			existingProfileProviderfirstname            = MUData.get(PROFILE_PROVIDER_FIRSTNAME);
+//			existingProfileProviderlastname             = MUData.get(PROFILE_PROVIDER_LASTNAME);
+//			muMeasures                                  = MUData.get(MU_MEASURES);
 			loginPageObj                                = new LoginPage();
 			leftPanelpageobj                            = new LeftPanelPage();
 			reportpageobj                               = new ReportPage();
+			reportpageobj.initClass();
 			
 
 	}
@@ -69,8 +70,8 @@ public class MUReport extends BaseTestClass {
 			muAssert.assertTrue(reportpageobj.verifyReportScreen("Measure Calculations"));
 			logger.info("verify all the fields related to MU report Page is displayed");
 			muAssert.assertTrue(reportpageobj.verifyMUReportFields());
-			reportpageobj.enterMUDataForReport(existingProfileProviderfirstname,existingProfileProviderlastname);
-			muAssert.assertTrue(stringContainsCsv(reportpageobj.verifyMUData(), muMeasures));
+			reportpageobj.enterMUDataForReport(ReportPage.existingProfileProviderfirstname,ReportPage.existingProfileProviderlastname);
+			muAssert.assertTrue(stringContainsCsv(reportpageobj.verifyMUData(), ReportPage.muMeasures));
 			leftPanelpageobj.clickOnLogout();
 		}
 		@AfterClass()

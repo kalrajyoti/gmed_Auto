@@ -13,8 +13,7 @@ import java.util.List;
 import com.gmed.Frames.DynamicFramePage;
 import com.gmed.Frames.Frames;
 import com.gmed.base.BaseAbstractPage;
-import com.gmed.test.DemographicsTest;
-import com.gmed.test.MedicalChartTest;
+
 import com.gmed.utils.ConstantsFile;
 import com.gmed.utils.ExcelFileUtilty;
 import com.gmed.utils.SeleniumUtil;
@@ -230,4 +229,5 @@ public class PatientChart extends BaseAbstractPage {
 		}
 		return isPatientChartOpened;
 }
+	
 }

@@ -18,7 +18,7 @@ import com.gmed.pages.LoginPage;
 import com.gmed.pages.ScanningPage;
 import com.gmed.utils.ExcelFileUtilty;
 
-public class ScanningTest extends BaseTestClass {
+public class ScanningTest extends BaseTestClass1 {
 
 	private static Logger				logger			= LogManager.getLogger(OrdersTest.class);
 	/** Page reference used to access the methods of those pages */

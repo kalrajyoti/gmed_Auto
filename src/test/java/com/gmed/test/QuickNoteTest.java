@@ -15,7 +15,7 @@ import com.gmed.utils.ExcelFileUtilty;
 
 
 
-public class QuickNoteTest extends BaseTestClass {
+public class QuickNoteTest extends BaseTestClass1 {
 	/** Logger to log the QuickNoteTest log messages */
 	private static Logger logger  = LogManager.getLogger(PatientChartTest.class); 
 	/** Login Page reference used to login for logging in for test  */

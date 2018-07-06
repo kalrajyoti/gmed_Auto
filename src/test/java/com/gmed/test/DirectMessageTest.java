@@ -11,6 +11,7 @@ import org.testng.annotations.Test;
 import org.testng.asserts.Assertion;
 
 import com.gmed.AutoIT.GpinUserLogin;
+import com.gmed.base.BaseTestClass;
 import com.gmed.pages.DirectMessagingPage;
 import com.gmed.pages.DocumentPage;
 import com.gmed.pages.HomePage;
@@ -43,35 +44,36 @@ public class DirectMessageTest extends BaseTestClass {
 	/** Messaging  Page reference used to generation of Messaging data  for test  */
 	private MessagingPage messagePageObj;
 	
-	/**contains the Direct Messaging page data*/
-	public static Map<String, String> directMessagingData;
-	
-	/**These are the variables which are used to store different data for Direct Message module*/
-	
-	public static String directMessageDetail;
-	public static String recipientAddress;
-	public static String providerDirectAddress;
-	
-	/** These are the variables which are present on "Direct Message" sheet in the excel*/
-	public static final String DIRECT_MESSAGE_DETAILS 				                         = "directMessageDetails";
-	public static final String RECIPIENT_ADDRESS 				                             = "recipientAddress";
-	public static final String PROVIDER_ADDRESS				                                 = "providerName";
+//	/**contains the Direct Messaging page data*/
+//	public static Map<String, String> directMessagingData;
+//	
+//	/**These are the variables which are used to store different data for Direct Message module*/
+//	
+//	public static String directMessageDetail;
+//	public static String recipientAddress;
+//	public static String providerDirectAddress;
+//	
+//	/** These are the variables which are present on "Direct Message" sheet in the excel*/
+//	public static final String DIRECT_MESSAGE_DETAILS 				                         = "directMessageDetails";
+//	public static final String RECIPIENT_ADDRESS 				                             = "recipientAddress";
+//	public static final String PROVIDER_ADDRESS				                                 = "providerName";
 	
 	
 	/** This method runs before the first test from the class runs */
 	@BeforeClass
 	public void initClass() throws Exception{
 		logger.info("inside the initClass method for DemographicsTest test class....");
-		directMessagingData                              = ExcelFileUtilty.readExcelSheet("Direct_Message");
-		directMessageDetail                              = directMessagingData.get(DIRECT_MESSAGE_DETAILS);
-		recipientAddress                                 = directMessagingData.get(RECIPIENT_ADDRESS);
-		providerDirectAddress                            = directMessagingData.get(PROVIDER_ADDRESS);
+//		directMessagingData                              = ExcelFileUtilty.readExcelSheet("Direct_Message");
+//		directMessageDetail                              = directMessagingData.get(DIRECT_MESSAGE_DETAILS);
+//		recipientAddress                                 = directMessagingData.get(RECIPIENT_ADDRESS);
+//		providerDirectAddress                            = directMessagingData.get(PROVIDER_ADDRESS);
 		loginPageObj                                     = new LoginPage();
 		leftPanelpageobj                                 = new LeftPanelPage();		
 		orderPageObj                                     = new OrdersPage();
 		messagePageObj                                   = new MessagingPage();
 		directMessagePageObj                             = new DirectMessagingPage();
 		homePageObj                                      = new HomePage();
+		directMessagePageObj.initClass();
 	}
 	@Test(description = "To verify sending functionality of direct Messages . ",groups = { "DirectMessaging_Regression" },priority=1)
 	public void verifySendingFunctionality() throws Exception{

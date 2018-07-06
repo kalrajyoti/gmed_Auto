@@ -1,26 +1,20 @@
 package com.gmed.pages;
 
+import static com.gmed.helper.DriverFactory.driver;
+
+import java.util.List;
+
 import org.apache.log4j.LogManager;
 import org.apache.log4j.Logger;
 import org.openqa.selenium.By;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebElement;
 import org.sikuli.script.FindFailed;
-import org.sikuli.script.Key;
 
-import com.gmed.Frames.DynamicFramePage;
 import com.gmed.Frames.Frames;
 import com.gmed.base.BaseAbstractPage;
-import com.gmed.test.ImmunizationTest;
 import com.gmed.utils.ConstantsFile;
-import com.gmed.utils.DateUtil;
 import com.gmed.utils.SeleniumUtil;
-import static com.gmed.helper.DriverFactory.driver;
-import static com.gmed.helper.DriverFactory.action;
-
-import java.awt.AWTException;
-import java.util.Iterator;
-import java.util.List;
 
 
 public class RecallsPage extends BaseAbstractPage {

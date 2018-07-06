@@ -8,6 +8,7 @@ import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 import org.testng.asserts.Assertion;
 
+import com.gmed.base.BaseTestClass;
 import com.gmed.pages.DocumentPage;
 import com.gmed.pages.LeftPanelPage;
 import com.gmed.pages.LoginPage;
@@ -41,65 +42,66 @@ public class TaskTest extends BaseTestClass {
 	 */
 	 private DocumentPage documentpageobj;
 
-	/** contains the Profile page data */
-	public static Map<String, String> taskData;
-	/**
-	 * These are the variables which are used to store different data for
-	 * medical chart module
-	 */
-	public static String existingPatientfirstname;
-	public static String existingPatientlastname;
-	public static String recipientsForTask;
-	public static String completePatientName;
-	public static String secondUserName;
-	public static String secondUserPassword;
-	public static String reassignRecipientsForTask;
-	public static String reassignDetails;
-	public static String snoozeToolTipTitle;
-	public static String snoozeText;
-	public static String rejectDetails;
-	public static String recipientsNames;
-	
-	/**
-	 * These are the variables which are present on "Profile" sheet in the excel
-	 */
-	public static final String PATIENT_FIRSTNAME           = "patientfirstname";
-	public static final String PATIENT_LASTNAME            = "patientlastname";
-	public static final String RECIPIENT_NAME              = "taskRecipients";
-	public static final String PATIENT_COMPLETE_NAME       = "completePatientName";
-	public static final String SECOND_USERNAME             = "username";
-	public static final String SECOND_USERNAME_PASSWORD    = "password";
-	public static final String REASSIGN_RECIPIENT_NAME     = "reassignRecipients";
-	public static final String REASSIGN_DETAILS            = "reassignDetails";
-	public static final String TOOL_TIP_TITLE              = "snoozeToolTipTitle";
-	public static final String SNOOZE_TEXT                 = "snoozetextintaskhistory";
-	public static final String REJECT_DETAILS              = "rejectDetails";
-	public static final String RECIPIENS_NAMES              = "recipientsnames";
+//	/** contains the Profile page data */
+//	public static Map<String, String> taskData;
+//	/**
+//	 * These are the variables which are used to store different data for
+//	 * medical chart module
+//	 */
+//	public static String TaskPage.existingPatientfirstname;
+//	public static String TaskPage.existingPatientlastname;
+//	public static String recipientsForTask;
+//	public static String completePatientName;
+//	public static String secondUserName;
+//	public static String secondUserPassword;
+//	public static String reassignRecipientsForTask;
+//	public static String reassignDetails;
+//	public static String snoozeToolTipTitle;
+//	public static String snoozeText;
+//	public static String rejectDetails;
+//	public static String recipientsNames;
+//	
+//	/**
+//	 * These are the variables which are present on "Profile" sheet in the excel
+//	 */
+//	public static final String PATIENT_FIRSTNAME           = "patientfirstname";
+//	public static final String PATIENT_LASTNAME            = "patientlastname";
+//	public static final String RECIPIENT_NAME              = "taskRecipients";
+//	public static final String PATIENT_COMPLETE_NAME       = "completePatientName";
+//	public static final String SECOND_USERNAME             = "username";
+//	public static final String SECOND_USERNAME_PASSWORD    = "password";
+//	public static final String REASSIGN_RECIPIENT_NAME     = "reassignRecipients";
+//	public static final String REASSIGN_DETAILS            = "reassignDetails";
+//	public static final String TOOL_TIP_TITLE              = "snoozeToolTipTitle";
+//	public static final String SNOOZE_TEXT                 = "snoozetextintaskhistory";
+//	public static final String REJECT_DETAILS              = "rejectDetails";
+//	public static final String RECIPIENS_NAMES              = "recipientsnames";
 	
 
 	/** This method runs before the first test from the class runs */
 	@BeforeClass
 	public void initClass() throws Exception {
 		logger.info("inside the initClass method for Task test class....");
-		taskData                           = ExcelFileUtilty.readExcelSheet("Task");
-		existingPatientfirstname           = taskData.get(PATIENT_FIRSTNAME);
-		existingPatientlastname            = taskData.get(PATIENT_LASTNAME);
-		recipientsForTask                  = taskData.get(RECIPIENT_NAME);
-		completePatientName                = taskData.get(PATIENT_COMPLETE_NAME);
-		secondUserName                     = taskData.get(SECOND_USERNAME);
-		secondUserPassword                 = taskData.get(SECOND_USERNAME_PASSWORD);
-		reassignRecipientsForTask          = taskData.get(REASSIGN_RECIPIENT_NAME);
-		reassignDetails                    = taskData.get(REASSIGN_DETAILS);
-		snoozeToolTipTitle                 = taskData.get(TOOL_TIP_TITLE);
-		snoozeText                         = taskData.get(SNOOZE_TEXT);
-		rejectDetails                      = taskData.get(REJECT_DETAILS);
-		recipientsNames                    = taskData.get(RECIPIENS_NAMES);
+//		taskData                           = ExcelFileUtilty.readExcelSheet("Task");
+//		TaskPage.existingPatientfirstname           = taskData.get(PATIENT_FIRSTNAME);
+//		TaskPage.existingPatientlastname            = taskData.get(PATIENT_LASTNAME);
+//		recipientsForTask                  = taskData.get(RECIPIENT_NAME);
+//		completePatientName                = taskData.get(PATIENT_COMPLETE_NAME);
+//		secondUserName                     = taskData.get(SECOND_USERNAME);
+//		secondUserPassword                 = taskData.get(SECOND_USERNAME_PASSWORD);
+//		reassignRecipientsForTask          = taskData.get(REASSIGN_RECIPIENT_NAME);
+//		reassignDetails                    = taskData.get(REASSIGN_DETAILS);
+//		snoozeToolTipTitle                 = taskData.get(TOOL_TIP_TITLE);
+//		snoozeText                         = taskData.get(SNOOZE_TEXT);
+//		rejectDetails                      = taskData.get(REJECT_DETAILS);
+//		recipientsNames                    = taskData.get(RECIPIENS_NAMES);
 		loginPageObj                       = new LoginPage();
 		medicalchartpage                   = new MedicalChartPage();
 		leftPanelpageobj                   = new LeftPanelPage();
 		taskPageObj                        = new TaskPage();
 		billingobj                         = new BillingPage();
 		documentpageobj                    = new DocumentPage();
+		taskPageObj.initClass();
 
 	}
 
@@ -118,8 +120,8 @@ public class TaskTest extends BaseTestClass {
 		
 		taskPageObj.selectRecipient();
 		logger.info("Searching the patient with first name & last name in medical chart...");
-		medicalchartpage.searchExistingPatientWithName(existingPatientfirstname,existingPatientlastname);
-		taskAssert.assertTrue(medicalchartpage.verifyPatientIsSerchedWithName(existingPatientfirstname, existingPatientlastname));
+		medicalchartpage.searchExistingPatientWithName(TaskPage.existingPatientfirstname,TaskPage.existingPatientlastname);
+		taskAssert.assertTrue(medicalchartpage.verifyPatientIsSerchedWithName(TaskPage.existingPatientfirstname, TaskPage.existingPatientlastname));
 		
 		logger.info("selecting the patient...");
 		medicalchartpage.selectPatient();
@@ -132,7 +134,7 @@ public class TaskTest extends BaseTestClass {
 		leftPanelpageobj.clickOnLogout();
 		
 		logger.info(" Login with another user which we used as Recipients while creating new Task");
-		loginPageObj.loginToGmedWithBreakTheGlassUser(secondUserName,secondUserPassword);
+		loginPageObj.loginToGmedWithBreakTheGlassUser(TaskPage.secondUserName,TaskPage.secondUserPassword);
 		taskAssert.assertTrue(loginPageObj.verifyHomePageTitle(),"Title should contain gMed gGastro");
 		
 		logger.info("clicking on My Activities menu present in left panel...");
@@ -192,8 +194,8 @@ public class TaskTest extends BaseTestClass {
 		taskAssert.assertTrue(taskPageObj.verifyTaskManagerPage());
 		
 		logger.info("selecting for patient in Task Manager..");
-		taskPageObj.selectPatientInTask(existingPatientfirstname,existingPatientlastname);
-		taskAssert.assertTrue(medicalchartpage.verifyPatientIsSerchedWithName(existingPatientfirstname,existingPatientlastname));
+		taskPageObj.selectPatientInTask(TaskPage.existingPatientfirstname,TaskPage.existingPatientlastname);
+		taskAssert.assertTrue(medicalchartpage.verifyPatientIsSerchedWithName(TaskPage.existingPatientfirstname,TaskPage.existingPatientlastname));
 		logger.info("selecting the patient...");
 		medicalchartpage.selectPatient();
 		taskPageObj.switchToTaskManagerFrame();
@@ -217,8 +219,8 @@ public class TaskTest extends BaseTestClass {
 		taskAssert.assertTrue(taskPageObj.verifyTaskManagerPage(), "Page name should be Task Manager");
 		
 		logger.info("select patient for searching task in Task manager");
-		taskPageObj.selectPatientInTask(existingPatientfirstname,existingPatientlastname);
-		taskAssert.assertTrue(medicalchartpage.verifyPatientIsSerchedWithName(existingPatientfirstname,existingPatientlastname));
+		taskPageObj.selectPatientInTask(TaskPage.existingPatientfirstname,TaskPage.existingPatientlastname);
+		taskAssert.assertTrue(medicalchartpage.verifyPatientIsSerchedWithName(TaskPage.existingPatientfirstname,TaskPage.existingPatientlastname));
 		logger.info("selecting the patient...");
 		medicalchartpage.selectPatient();
 		taskPageObj.switchToTaskManagerFrame();
@@ -238,7 +240,7 @@ public class TaskTest extends BaseTestClass {
 		leftPanelpageobj.clickOnLogout();
 		
 		logger.info("logging into gmed application with another user...");
-		loginPageObj.loginToGmedWithBreakTheGlassUser(secondUserName, secondUserPassword);
+		loginPageObj.loginToGmedWithBreakTheGlassUser(TaskPage.secondUserName, TaskPage.secondUserPassword);
 		taskAssert.assertEquals(loginPageObj.verifyHomePageTitle(), true);
 		logger.info("clicking on My Activities menu present in left panel...");
 		
@@ -251,7 +253,7 @@ public class TaskTest extends BaseTestClass {
 	@Test(description = "To verify that user can Snooze task ",groups = { "Task_Regression" },priority=5)
 	public void verifySnoozeTask() throws Exception{
 		logger.info("logging into gmed application...");
-		loginPageObj.loginToGmedWithBreakTheGlassUser(secondUserName, secondUserPassword);		
+		loginPageObj.loginToGmedWithBreakTheGlassUser(TaskPage.secondUserName, TaskPage.secondUserPassword);		
 		taskAssert.assertTrue(loginPageObj.verifyHomePageTitle());
 		
 		logger.info("clicking on My Activities menu present in left panel...");
@@ -272,8 +274,8 @@ public class TaskTest extends BaseTestClass {
 		taskAssert.assertTrue(taskPageObj.verifyTaskManagerPage(), "Page name should be Task Manager");
 		
 		logger.info("select patient for searching task in Task manager");
-		taskPageObj.selectPatientInTask(existingPatientfirstname,existingPatientlastname);
-		taskAssert.assertTrue(medicalchartpage.verifyPatientIsSerchedWithName(existingPatientfirstname,existingPatientlastname));
+		taskPageObj.selectPatientInTask(TaskPage.existingPatientfirstname,TaskPage.existingPatientlastname);
+		taskAssert.assertTrue(medicalchartpage.verifyPatientIsSerchedWithName(TaskPage.existingPatientfirstname,TaskPage.existingPatientlastname));
 		logger.info("selecting the patient...");
 		medicalchartpage.selectPatient();
 		taskPageObj.switchToTaskManagerFrame();
@@ -293,7 +295,7 @@ public class TaskTest extends BaseTestClass {
 	@Test(description = "To verify that user can complete task ",groups = { "Task_Regression" },priority=6)
 	public void verifyCompleteTask() throws Exception{
 		logger.info("logging into gmed application...");
-		loginPageObj.loginToGmedWithBreakTheGlassUser(secondUserName, secondUserPassword);	
+		loginPageObj.loginToGmedWithBreakTheGlassUser(TaskPage.secondUserName, TaskPage.secondUserPassword);	
 		taskAssert.assertTrue(loginPageObj.verifyHomePageTitle());
 		
 		logger.info("clicking on Task Manager  menu  present in Queue Management...");
@@ -302,8 +304,8 @@ public class TaskTest extends BaseTestClass {
 		taskAssert.assertTrue(taskPageObj.verifyTaskManagerPage());
 		
 		logger.info("selecting for patient in Task Manager..");
-		taskPageObj.selectPatientInTask(existingPatientfirstname,existingPatientlastname);
-		taskAssert.assertTrue(medicalchartpage.verifyPatientIsSerchedWithName(existingPatientfirstname,existingPatientlastname));
+		taskPageObj.selectPatientInTask(TaskPage.existingPatientfirstname,TaskPage.existingPatientlastname);
+		taskAssert.assertTrue(medicalchartpage.verifyPatientIsSerchedWithName(TaskPage.existingPatientfirstname,TaskPage.existingPatientlastname));
 		logger.info("selecting the patient...");
 		medicalchartpage.selectPatient();
 		taskPageObj.switchToTaskManagerFrame();
@@ -325,7 +327,7 @@ public class TaskTest extends BaseTestClass {
 	@Test(description = "To verify that user can delete any task ",groups = { "Task_Regression" },priority=7)
 	public void verifyDeleteTask() throws Exception{
 		logger.info("logging into gmed application...");
-		loginPageObj.loginToGmedWithBreakTheGlassUser(secondUserName, secondUserPassword);	
+		loginPageObj.loginToGmedWithBreakTheGlassUser(TaskPage.secondUserName, TaskPage.secondUserPassword);	
 		taskAssert.assertTrue(loginPageObj.verifyHomePageTitle());
 		
 		logger.info("clicking on Task Manager menu  present in Queue Management...");
@@ -334,8 +336,8 @@ public class TaskTest extends BaseTestClass {
 		taskAssert.assertTrue(taskPageObj.verifyTaskManagerPage(), "Page name should be Task Manager");
 		
 		logger.info("select patient for searching task in Task manager");
-		taskPageObj.selectPatientInTask(existingPatientfirstname,existingPatientlastname);
-		taskAssert.assertTrue(medicalchartpage.verifyPatientIsSerchedWithName(existingPatientfirstname,existingPatientlastname));
+		taskPageObj.selectPatientInTask(TaskPage.existingPatientfirstname,TaskPage.existingPatientlastname);
+		taskAssert.assertTrue(medicalchartpage.verifyPatientIsSerchedWithName(TaskPage.existingPatientfirstname,TaskPage.existingPatientlastname));
 		logger.info("selecting the patient...");
 		medicalchartpage.selectPatient();
 		taskPageObj.switchToTaskManagerFrame();
@@ -371,8 +373,8 @@ public class TaskTest extends BaseTestClass {
 		taskPageObj.selectRecipient();
 		
 		logger.info("Searching the patient with first name & last name in medical chart...");
-		medicalchartpage.searchExistingPatientWithName(existingPatientfirstname,existingPatientlastname);
-		taskAssert.assertTrue(medicalchartpage.verifyPatientIsSerchedWithName(existingPatientfirstname, existingPatientlastname));
+		medicalchartpage.searchExistingPatientWithName(TaskPage.existingPatientfirstname,TaskPage.existingPatientlastname);
+		taskAssert.assertTrue(medicalchartpage.verifyPatientIsSerchedWithName(TaskPage.existingPatientfirstname, TaskPage.existingPatientlastname));
 		logger.info("selecting the patient...");
 		medicalchartpage.selectPatient();
 		logger.info("verify correct patient name is populated..");
@@ -383,7 +385,7 @@ public class TaskTest extends BaseTestClass {
 		leftPanelpageobj.clickOnLogout();
 		
 		logger.info(" Login with another user which we used as Recipients while creating new Task");
-		loginPageObj.loginToGmedWithBreakTheGlassUser(secondUserName,secondUserPassword);
+		loginPageObj.loginToGmedWithBreakTheGlassUser(TaskPage.secondUserName,TaskPage.secondUserPassword);
 		taskAssert.assertTrue(loginPageObj.verifyHomePageTitle(),"Title should contain gMed gGastro");
 		
 		logger.info("clicking on My Activities menu present in left panel...");

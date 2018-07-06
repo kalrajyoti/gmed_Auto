@@ -1,20 +1,22 @@
 package com.gmed.pages;
 
-import static com.gmed.helper.DriverFactory.driver;
 
-import java.util.List;
+
+
+import java.util.Map;
 
 import org.apache.log4j.LogManager;
 import org.apache.log4j.Logger;
 import org.openqa.selenium.By;
-import org.openqa.selenium.WebElement;
+
 
 import com.gmed.Frames.Frames;
 import com.gmed.base.BaseAbstractPage;
-import com.gmed.test.DirectMessageTest;
-import com.gmed.test.ProfileTest;
+
+
 import com.gmed.utils.ConstantsFile;
-import com.gmed.utils.DateUtil;
+
+import com.gmed.utils.ExcelFileUtilty;
 import com.gmed.utils.SeleniumUtil;
 import com.gpm.pages.BillingPage;
 
@@ -23,6 +25,30 @@ public class DirectMessagingPage extends BaseAbstractPage {
 	private static Logger logger                                     = LogManager.getLogger(DirectMessagingPage.class);
 	public  static By recipientTextBox                               = By.id("txtTo_TextBox");
 	public  static By directMessageQueue                             = By.id("pnlTable_Div");
+	
+	
+	/**These are the variables which are used to store different data for Direct Message module*/
+	
+	public static String directMessageDetail;
+	public static String recipientAddress;
+	public static String providerDirectAddress;
+	/**contains the Direct Messaging page data*/
+	public static Map<String, String> directMessagingData;
+	
+	/** These are the variables which are present on "Direct Message" sheet in the excel*/
+	public static final String DIRECT_MESSAGE_DETAILS 				                         = "directMessageDetails";
+	public static final String RECIPIENT_ADDRESS 				                             = "recipientAddress";
+	public static final String PROVIDER_ADDRESS				                                 = "providerName";
+	
+	
+	
+	public void initClass() throws Exception{
+		logger.info("inside the initClass method for DemographicsTest test class....");
+		directMessagingData                              = ExcelFileUtilty.readExcelSheet("Direct_Message");
+		directMessageDetail                              = directMessagingData.get(DIRECT_MESSAGE_DETAILS);
+		recipientAddress                                 = directMessagingData.get(RECIPIENT_ADDRESS);
+		providerDirectAddress                            = directMessagingData.get(PROVIDER_ADDRESS);
+	}
 
 	/**
 	 * This method is used to check verify the Direct Messaging page is opened when user select "Direct Message"
@@ -49,7 +75,7 @@ public class DirectMessagingPage extends BaseAbstractPage {
 		SeleniumUtil.switchToParentFrame(Frames.TOOLTIP);
 		String messageText =SeleniumUtil.getElementWithFluentWait(MessagingPage.messageContentInQueue).getText();
 		logger.info("Message text is"+messageText);
-		if(messageText.contains(DirectMessageTest.directMessageDetail)){
+		if(messageText.contains(directMessageDetail)){
 			logger.info("Correct Message Detail screen present..");
 			isMessageDetailScreenPresent=true;
 		}
@@ -80,7 +106,7 @@ public class DirectMessagingPage extends BaseAbstractPage {
 	public void addRecipientAddress(){
 		SeleniumUtil.switchToParentFrame(Frames.TOOLTIP);
 		SeleniumUtil.waitForProgressBar(Frames.TOOLTIP);
-		SeleniumUtil.getElementWithFluentWait(recipientTextBox).sendKeys(DirectMessageTest.recipientAddress);
+		SeleniumUtil.getElementWithFluentWait(recipientTextBox).sendKeys(recipientAddress);
 	}
 	/**
 	 * This method is used for clicking on refresh button until status of direct queue changed from Pending to Sent
@@ -88,7 +114,7 @@ public class DirectMessagingPage extends BaseAbstractPage {
 	public void clickOnRefresh(){
 		String queueText=SeleniumUtil.getElementWithFluentWait(directMessageQueue).getText();
 		System.out.println("queue text is"+queueText);
-		String text =DirectMessageTest.recipientAddress+" (Sent)"+"\n"+DirectMessageTest.providerDirectAddress+"   "+ConstantsFile.directmessageIntialName;
+		String text =recipientAddress+" (Sent)"+"\n"+providerDirectAddress+"   "+ConstantsFile.directmessageIntialName;
 		if(!queueText.contains(text)){
 			SeleniumUtil.getElementWithFluentWait(ConfigurationPage.refreshButton).click();
 			clickOnRefresh();
@@ -107,7 +133,7 @@ public class DirectMessagingPage extends BaseAbstractPage {
 		clickOnRefresh();
 		String queueText=SeleniumUtil.getElementWithFluentWait(directMessageQueue).getText();
 		System.out.println("queue text is"+queueText);
-		String text =DirectMessageTest.recipientAddress+" (Sent)"+"\n"+DirectMessageTest.providerDirectAddress+"   "+ConstantsFile.directmessageIntialName;
+		String text =recipientAddress+" (Sent)"+"\n"+providerDirectAddress+"   "+ConstantsFile.directmessageIntialName;
 		System.out.println("current text is"+text);
 		
 		if(queueText.contains(text)){

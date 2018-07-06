@@ -9,6 +9,7 @@ import org.testng.annotations.Test;
 import org.testng.asserts.Assertion;
 
 import com.gmed.pages.ConfigurationPage;
+import com.gmed.pages.DemographicsPage;
 import com.gmed.pages.DocumentPage;
 import com.gmed.pages.FaxingPage;
 import com.gmed.pages.LeftPanelPage;
@@ -23,7 +24,7 @@ import com.gmed.patientportal.PatientPortalLogin;
 import com.gmed.utils.ConstantsFile;
 import com.gmed.utils.ExcelFileUtilty;
 
-public class RecallTest extends BaseTestClass {
+public class RecallTest extends BaseTestClass1 {
 	/** Logger to log the Recall log messages */
 	private static Logger logger  = LogManager.getLogger(RecallTest.class); 
 	/**Assertion to verify different elements of the page */
@@ -34,21 +35,7 @@ public class RecallTest extends BaseTestClass {
 	private ConfigurationPage configpageobj;
 	/** Recall Page reference used for various Recall data */
 	private RecallsPage recallpageobj;
-	/** Profile Page reference used for verifying demographics data in Profile Screen  */
-	private Profile profilepageobj;
-	/** OutputManager page reference used for clicking on configuration option present in left panel */
-	private OutputManagerPage outputpageobj;
-
-	/** DocumentPage page reference used for documenting   data for  Output Manager module*/
-	private DocumentPage documentobj;
-
-	/** Prescription page reference used for clicking on print button*/
-	private PrescriptionPage prescriptionobj;
-
-	/** Faxing page reference used for using faxing data*/
-	private FaxingPage faxobj;
-
-	private PatientPortalLogin patientLogin;
+	
 
 	/**contains the Output Manager page data*/
 	public static Map<String, String> recallData;
@@ -96,11 +83,11 @@ public class RecallTest extends BaseTestClass {
 		recallData                                                                     = ExcelFileUtilty.readExcelSheet("OutputManager");
 		demographicsData                                                               = ExcelFileUtilty.readExcelSheet("Demographics");
 		profileData                                                                    = ExcelFileUtilty.readExcelSheet("Profile");
-		DemographicsTest.existingPatientfirstname                                      = demographicsData.get(DemographicsTest.PATIENT_FIRSTNAME);	
-		DemographicsTest.existingPatientlastname                                       = demographicsData.get(DemographicsTest.PATIENT_LASTNAME);
-		ProfileTest.existingProfileProviderfirstname                                   = profileData.get(ProfileTest.PROFILE_PROVIDER_FIRSTNAME);
-		ProfileTest.existingProfileProviderlastname                                    = profileData.get(ProfileTest.PROFILE_PROVIDER_LASTNAME);
-		ProfileTest.userNameForAdvanceDirectiveProfile                                 = profileData.get(ProfileTest.PROFILE_USER_NAME);
+		DemographicsPage.existingPatientfirstname                                      = demographicsData.get(DemographicsPage.PATIENT_FIRSTNAME);	
+		DemographicsPage.existingPatientlastname                                       = demographicsData.get(DemographicsPage.PATIENT_LASTNAME);
+		Profile.existingProfileProviderfirstname                                   = profileData.get(Profile.PROFILE_PROVIDER_FIRSTNAME);
+		Profile.existingProfileProviderlastname                                    = profileData.get(Profile.PROFILE_PROVIDER_LASTNAME);
+		Profile.userNameForAdvanceDirectiveProfile                                 = profileData.get(Profile.PROFILE_USER_NAME);
 		cleanupOperationText                                                           = recallData.get(CLEAN_UP_TEXT) ; 
 		signOperationText                                                              = recallData.get(SIGN_TEXT) ;
 		printOperationText                                                             = recallData.get(PRINT_TEXT) ;
@@ -116,13 +103,7 @@ public class RecallTest extends BaseTestClass {
 		loginPageObj                                                                   = new LoginPage();
 		leftPanelpageobj                                                               = new LeftPanelPage();
 	    configpageobj                                                                  = new ConfigurationPage();
-		outputpageobj                                                                  = new OutputManagerPage();
 		recallpageobj                                                                  = new RecallsPage();
-		profilepageobj                                                                 = new Profile();
-		documentobj                                                                    = new DocumentPage();
-		prescriptionobj                                                                = new PrescriptionPage();
-		faxobj                                                                         = new FaxingPage();
-		patientLogin                                                                   = new PatientPortalLogin();
 	}
 	@Test(description = "To verify Recall Types from Configurations-",groups = { "Recall_Regression","Configuration_Regression"},priority=1)
 	public void verifyRecallTypes() throws Exception{

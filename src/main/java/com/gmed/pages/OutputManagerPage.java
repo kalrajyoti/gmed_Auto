@@ -1,6 +1,7 @@
 package com.gmed.pages;
 
 import java.util.List;
+import java.util.Map;
 
 import org.apache.log4j.LogManager;
 import org.apache.log4j.Logger;
@@ -15,12 +16,10 @@ import com.gmed.Frames.Frames;
 import static com.gmed.helper.DriverFactory.driver;
 
 import com.gmed.base.BaseAbstractPage;
-import com.gmed.test.DemographicsTest;
-import com.gmed.test.OutputManagerTest;
-import com.gmed.test.PrescriptionTest;
-import com.gmed.test.ProfileTest;
+
 import com.gmed.utils.ConstantsFile;
 import com.gmed.utils.DateUtil;
+import com.gmed.utils.ExcelFileUtilty;
 import com.gmed.utils.SeleniumUtil;
 
 public class OutputManagerPage extends BaseAbstractPage {
@@ -39,6 +38,84 @@ public class OutputManagerPage extends BaseAbstractPage {
 	
    LeftPanelPage leftPanelObj=new LeftPanelPage();
 	
+   /**These are the variables which are used to store different data for Output Manager module*/
+	public static String cleanupOperationText;
+	public static String signOperationText;
+	public static String printOperationText;
+	public static String faxOperationText;
+	public static String existingPatientfirstname;
+	public static String existingPatientlastname;
+	public static String publishToPortalOperationText;
+	public static String documentText;
+	public static String sendForSignatureOperationText;
+	public static String sendForSignatureText;
+	public static String sendForReviewOperationText;
+	public static String sendForReviewText;
+	
+	/** These are the variables which are present on "Output Manager" sheet in the excel*/
+	public static final String CLEAN_UP_TEXT 				                                  = "cleanupOperationText";
+	public static final String SIGN_TEXT 				                                      = "signOperationText";
+	public static final String PRINT_TEXT 				                                      = "printOperationText";
+	public static final String FAX_TEXT 				                                      = "faxOperationText";
+	public static final String PATIENT_FIRSTNAME 				                              = "patientfirstname";
+	public static final String PATIENT_LASTNAME 				                              = "patientlastname";
+	public static final String PUBLISH_TO_PORTAL_TEXT 				                          = "publishOperationText";
+	public static final String DOCUMENT_TEXT 				                                  = "documentTextInPP";
+	public static final String SEND_FOR_SIGNATURE_TEXT 				                          = "sendForSignatureOperationText";
+	public static final String SIGNATURE_TEXT 				                                  = "signText";
+	public static final String SEND_FOR_REVIEW_TEXT 				                          = "sendForReviewOperationText";
+	public static final String REVIEW_TEXT 				                                      = "reviewText";
+   
+	/**contains the Output Manager page data*/
+	public static Map<String, String> outputData;
+
+
+	/**contains the demographics Chart page data*/
+	public static Map<String, String> demographicsData;
+
+	/**contains the Profile page data*/
+	public static Map<String, String> profileData;
+	public void initClass() throws Exception{
+		logger.info("inside the initClass method for Prescription test class....");
+		outputData                                                                     = ExcelFileUtilty.readExcelSheet("OutputManager");
+		demographicsData                                                               = ExcelFileUtilty.readExcelSheet("Demographics");
+		profileData                                                                    = ExcelFileUtilty.readExcelSheet("Profile");
+		DemographicsPage.existingPatientfirstname                                      = demographicsData.get(DemographicsPage.PATIENT_FIRSTNAME);	
+		DemographicsPage.existingPatientlastname                                       = demographicsData.get(DemographicsPage.PATIENT_LASTNAME);
+		Profile.existingProfileProviderfirstname                                   = profileData.get(Profile.PROFILE_PROVIDER_FIRSTNAME);
+		Profile.existingProfileProviderlastname                                    = profileData.get(Profile.PROFILE_PROVIDER_LASTNAME);
+		Profile.userNameForAdvanceDirectiveProfile                                 = profileData.get(Profile.PROFILE_USER_NAME);
+		cleanupOperationText                                                           = outputData.get(CLEAN_UP_TEXT) ; 
+		signOperationText                                                              = outputData.get(SIGN_TEXT) ;
+		printOperationText                                                             = outputData.get(PRINT_TEXT) ;
+		faxOperationText                                                               = outputData.get(FAX_TEXT) ;
+		existingPatientfirstname                                                       = outputData.get(PATIENT_FIRSTNAME);
+		existingPatientlastname                                                        = outputData.get(PATIENT_LASTNAME);
+		publishToPortalOperationText                                                   = outputData.get(PUBLISH_TO_PORTAL_TEXT);
+		documentText                                                                   = outputData.get(DOCUMENT_TEXT);
+		sendForSignatureOperationText                                                  = outputData.get(SEND_FOR_SIGNATURE_TEXT);
+		sendForSignatureText                                                           = outputData.get(SIGNATURE_TEXT);
+		sendForReviewOperationText                                                     = outputData.get(SEND_FOR_REVIEW_TEXT);
+		sendForReviewText                                                              = outputData.get(REVIEW_TEXT);
+   
+   
+	}
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
 	public void clickOnProcedure(String procedurename) throws Exception{
 		SeleniumUtil.switchToParentFrame(Frames.USERPAGE);
 		SeleniumUtil.getElementWithFluentWait(Profile.newbutton).click();
@@ -267,38 +344,38 @@ public class OutputManagerPage extends BaseAbstractPage {
 		sleep(5000);
 		String text= SeleniumUtil.getElementWithFluentWait(sammaryTabTextValue).getText();
 		System.out.println(text);
-		if(text.contains(OutputManagerTest.cleanupOperationText)){
+		if(text.contains(OutputManagerPage.cleanupOperationText)){
 			System.out.println("Clean up will Perform");
 			SeleniumUtil.getElementWithFluentWait(DocumentPage.excuteButton).click();
 			isCorrectTextPresennt=true;
 		}
-		else if(text.contains(OutputManagerTest.signOperationText)){
+		else if(text.contains(OutputManagerPage.signOperationText)){
 			System.out.println("Sign Operation will Perform");
 			isCorrectTextPresennt=true;
 		}
-		else if(text.contains(OutputManagerTest.printOperationText)){
+		else if(text.contains(OutputManagerPage.printOperationText)){
 			System.out.println("Print Operation will Perform");
 			SeleniumUtil.getElementWithFluentWait(DocumentPage.excuteButton).click();
 			isCorrectTextPresennt=true;
 		}
-		else if(text.contains(OutputManagerTest.faxOperationText)){
+		else if(text.contains(OutputManagerPage.faxOperationText)){
 			System.out.println("Print Operation will Perform");
 			SeleniumUtil.getElementWithFluentWait(DocumentPage.excuteButton).click();
 			isCorrectTextPresennt=true;
 		}
-		else if(text.contains(OutputManagerTest.publishToPortalOperationText)){
+		else if(text.contains(OutputManagerPage.publishToPortalOperationText)){
 			System.out.println("Pulish to portal Operation will Perform");
 			SeleniumUtil.getElementWithFluentWait(DocumentPage.excuteButton).click();
 			isCorrectTextPresennt=true;
 			
 		}
-		else if(text.contains(OutputManagerTest.sendForSignatureOperationText)){
+		else if(text.contains(OutputManagerPage.sendForSignatureOperationText)){
 			System.out.println("send For Signature Operation will Perform");
 			SeleniumUtil.getElementWithFluentWait(DocumentPage.excuteButton).click();
 			isCorrectTextPresennt=true;
 			
 		}
-		else if(text.contains(OutputManagerTest.sendForReviewOperationText)){
+		else if(text.contains(OutputManagerPage.sendForReviewOperationText)){
 			System.out.println("send For Review Operation will Perform");
 			SeleniumUtil.getElementWithFluentWait(DocumentPage.excuteButton).click();
 			isCorrectTextPresennt=true;
@@ -374,10 +451,10 @@ public class OutputManagerPage extends BaseAbstractPage {
 		String text =SeleniumUtil.getElementWithFluentWait(signatureProviderData).getText();
 		System.out.println("Data is "+text);
 		String currentDate=DateUtil.getCurrentDateInDateFormatted("M/d/yyyy");
-		String signData=ProfileTest.existingProfileProviderfirstname+" "+ProfileTest.existingProfileProviderlastname+'\n'+" "+"Electronically signed on"+" "+currentDate;
+		String signData=Profile.existingProfileProviderfirstname+" "+Profile.existingProfileProviderlastname+'\n'+" "+"Electronically signed on"+" "+currentDate;
 		System.out.println("Sign Data is"+signData);
 		if(text.contains(signData)){
-			logger.info("Document is Electronically signed on by "+ProfileTest.existingProfileProviderfirstname+" " +ProfileTest.existingProfileProviderlastname);
+			logger.info("Document is Electronically signed on by "+Profile.existingProfileProviderfirstname+" " +Profile.existingProfileProviderlastname);
 			isDocumentSigned=true;
 		}
 		return isDocumentSigned;
@@ -392,7 +469,7 @@ public class OutputManagerPage extends BaseAbstractPage {
 		System.out.println(totalrows.size());
 		for(WebElement printedRow:totalrows){
 			String rowText=printedRow.getText();
-			if(rowText.contains(ProfileTest.userNameForAdvanceDirectiveProfile) && rowText.contains("Printed") && rowText.contains("Document: First Visit")){
+			if(rowText.contains(Profile.userNameForAdvanceDirectiveProfile) && rowText.contains("Printed") && rowText.contains("Document: First Visit")){
 				logger.info("document is printed");
 				isDocumentPrinted=true;
 				break;
@@ -424,7 +501,7 @@ public class OutputManagerPage extends BaseAbstractPage {
 		System.out.println(providersvalues.size());
 		for(WebElement membersrow:providersvalues){
 			String rowText=membersrow.getText();
-			if(rowText.contains(ProfileTest.existingProfileProviderfirstname) && (rowText.contains(ProfileTest.existingProfileProviderlastname))){
+			if(rowText.contains(Profile.existingProfileProviderfirstname) && (rowText.contains(Profile.existingProfileProviderlastname))){
 				SeleniumUtil.doubleClick(membersrow);
 				sleep(5000);
 				break;
@@ -445,13 +522,13 @@ public class OutputManagerPage extends BaseAbstractPage {
 			String currentDate=DateUtil.getCurrentDateInDateFormatted("MM/dd");
 			System.out.println(currentDate);
 			
-			if(rowText.contains(currentDate) && rowText.contains(OutputManagerTest.sendForSignatureText) && (rowText.contains(DemographicsTest.existingPatientfirstname)) && (rowText.contains(DemographicsTest.existingPatientlastname)) ){
+			if(rowText.contains(currentDate) && rowText.contains(OutputManagerPage.sendForSignatureText) && (rowText.contains(DemographicsPage.existingPatientfirstname)) && (rowText.contains(DemographicsPage.existingPatientlastname)) ){
 				System.out.println("correct row presennt");
 				isDocumentSendForSignature=true;
 				break;
 			
 		}
-			else if(rowText.contains(currentDate) && rowText.contains(OutputManagerTest.sendForReviewText) && (rowText.contains(DemographicsTest.existingPatientfirstname)) && (rowText.contains(DemographicsTest.existingPatientlastname)) ){
+			else if(rowText.contains(currentDate) && rowText.contains(OutputManagerPage.sendForReviewText) && (rowText.contains(DemographicsPage.existingPatientfirstname)) && (rowText.contains(DemographicsPage.existingPatientlastname)) ){
 				System.out.println("correct row presennt");
 				isDocumentSendForSignature=true;
 				break;

@@ -3,6 +3,7 @@ package com.gmed.pages;
 import static com.gmed.helper.DriverFactory.action;
 import static com.gmed.helper.DriverFactory.driver;
 import java.util.List;
+import java.util.Map;
 
 import org.apache.log4j.LogManager;
 import org.apache.log4j.Logger;
@@ -10,12 +11,13 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebElement;
 import org.sikuli.script.FindFailed;
+import org.testng.annotations.BeforeClass;
 
 import com.gmed.Frames.DynamicFramePage;
 import com.gmed.Frames.Frames;
 import com.gmed.base.BaseAbstractPage;
-import com.gmed.test.DemographicsTest;
-import com.gmed.test.MedicalChartTest;
+
+
 import com.gmed.utils.ConstantsFile;
 import com.gmed.utils.ExcelFileUtilty;
 import com.gmed.utils.SeleniumUtil;
@@ -75,6 +77,60 @@ public class MedicalChartPage extends BaseAbstractPage {
 	public static String xpath2                                       = "]/control/td[3]" ;
 	public static By menunewoption                                  = By.id("mnuViewsNew");
 
+	/**contains the medical page data*/
+	public static Map<String, String> medicalData;
+	
+	/**These are the variables which are used to store different data for medical chart module*/
+	public static String existingPatientfirstname;
+	public static String existingPatientlastname;
+	public static String existingpatientssn0;
+	public static String existingpatientssn1;
+	public static String existingpatientssn2;
+	public static String existingpatientdateofbirthmonth;
+	public static String existingpatientdateofbirthday;
+	public static String existingpatientdateofbirthyear;
+	public static String existingpatientrecordnumber;
+	public static String existingpatientphonenumber0;
+	public static String existingpatientphonenumber1;
+	public static String existingpatientphonenumber2;
+	public static String existingpatientaccountnumber;
+	
+	/** These are the variables which are present on "Medical chart" sheet in the excel*/
+	public static final String MEDICAL_PATIENT_FIRSTNAME 				                   = "patientfirstname";
+	public static final String MEDICAL_PATIENT_LASTNAME 				                   = "patientlastname";
+	public static final String MEDICAL_PATIENT_SSN0 				                       = "ssn0";
+	public static final String MEDICAL_PATIENT_SSN1 				                       = "ssn1";
+	public static final String MEDICAL_PATIENT_SSN2 				                       = "ssn2";
+	public static final String MEDICAL_PATIENT_DATEOFBIRTHMONTH 				           = "month";
+	public static final String MEDICAL_PATIENT_DATEOFBIRTHDAY 				               = "day";
+	public static final String MEDICAL_PATIENT_DATEOFBIRTHYEAR 				               = "year";
+	public static final String MEDICAL_PATIENT_RECORDNUMBER 			                   = "recordnumber";
+	public static final String MEDICAL_PATIENT_PHONENUMBER0 			                   = "phonenumber0";
+	public static final String MEDICAL_PATIENT_PHONENUMBER1 			                   = "phonenumber1";
+	public static final String MEDICAL_PATIENT_PHONENUMBER2 			                   = "phonenumber2";
+	public static final String MEDICAL_PATIENT_ACCOUNTNUMBER 			                   = "accountnumber";
+	
+	/** This method runs before the first test from the class runs */
+	@BeforeClass
+	public void initClass() throws Exception{
+		logger.info("inside the initClass method for medical chart test class....");
+		medicalData                     = ExcelFileUtilty.readExcelSheet("MedicalChart");
+		existingPatientfirstname        = medicalData.get(MEDICAL_PATIENT_FIRSTNAME);
+		existingPatientlastname         = medicalData.get(MEDICAL_PATIENT_LASTNAME);
+		existingpatientssn0             = medicalData.get(MEDICAL_PATIENT_SSN0);
+		existingpatientssn1             = medicalData.get(MEDICAL_PATIENT_SSN1);
+		existingpatientssn2             = medicalData.get(MEDICAL_PATIENT_SSN2);
+		existingpatientdateofbirthmonth = medicalData.get(MEDICAL_PATIENT_DATEOFBIRTHMONTH);
+		existingpatientdateofbirthday   = medicalData.get(MEDICAL_PATIENT_DATEOFBIRTHDAY);
+		existingpatientdateofbirthyear  = medicalData.get(MEDICAL_PATIENT_DATEOFBIRTHYEAR);
+		existingpatientrecordnumber     = medicalData.get(MEDICAL_PATIENT_RECORDNUMBER);
+		existingpatientphonenumber0     = medicalData.get(MEDICAL_PATIENT_PHONENUMBER0);
+		existingpatientphonenumber1     = medicalData.get(MEDICAL_PATIENT_PHONENUMBER1);
+		existingpatientaccountnumber    = medicalData.get(MEDICAL_PATIENT_ACCOUNTNUMBER);
+		existingpatientphonenumber2     = medicalData.get(MEDICAL_PATIENT_PHONENUMBER2);
+	
+	}
+	
 	/**
 	 * This method is used to create new patient with the below mentioned details:
 	 * <p>first name</p>
@@ -414,9 +470,9 @@ public class MedicalChartPage extends BaseAbstractPage {
 	 */
 	public  void searchExistingPatientWithSSN(){
 		clearFliter();
-		SeleniumUtil.getElementWithFluentWait(DemographicsPage.patientssn0).sendKeys(MedicalChartTest.existingpatientssn0);
-		SeleniumUtil.getElementWithFluentWait(DemographicsPage.patientssn1).sendKeys(MedicalChartTest.existingpatientssn1);
-		SeleniumUtil.getElementWithFluentWait(DemographicsPage.patientssn2).sendKeys(MedicalChartTest.existingpatientssn2);
+		SeleniumUtil.getElementWithFluentWait(DemographicsPage.patientssn0).sendKeys(MedicalChartPage.existingpatientssn0);
+		SeleniumUtil.getElementWithFluentWait(DemographicsPage.patientssn1).sendKeys(MedicalChartPage.existingpatientssn1);
+		SeleniumUtil.getElementWithFluentWait(DemographicsPage.patientssn2).sendKeys(MedicalChartPage.existingpatientssn2);
 		SeleniumUtil.getElementWithFluentWait(searchPatientInMedical).click();
 		SeleniumUtil.waitForProgressBar(Frames.MEDICALCHART_MAINPAGE);
 		ConstantsFile.isPatientChartPresent =true;
@@ -431,7 +487,7 @@ public class MedicalChartPage extends BaseAbstractPage {
 		List<WebElement> searchPatientrow = driver.findElements(AppointmentPage.totaltrtags);
 		for(WebElement irows:searchPatientrow){
 			String rowtext =irows.getText();
-			if(rowtext.contains(MedicalChartTest.existingpatientssn0) && rowtext.contains(MedicalChartTest.existingpatientssn1) && rowtext.contains(MedicalChartTest.existingpatientssn2)){
+			if(rowtext.contains(MedicalChartPage.existingpatientssn0) && rowtext.contains(MedicalChartPage.existingpatientssn1) && rowtext.contains(MedicalChartPage.existingpatientssn2)){
 				System.out.println("corrected patient with SSN row is displayed");
 				isPatientSearchedwithSSN=true;
 				break;
@@ -445,9 +501,9 @@ public class MedicalChartPage extends BaseAbstractPage {
 	 */
 	public  void searchExistingPatientWithDOB(){
 		clearFliter();
-		SeleniumUtil.getElementWithFluentWait(patientdDobMonth).sendKeys(MedicalChartTest.existingpatientdateofbirthmonth);
-		SeleniumUtil.getElementWithFluentWait(patientdDobDay).sendKeys(MedicalChartTest.existingpatientdateofbirthday);
-		SeleniumUtil.getElementWithFluentWait(patientdDobYear).sendKeys(MedicalChartTest.existingpatientdateofbirthyear);
+		SeleniumUtil.getElementWithFluentWait(patientdDobMonth).sendKeys(MedicalChartPage.existingpatientdateofbirthmonth);
+		SeleniumUtil.getElementWithFluentWait(patientdDobDay).sendKeys(MedicalChartPage.existingpatientdateofbirthday);
+		SeleniumUtil.getElementWithFluentWait(patientdDobYear).sendKeys(MedicalChartPage.existingpatientdateofbirthyear);
 		SeleniumUtil.getElementWithFluentWait(searchPatientInMedical).click();
 		SeleniumUtil.waitForProgressBar(Frames.MEDICALCHART_MAINPAGE);
 		ConstantsFile.isPatientChartPresent =true;
@@ -462,7 +518,7 @@ public class MedicalChartPage extends BaseAbstractPage {
 		List<WebElement> searchPatientrow = driver.findElements(AppointmentPage.totaltrtags);
 		for(WebElement irows:searchPatientrow){
 			String rowtext =irows.getText();
-			if(rowtext.contains(MedicalChartTest.existingpatientdateofbirthmonth)  && rowtext.contains(MedicalChartTest.existingpatientdateofbirthday) && rowtext.contains(MedicalChartTest.existingpatientdateofbirthyear)){
+			if(rowtext.contains(MedicalChartPage.existingpatientdateofbirthmonth)  && rowtext.contains(MedicalChartPage.existingpatientdateofbirthday) && rowtext.contains(MedicalChartPage.existingpatientdateofbirthyear)){
 				System.out.println("corrected patient with Date of Birth row is displayed");
 				isPatientSearchedwithDOB=true;
 				break;
@@ -476,9 +532,9 @@ public class MedicalChartPage extends BaseAbstractPage {
 	 */
 	public  void searchPatientWithPolicyId(){
 		clearFliter();
-		SeleniumUtil.getElementWithFluentWait(policyIdTextBox).sendKeys(MedicalChartTest.existingpatientssn0);
-		SeleniumUtil.getElementWithFluentWait(policyIdTextBox).sendKeys(MedicalChartTest.existingpatientssn1);
-		SeleniumUtil.getElementWithFluentWait(policyIdTextBox).sendKeys(MedicalChartTest.existingpatientssn2);
+		SeleniumUtil.getElementWithFluentWait(policyIdTextBox).sendKeys(MedicalChartPage.existingpatientssn0);
+		SeleniumUtil.getElementWithFluentWait(policyIdTextBox).sendKeys(MedicalChartPage.existingpatientssn1);
+		SeleniumUtil.getElementWithFluentWait(policyIdTextBox).sendKeys(MedicalChartPage.existingpatientssn2);
 		SeleniumUtil.getElementWithFluentWait(searchPatientInMedical).click();
 		SeleniumUtil.waitForProgressBar(Frames.MEDICALCHART_MAINPAGE);
 		ConstantsFile.isPatientChartPresent =true;
@@ -493,7 +549,7 @@ public class MedicalChartPage extends BaseAbstractPage {
 		List<WebElement> searchPatientrow = driver.findElements(AppointmentPage.totaltrtags);
 		for(WebElement irows:searchPatientrow){
 			String rowtext =irows.getText();
-			if(rowtext.contains(MedicalChartTest.existingpatientssn0) && rowtext.contains(MedicalChartTest.existingpatientssn1) && rowtext.contains(MedicalChartTest.existingpatientssn2)){
+			if(rowtext.contains(MedicalChartPage.existingpatientssn0) && rowtext.contains(MedicalChartPage.existingpatientssn1) && rowtext.contains(MedicalChartPage.existingpatientssn2)){
 				System.out.println("corrected patient with policy Id row is displayed");
 				isPatientSearchedwithPolicyID=true;
 				break;
@@ -508,7 +564,7 @@ public class MedicalChartPage extends BaseAbstractPage {
 	 */
 	public  void searchExistingPatientWithRecordNumber(){
 		clearFliter();
-		SeleniumUtil.getElementWithFluentWait(patientrecordnumberInSearch).sendKeys(MedicalChartTest.existingpatientrecordnumber);
+		SeleniumUtil.getElementWithFluentWait(patientrecordnumberInSearch).sendKeys(MedicalChartPage.existingpatientrecordnumber);
 		SeleniumUtil.getElementWithFluentWait(searchPatientInMedical).click();
 		SeleniumUtil.waitForProgressBar(Frames.MEDICALCHART_MAINPAGE);
 		ConstantsFile.isPatientChartPresent =true;
@@ -523,7 +579,7 @@ public class MedicalChartPage extends BaseAbstractPage {
 		List<WebElement> searchPatientrow = driver.findElements(AppointmentPage.totaltrtags);
 		for(WebElement irows:searchPatientrow){
 			String rowtext =irows.getText();
-			if(rowtext.contains(MedicalChartTest.existingpatientrecordnumber)){
+			if(rowtext.contains(MedicalChartPage.existingpatientrecordnumber)){
 				System.out.println("corrected patient with record number row is displayed");
 				isPatientSearchedwithRecordNumber=true;
 				break;
@@ -537,9 +593,9 @@ public class MedicalChartPage extends BaseAbstractPage {
 	 */
 	public  void searchPatientWithPhoneNumber(){
 		clearFliter();
-		SeleniumUtil.getElementWithFluentWait(patientNo00).sendKeys(MedicalChartTest.existingpatientphonenumber0);
-		SeleniumUtil.getElementWithFluentWait(patientNo01).sendKeys(MedicalChartTest.existingpatientphonenumber1);
-		SeleniumUtil.getElementWithFluentWait(patientNo02).sendKeys(MedicalChartTest.existingpatientphonenumber2);
+		SeleniumUtil.getElementWithFluentWait(patientNo00).sendKeys(MedicalChartPage.existingpatientphonenumber0);
+		SeleniumUtil.getElementWithFluentWait(patientNo01).sendKeys(MedicalChartPage.existingpatientphonenumber1);
+		SeleniumUtil.getElementWithFluentWait(patientNo02).sendKeys(MedicalChartPage.existingpatientphonenumber2);
 		SeleniumUtil.getElementWithFluentWait(searchPatientInMedical).click();
 		SeleniumUtil.waitForProgressBar(Frames.MEDICALCHART_MAINPAGE);
 		ConstantsFile.isPatientChartPresent =true;
@@ -551,7 +607,7 @@ public class MedicalChartPage extends BaseAbstractPage {
 	 */
 	public  void searchPatientWithAccountNumber(){
 		clearFliter();
-		SeleniumUtil.getElementWithFluentWait(accountNumberTextBox).sendKeys(MedicalChartTest.existingpatientaccountnumber);
+		SeleniumUtil.getElementWithFluentWait(accountNumberTextBox).sendKeys(MedicalChartPage.existingpatientaccountnumber);
 		SeleniumUtil.getElementWithFluentWait(searchPatientInMedical).click();
 		SeleniumUtil.waitForProgressBar(Frames.MEDICALCHART_MAINPAGE);
 		ConstantsFile.isPatientChartPresent =true;
@@ -568,7 +624,7 @@ public class MedicalChartPage extends BaseAbstractPage {
 		List<WebElement> searchPatientrow = driver.findElements(AppointmentPage.totaltrtags);
 		for(WebElement irows:searchPatientrow){
 			String rowtext =irows.getText();
-			if(rowtext.contains(MedicalChartTest.existingPatientfirstname) && rowtext.contains(MedicalChartTest.existingPatientlastname)){
+			if(rowtext.contains(MedicalChartPage.existingPatientfirstname) && rowtext.contains(MedicalChartPage.existingPatientlastname)){
 				System.out.println("corrected patient row is displayed");
 				SeleniumUtil.rightClick(irows);
 				SeleniumUtil.clickOnImageWithTargetOffsetInSikuli(optionName);
@@ -670,7 +726,7 @@ public class MedicalChartPage extends BaseAbstractPage {
 		List<WebElement> searchPatientrow = driver.findElements(AppointmentPage.totaltrtags);
 		for(WebElement irows:searchPatientrow){
 			String rowtext =irows.getText();
-			if(rowtext.contains(MedicalChartTest.existingPatientfirstname) && rowtext.contains(MedicalChartTest.existingPatientlastname)){
+			if(rowtext.contains(MedicalChartPage.existingPatientfirstname) && rowtext.contains(MedicalChartPage.existingPatientlastname)){
 				System.out.println(" patient row is not Disappered when patient is restored");
 				isRowDisappear=false;
 				break;

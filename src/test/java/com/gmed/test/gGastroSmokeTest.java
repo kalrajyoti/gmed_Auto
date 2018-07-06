@@ -12,6 +12,7 @@ import org.testng.asserts.Assertion;
 
 import com.gmed.AutoIT.GpinUserLogin;
 import com.gmed.Frames.DynamicFramePage;
+import com.gmed.base.BaseTestClass;
 import com.gmed.helper.DriverFactory;
 import com.gmed.pages.AppointmentPage;
 import com.gmed.pages.ConfigurationPage;
@@ -544,7 +545,9 @@ public class gGastroSmokeTest extends BaseTestClass {
 		 patientchartobj.clickOnProcedure("Colonoscopy");
 		 leftPanelpageobj.clickOnNewInToolTip();
 		 pifobj.clickOnPIF(); 
-		 pifobj.clickOnallergySectionInPif(); 
+		 pifobj.switchToPIFFrame();
+		 pifobj.clickOnallergySectionInPif("addAllerrgy"); 
+		 pifobj.switchToPIFUserListFrameFromService();
 		 appontmentAssert.assertEquals(pifobj.verifyallergyUserListInPIF(), true); 
 		 appontmentAssert.assertEquals(pifobj.verifyAllergyPopupInPif(), true); 
 		 pifobj.clickOnImmunizationSectionInPif();

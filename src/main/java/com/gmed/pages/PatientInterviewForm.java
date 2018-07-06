@@ -3,6 +3,7 @@ package com.gmed.pages;
 import static com.gmed.helper.DriverFactory.driver;
 import static com.gmed.helper.DriverFactory.action;
 import java.util.List;
+import java.util.Map;
 
 import org.apache.log4j.LogManager;
 import org.apache.log4j.Logger;
@@ -15,6 +16,7 @@ import org.sikuli.script.SikuliException;
 import com.gmed.Frames.DynamicFramePage;
 import com.gmed.Frames.Frames;
 import com.gmed.base.BaseAbstractPage;
+
 import com.gmed.utils.ConstantsFile;
 import com.gmed.utils.ExcelFileUtilty;
 import com.gmed.utils.SeleniumUtil;
@@ -51,6 +53,58 @@ public class PatientInterviewForm extends BaseAbstractPage {
 	public static By familyTitle                         =By.id("ifeFamily_Title");
 	public static By reviewWithSection                   =By.id("ifeReview_Title");
 	public static By pifSection                          =By.className("InterviewFormEntityItem");
+	public static boolean isGlobalPifPresent=false;
+	
+	/**contains the pifr page data*/
+	public static Map<String, String> pifData;
+
+
+	/**contains the demographics Chart page data*/
+	public static Map<String, String> demographicsData;
+
+	/**contains the Profile page data*/
+	public static Map<String, String> profileData;
+
+	/**These are the variables which are used to store different data for Recall module*/
+	public static String cleanupOperationText;
+	public static String signOperationText;
+	public static String printOperationText;
+	public static String faxOperationText;
+	public static String existingPatientfirstname;
+	public static String existingPatientlastname;
+	public static String publishToPortalOperationText;
+	public static String documentText;
+	public static String sendForSignatureOperationText;
+	public static String sendForSignatureText;
+	public static String sendForReviewOperationText;
+	public static String sendForReviewText;
+	
+	/** These are the variables which are present on "Recall" sheet in the excel*/
+	public static final String CLEAN_UP_TEXT 				                                  = "cleanupOperationText";
+	public static final String SIGN_TEXT 				                                      = "signOperationText";
+	public static final String PRINT_TEXT 				                                      = "printOperationText";
+	public static final String FAX_TEXT 				                                      = "faxOperationText";
+	public static final String PATIENT_FIRSTNAME 				                              = "patientfirstname";
+	public static final String PATIENT_LASTNAME 				                              = "patientlastname";
+	public static final String PUBLISH_TO_PORTAL_TEXT 				                          = "publishOperationText";
+	public static final String DOCUMENT_TEXT 				                                  = "documentTextInPP";
+	public static final String SEND_FOR_SIGNATURE_TEXT 				                          = "sendForSignatureOperationText";
+	public static final String SIGNATURE_TEXT 				                                  = "signText";
+	public static final String SEND_FOR_REVIEW_TEXT 				                          = "sendForReviewOperationText";
+	public static final String REVIEW_TEXT 				                                      = "reviewText";
+	
+	public void initClass() throws Exception{
+	pifData                                                                        = ExcelFileUtilty.readExcelSheet("OutputManager");
+	demographicsData                                                               = ExcelFileUtilty.readExcelSheet("Demographics");
+	profileData                                                                    = ExcelFileUtilty.readExcelSheet("Profile");
+	DemographicsPage.existingPatientfirstname                                      = demographicsData.get(DemographicsPage.PATIENT_FIRSTNAME);	
+	DemographicsPage.existingPatientlastname                                       = demographicsData.get(DemographicsPage.PATIENT_LASTNAME);
+	Profile.existingProfileProviderfirstname                                   = profileData.get(Profile.PROFILE_PROVIDER_FIRSTNAME);
+	Profile.existingProfileProviderlastname                                    = profileData.get(Profile.PROFILE_PROVIDER_LASTNAME);
+	Profile.userNameForAdvanceDirectiveProfile                                 = profileData.get(Profile.PROFILE_USER_NAME);
+	}
+	
+	
 	/**
 	 * This method is used to launch PIF in the gGastro application
 	 * @throws Exception 
@@ -117,17 +171,23 @@ public class PatientInterviewForm extends BaseAbstractPage {
 		SeleniumUtil.switchToFrame(driver, "fraDocument_Frame");
 		SeleniumUtil.getElementWithFluentWait(interviewIcon).click();
 	}
+	public void switchToPIFFrame(){
+		SeleniumUtil.switchToParentFrame(Frames.PIF);
+	}
 	/**
 	 * This method is used to click on allergy section present in PIF Module
 	 * @throws FindFailed 
 	 * 
 	 */
-	public void clickOnallergySectionInPif() throws FindFailed{
-		SeleniumUtil.switchToParentFrame(Frames.PIF);
+	public void clickOnallergySectionInPif(String imageName) throws FindFailed{
+		//SeleniumUtil.switchToParentFrame(Frames.PIF);
 		WebElement allergytitle =SeleniumUtil.getElementWithFluentWait(allergyTitle);
 		SeleniumUtil.scrolltoWebElement(allergytitle);
 		SeleniumUtil.rightClick(allergytitle);
-		SeleniumUtil.clickOnImageWithTargetOffsetInSikuli("addAllerrgy");
+		SeleniumUtil.clickOnImageWithTargetOffsetInSikuli(imageName);
+	}
+	public void switchToPIFUserListFrameFromService(){
+		SeleniumUtil.switchToParentFrame(Frames.PIFUSERLIST);
 	}
 	/**
 	 * This method is used to verify allergy user list in opened in PIF module
@@ -135,10 +195,10 @@ public class PatientInterviewForm extends BaseAbstractPage {
 	 */
 	public boolean verifyallergyUserListInPIF(){ 
 		boolean isallergyUserList=false;
-		SeleniumUtil.switchToParentFrame(Frames.PIFUSERLIST);
+		//SeleniumUtil.switchToParentFrame(Frames.PIFUSERLIST);
 		SeleniumUtil.getElementWithFluentWait(DocumentPage.patientnametextbox).sendKeys("Aciphex");
 		SeleniumUtil.getElementWithFluentWait(Profile.searchIcon).click();
-		SeleniumUtil.waitForProgressBar(Frames.PIFUSERLIST);
+		//SeleniumUtil.waitForProgressBar(Frames.PIFUSERLIST);
 		SeleniumUtil.switchToFrame(driver, "fraSearch_Frame");
 		WebElement valueforallergy=SeleniumUtil.getElementWithFluentWait(AppointmentPage.patientrow);
 		action.moveToElement(valueforallergy).doubleClick().build().perform();
@@ -641,4 +701,75 @@ public class PatientInterviewForm extends BaseAbstractPage {
 			}
 		}
 	}
+	/**
+	 * This method is used to verify Global PIF Present Or Not
+	 * @throws FindFailed 
+	 */
+	public boolean verifyGlobalPifPresent() throws FindFailed{
+		 isGlobalPifPresent=false;
+		SeleniumUtil.switchToParentFrame(Frames.INTERVIEW);
+		List<WebElement> searchGlobalPifrow = driver.findElements(AppointmentPage.totaltrtags);
+		System.out.println("NUMBER OF PIF DATA IN THIS TABLE = "+searchGlobalPifrow.size());
+		int row_num,col_num;
+		row_num=1;
+		for(WebElement trElement : searchGlobalPifrow)
+		{
+			List<WebElement> td_collection=trElement.findElements(By.xpath("td"));
+			System.out.println("NUMBER OF COLUMNS="+td_collection.size());
+			col_num=1;
+			for(WebElement tdElement : td_collection)
+			{
+				String rowText=tdElement.getText();
+				System.out.println("row # "+row_num+", col # "+col_num+ "text="+tdElement.getText());
+				
+				if(col_num==2 && rowText.equalsIgnoreCase("Global") ){
+					System.out.println("Global PIF Present");
+					isGlobalPifPresent=true;
+					break;
+				}
+				else if((col_num==2 && rowText.equalsIgnoreCase("Main office"))){
+					SeleniumUtil.rightClick(trElement);
+					SeleniumUtil.clickOnImageWitScreenInSikuli("deleteItem");
+				}
+				 
+				col_num++;
+			} 
+			if(isGlobalPifPresent){
+				break;
+			}
+			else{
+				row_num++;
+			}
+
+		}
+		return isGlobalPifPresent;
+		
+	}
+
+public void launchGlobalPif() throws FindFailed{
+	SeleniumUtil.switchToParentFrame(Frames.INTERVIEW);
+	logger.info("clicking on new button to create new interview form");
+	SeleniumUtil.getElementWithFluentWait(ConfigurationPage.newbutton).click();
+	SeleniumUtil.waitForProgressBar(Frames.INTERVIEW);
+	//switching in  user creation page frame
+	SeleniumUtil.switchToParentFrame(Frames.INTERVIEW_CREATION);
+	//Get the data to create new user present in excel
+	ConstantsFile.loginData = ExcelFileUtilty.readExcelSheet("PIF");
+	//Get the first name present in the excel
+	ConstantsFile.interviewformname = ConstantsFile.loginData.get(ConstantsFile.INTERVIEW_FORM_NAME).concat(ConstantsFile.genData.generateRandomNumber(4));
+	// Get the  name present in PIF sheet in excel and type in the pif name field
+	SeleniumUtil.getElementWithFluentWait(ConfigurationPage.searchusertextbox).sendKeys(ConstantsFile.interviewformname);
+	SeleniumUtil.switchToParentFrame(Frames.INTERVIEW_CREATION);
+	logger.info("clicking on allergy section in pif");
+	clickOnallergySectionInPif("addAllerrgy");
+	switchToPIFUserListFrameFromConfiguration();
+	verifyallergyUserListInPIF();
+	SeleniumUtil.switchToParentFrame(Frames.INTERVIEW_CREATION);
+	SeleniumUtil.getElementWithFluentWait(LoginPage.savebutton).click();
+	SeleniumUtil.waitForProgressBar(Frames.INTERVIEW_CREATION);
+}
+public void switchToPIFUserListFrameFromConfiguration(){
+	SeleniumUtil.switchToParentFrame(Frames.PIF_USER_LIST);
+	
+}
 }

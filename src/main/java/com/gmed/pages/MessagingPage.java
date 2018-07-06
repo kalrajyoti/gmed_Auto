@@ -3,6 +3,7 @@ package com.gmed.pages;
 import static com.gmed.helper.DriverFactory.driver;
 
 import java.util.List;
+import java.util.Map;
 
 import org.apache.log4j.LogManager;
 import org.apache.log4j.Logger;
@@ -12,8 +13,9 @@ import org.sikuli.script.FindFailed;
 
 import com.gmed.Frames.Frames;
 import com.gmed.base.BaseAbstractPage;
-import com.gmed.test.MessagingTest;
+
 import com.gmed.utils.ConstantsFile;
+import com.gmed.utils.ExcelFileUtilty;
 import com.gmed.utils.SeleniumUtil;
 
 public class MessagingPage extends BaseAbstractPage {
@@ -24,6 +26,37 @@ public class MessagingPage extends BaseAbstractPage {
 	public static By closePopup                                   = By.id("Popup_CloseButton");
 	public static By chartTitle                                   = By.id("txtTitle_TextBox");
 	public static By messageContentInQueue                        = By.id("pnlEditTemplate_Div");
+	
+	
+	
+	/**contains the Messaging page data*/
+	public static Map<String, String> messagingData;
+	
+	/**These are the variables which are used to store different data for Messaging module*/
+	public static String firstLoggedUser;
+	public static String secondLoggedUser;
+	public static String attachementTitle;
+	public static String messageToText;
+	public static String chartNoteDescription1;
+	public static String chartNoteDescription2;
+	/** These are the variables which are present on "Messaging" sheet in the excel*/
+	public static final String USER1 				                                          = "user1";
+	public static final String USER2 				                                          = "user2";
+	public static final String ATTACHMENT_TITLE 				                              = "attachementTitle";
+	public static final String MESSAGE_TO_TEXT 				                                  = "messageToText";
+	public static final String CHART_DESCRIPTION_TEXT1 				                          = "chartNoteValue1";
+	public static final String CHART_DESCRIPTION_TEXT2 				                          = "chartNoteValue2";
+	
+	public void initClass() throws Exception{
+		logger.info("inside the initClass method for DemographicsTest test class....");
+		messagingData                                    = ExcelFileUtilty.readExcelSheet("Messaging");
+		firstLoggedUser                                  = messagingData.get(USER1);
+		secondLoggedUser                                 = messagingData.get(USER2);
+		attachementTitle                                 = messagingData.get(ATTACHMENT_TITLE);
+		messageToText                                    = messagingData.get(MESSAGE_TO_TEXT);
+		chartNoteDescription1                            = messagingData.get(CHART_DESCRIPTION_TEXT1);
+		chartNoteDescription2                            = messagingData.get(CHART_DESCRIPTION_TEXT2);
+	}
 	/**
 	 * This method is used for double clicking on the created message
 	 */
@@ -34,7 +67,7 @@ public class MessagingPage extends BaseAbstractPage {
 		List<WebElement> searchPatientrow = driver.findElements(messageQueue);
 		for(WebElement irows:searchPatientrow){
 			String rowtext =irows.getText();
-			if(rowtext.contains(ConstantsFile.messageIntialName) && rowtext.contains(MessagingTest.firstLoggedUser)){
+			if(rowtext.contains(ConstantsFile.messageIntialName) && rowtext.contains(MessagingPage.firstLoggedUser)){
 				System.out.println("corrected Message row is displayed");
 				SeleniumUtil.doubleClick(irows);	
 				break;
@@ -53,7 +86,7 @@ public class MessagingPage extends BaseAbstractPage {
 		List<WebElement> searchPatientrow = driver.findElements(messageQueue);
 		for(WebElement irows:searchPatientrow){
 			String rowtext =irows.getText();
-			if(rowtext.contains(ConstantsFile.messageIntialName) && rowtext.contains(MessagingTest.firstLoggedUser)){
+			if(rowtext.contains(ConstantsFile.messageIntialName) && rowtext.contains(MessagingPage.firstLoggedUser)){
 				System.out.println("corrected patient row is displayed");
 				SeleniumUtil.rightClick(irows);
 				SeleniumUtil.clickOnImageWithTargetOffsetInSikuli(optionName);
@@ -110,7 +143,7 @@ public class MessagingPage extends BaseAbstractPage {
 		boolean isMessagePresent=false;
 		String messageSubject=SeleniumUtil.getElementWithFluentWait(messageContentInQueue).getText();
 		System.out.println("Message Subject Is"+messageSubject);
-		if(messageSubject.contains(ConstantsFile.messageIntialName) && messageSubject.contains(MessagingTest.firstLoggedUser)){
+		if(messageSubject.contains(ConstantsFile.messageIntialName) && messageSubject.contains(MessagingPage.firstLoggedUser)){
 			System.out.println("Message is opened in the message queue ");
 			isMessagePresent=true;
 		}

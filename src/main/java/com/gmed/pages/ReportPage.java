@@ -1,25 +1,24 @@
 package com.gmed.pages;
 
 import java.util.List;
+import java.util.Map;
 
 import org.apache.log4j.LogManager;
 import org.apache.log4j.Logger;
 import org.openqa.selenium.By;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebElement;
-import org.openqa.selenium.interactions.Actions;
+
 import org.sikuli.script.FindFailed;
 
 import static com.gmed.helper.DriverFactory.driver;
 import static com.gmed.helper.DriverFactory.action;
 import com.gmed.Frames.Frames;
 import com.gmed.base.BaseAbstractPage;
-import com.gmed.test.CQMReport;
-import com.gmed.test.DemographicsTest;
-import com.gmed.test.MIPSReport;
-import com.gmed.test.TaskTest;
+
 import com.gmed.utils.ConstantsFile;
 import com.gmed.utils.DateUtil;
+import com.gmed.utils.ExcelFileUtilty;
 import com.gmed.utils.SeleniumUtil;
 
 public class ReportPage extends BaseAbstractPage {
@@ -69,6 +68,40 @@ public class ReportPage extends BaseAbstractPage {
 	public static By trtags                                    = By.xpath("//table[@id='tblList_TableRoot']/tbody/tr/td/div[@id='tblList_div']/table[@id='tblList_Table']/tbody/tr/td[1]");
 	public static By chartAccessTextInReport                   = By.xpath("//table[@lang='en-US']/tbody/tr/td[text()='Chart Access Audit Report']");
 	Profile profilepageobj =new Profile();
+	
+	
+	/**contains the MU page data*/
+	public static Map<String, String> reportData;
+	
+	/**These are the variables which are used to store different data for MU Report module*/
+	public static String existingProfileProviderfirstname;
+	public static String existingProfileProviderlastname;
+	public static String cqmMeasures;
+	public static String destinationFolder;
+	public static String Providerfirstname;
+	public static String Providerlastname;
+	public static String mipsReportName;
+	public static String messageRecipientsName;
+	public static String muMeasures;
+	/** These are the variables which are present on "MUReport" sheet in the excel*/
+	public static final String PROVIDER_FIRSTNAME 				                   = "providerfirstname";
+	public static final String PROVIDER_LASTNAME 				                   = "providerlastname";
+	public static final String CQM_MEASURES 				                       = "cqmMeasures";
+	public static final String DESTINATION_FOLDER 				                   = "destinationfolder";
+	public static final String MIPS_REPORT_NAME 				                   = "mipsReportName";
+	public static final String MESSAGE_RECIPIENTS_NAME 				               = "messageRecipients";
+	public static final String MU_MEASURES 				                                   = "muMeasures";
+	public void initClass() throws Exception{
+		logger.info("inside the initClass method for DemographicsTest test class....");
+		reportData                                     = ExcelFileUtilty.readExcelSheet("Report");
+		existingProfileProviderfirstname            = reportData.get(PROVIDER_FIRSTNAME);
+		existingProfileProviderlastname             = reportData.get(PROVIDER_LASTNAME);
+		cqmMeasures                                 = reportData.get(CQM_MEASURES);
+		destinationFolder                           = reportData.get(DESTINATION_FOLDER);
+		mipsReportName                              = reportData.get(MIPS_REPORT_NAME);
+		messageRecipientsName                       = reportData.get(MESSAGE_RECIPIENTS_NAME);
+		muMeasures                                  = reportData.get(MU_MEASURES);
+	}
 	/**
 	 * This method is used for click Patient By Age Report present in Reports module from the application
 	 * 
@@ -107,8 +140,8 @@ public class ReportPage extends BaseAbstractPage {
 	 */
 	public void enterValidAgeInReport(){
 		SeleniumUtil.switchToParentFrame(Frames.REPORTINSIDE);
-		SeleniumUtil.getElementWithFluentWait(fromAgeTextBox).sendKeys(DemographicsTest.existingPatientFromAge);
-		SeleniumUtil.getElementWithFluentWait(toAgeTextBox).sendKeys(DemographicsTest.existingPatientToAge);
+		SeleniumUtil.getElementWithFluentWait(fromAgeTextBox).sendKeys(DemographicsPage.existingPatientFromAge);
+		SeleniumUtil.getElementWithFluentWait(toAgeTextBox).sendKeys(DemographicsPage.existingPatientToAge);
 		SeleniumUtil.getElementWithFluentWait(runReportButton).click();
 		SeleniumUtil.waitForProgressBar(Frames.REPORTINSIDE);
 	}
@@ -265,7 +298,7 @@ public class ReportPage extends BaseAbstractPage {
 	 */
 	public void enterValidZipCodeInReport(){
 		SeleniumUtil.switchToParentFrame(Frames.REPORTINSIDE);
-		SeleniumUtil.getElementWithFluentWait(zipCodeInZipAddressReport).sendKeys(DemographicsTest.existingPatientzipaddress);
+		SeleniumUtil.getElementWithFluentWait(zipCodeInZipAddressReport).sendKeys(DemographicsPage.existingPatientzipaddress);
 		SeleniumUtil.getElementWithFluentWait(runReportButton).click();
 		SeleniumUtil.waitForProgressBar(Frames.REPORTINSIDE);
 	}
@@ -480,7 +513,7 @@ public class ReportPage extends BaseAbstractPage {
 
 		logger.info("searching the destination folder");
 		SeleniumUtil.getElementWithFluentWait(folderTextBox).clear();
-		SeleniumUtil.getElementWithFluentWait(folderTextBox).sendKeys(CQMReport.destinationFolder);
+		SeleniumUtil.getElementWithFluentWait(folderTextBox).sendKeys(destinationFolder);
 
 		logger.info("selecting the folder...");
 		SeleniumUtil.getElementWithFluentWait(MedicalChartPage.selectbutton).click();
@@ -573,7 +606,7 @@ public class ReportPage extends BaseAbstractPage {
 	 * This method is used for giving random name for the mips report
 	 */
 	public void addReportName(){
-		ConstantsFile.mipsReportName = MIPSReport.mipsReportName.concat(ConstantsFile.genData.generateRandomNumber(5));
+		ConstantsFile.mipsReportName = mipsReportName.concat(ConstantsFile.genData.generateRandomNumber(5));
 		SeleniumUtil.getElementWithFluentWait(AppointmentPage.patientnametextbox).sendKeys(ConstantsFile.mipsReportName);
 	}
 	/**
@@ -602,7 +635,7 @@ public class ReportPage extends BaseAbstractPage {
 		logger.info("searching  recipients...");
 		SeleniumUtil.switchToParentFrame(Frames.TOOLTIP);
 		SeleniumUtil.waitForProgressBar(Frames.TOOLTIP);
-		SeleniumUtil.getElementWithFluentWait(TaskPage.recipientTextBox).sendKeys(MIPSReport.messageRecipientsName);
+		SeleniumUtil.getElementWithFluentWait(TaskPage.recipientTextBox).sendKeys(messageRecipientsName);
 		SeleniumUtil.getElementWithFluentWait(TaskPage.recipientSearchIcon).click();
 		sleep(5000);
 
@@ -618,7 +651,7 @@ public class ReportPage extends BaseAbstractPage {
 				String rowText = tdElement.getText();
 				System.out.println("row # " + row_num + ", col # " + col_num + "text=" + tdElement.getText());
 				col_num++;
-				if (rowText.equalsIgnoreCase(MIPSReport.messageRecipientsName)) {
+				if (rowText.equalsIgnoreCase(messageRecipientsName)) {
 					System.out.println("corrected user is selected");
 					SeleniumUtil.doubleClick(tdElement);
 					isRecipientPresent=true;

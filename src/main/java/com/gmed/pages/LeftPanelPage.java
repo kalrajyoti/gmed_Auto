@@ -24,7 +24,7 @@ import org.testng.TestNG;
 
 import com.gmed.Frames.Frames;
 import com.gmed.base.BaseAbstractPage;
-import com.gmed.test.MIPSReport;
+
 import com.gmed.utils.ConstantsFile;
 import com.gmed.utils.SeleniumUtil;
 

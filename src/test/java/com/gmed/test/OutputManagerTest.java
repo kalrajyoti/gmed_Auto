@@ -13,6 +13,8 @@ import org.testng.annotations.BeforeGroups;
 import org.testng.annotations.Test;
 import org.testng.asserts.Assertion;
 
+import com.gmed.base.BaseTestClass;
+import com.gmed.pages.DemographicsPage;
 import com.gmed.pages.DocumentPage;
 import com.gmed.pages.FaxingPage;
 import com.gmed.pages.LeftPanelPage;
@@ -54,69 +56,69 @@ public class OutputManagerTest extends BaseTestClass {
 
 	private PatientPortalLogin patientLogin;
 
-	/**contains the Output Manager page data*/
-	public static Map<String, String> outputData;
-
-
-	/**contains the demographics Chart page data*/
-	public static Map<String, String> demographicsData;
-
-	/**contains the Profile page data*/
-	public static Map<String, String> profileData;
-
-	/**These are the variables which are used to store different data for Output Manager module*/
-	public static String cleanupOperationText;
-	public static String signOperationText;
-	public static String printOperationText;
-	public static String faxOperationText;
-	public static String existingPatientfirstname;
-	public static String existingPatientlastname;
-	public static String publishToPortalOperationText;
-	public static String documentText;
-	public static String sendForSignatureOperationText;
-	public static String sendForSignatureText;
-	public static String sendForReviewOperationText;
-	public static String sendForReviewText;
-	
-	/** These are the variables which are present on "Output Manager" sheet in the excel*/
-	public static final String CLEAN_UP_TEXT 				                                  = "cleanupOperationText";
-	public static final String SIGN_TEXT 				                                      = "signOperationText";
-	public static final String PRINT_TEXT 				                                      = "printOperationText";
-	public static final String FAX_TEXT 				                                      = "faxOperationText";
-	public static final String PATIENT_FIRSTNAME 				                              = "patientfirstname";
-	public static final String PATIENT_LASTNAME 				                              = "patientlastname";
-	public static final String PUBLISH_TO_PORTAL_TEXT 				                          = "publishOperationText";
-	public static final String DOCUMENT_TEXT 				                                  = "documentTextInPP";
-	public static final String SEND_FOR_SIGNATURE_TEXT 				                          = "sendForSignatureOperationText";
-	public static final String SIGNATURE_TEXT 				                                  = "signText";
-	public static final String SEND_FOR_REVIEW_TEXT 				                          = "sendForReviewOperationText";
-	public static final String REVIEW_TEXT 				                                      = "reviewText";
+//	/**contains the Output Manager page data*/
+//	public static Map<String, String> outputData;
+//
+//
+//	/**contains the demographics Chart page data*/
+//	public static Map<String, String> demographicsData;
+//
+//	/**contains the Profile page data*/
+//	public static Map<String, String> profileData;
+//
+//	/**These are the variables which are used to store different data for Output Manager module*/
+//	public static String cleanupOperationText;
+//	public static String signOperationText;
+//	public static String printOperationText;
+//	public static String faxOperationText;
+//	public static String existingPatientfirstname;
+//	public static String existingPatientlastname;
+//	public static String publishToPortalOperationText;
+//	public static String documentText;
+//	public static String sendForSignatureOperationText;
+//	public static String sendForSignatureText;
+//	public static String sendForReviewOperationText;
+//	public static String sendForReviewText;
+//	
+//	/** These are the variables which are present on "Output Manager" sheet in the excel*/
+//	public static final String CLEAN_UP_TEXT 				                                  = "cleanupOperationText";
+//	public static final String SIGN_TEXT 				                                      = "signOperationText";
+//	public static final String PRINT_TEXT 				                                      = "printOperationText";
+//	public static final String FAX_TEXT 				                                      = "faxOperationText";
+//	public static final String PATIENT_FIRSTNAME 				                              = "patientfirstname";
+//	public static final String PATIENT_LASTNAME 				                              = "patientlastname";
+//	public static final String PUBLISH_TO_PORTAL_TEXT 				                          = "publishOperationText";
+//	public static final String DOCUMENT_TEXT 				                                  = "documentTextInPP";
+//	public static final String SEND_FOR_SIGNATURE_TEXT 				                          = "sendForSignatureOperationText";
+//	public static final String SIGNATURE_TEXT 				                                  = "signText";
+//	public static final String SEND_FOR_REVIEW_TEXT 				                          = "sendForReviewOperationText";
+//	public static final String REVIEW_TEXT 				                                      = "reviewText";
 	
 	
 	/** This method runs before the first test from the class runs */
 	@BeforeClass
 	public void initClass() throws Exception{
 		logger.info("inside the initClass method for Prescription test class....");
-		outputData                                                                     = ExcelFileUtilty.readExcelSheet("OutputManager");
-		demographicsData                                                               = ExcelFileUtilty.readExcelSheet("Demographics");
-		profileData                                                                    = ExcelFileUtilty.readExcelSheet("Profile");
-		DemographicsTest.existingPatientfirstname                                      = demographicsData.get(DemographicsTest.PATIENT_FIRSTNAME);	
-		DemographicsTest.existingPatientlastname                                       = demographicsData.get(DemographicsTest.PATIENT_LASTNAME);
-		ProfileTest.existingProfileProviderfirstname                                   = profileData.get(ProfileTest.PROFILE_PROVIDER_FIRSTNAME);
-		ProfileTest.existingProfileProviderlastname                                    = profileData.get(ProfileTest.PROFILE_PROVIDER_LASTNAME);
-		ProfileTest.userNameForAdvanceDirectiveProfile                                 = profileData.get(ProfileTest.PROFILE_USER_NAME);
-		cleanupOperationText                                                           = outputData.get(CLEAN_UP_TEXT) ; 
-		signOperationText                                                              = outputData.get(SIGN_TEXT) ;
-		printOperationText                                                             = outputData.get(PRINT_TEXT) ;
-		faxOperationText                                                               = outputData.get(FAX_TEXT) ;
-		existingPatientfirstname                                                       = outputData.get(PATIENT_FIRSTNAME);
-		existingPatientlastname                                                        = outputData.get(PATIENT_LASTNAME);
-		publishToPortalOperationText                                                   = outputData.get(PUBLISH_TO_PORTAL_TEXT);
-		documentText                                                                   = outputData.get(DOCUMENT_TEXT);
-		sendForSignatureOperationText                                                  = outputData.get(SEND_FOR_SIGNATURE_TEXT);
-		sendForSignatureText                                                           = outputData.get(SIGNATURE_TEXT);
-		sendForReviewOperationText                                                     = outputData.get(SEND_FOR_REVIEW_TEXT);
-		sendForReviewText                                                              = outputData.get(REVIEW_TEXT);
+//		outputData                                                                     = ExcelFileUtilty.readExcelSheet("OutputManager");
+//		demographicsData                                                               = ExcelFileUtilty.readExcelSheet("Demographics");
+//		profileData                                                                    = ExcelFileUtilty.readExcelSheet("Profile");
+//		DemographicsTest.existingPatientfirstname                                      = demographicsData.get(DemographicsTest.PATIENT_FIRSTNAME);	
+//		DemographicsTest.existingPatientlastname                                       = demographicsData.get(DemographicsTest.PATIENT_LASTNAME);
+//		ProfileTest.existingProfileProviderfirstname                                   = profileData.get(ProfileTest.PROFILE_PROVIDER_FIRSTNAME);
+//		ProfileTest.existingProfileProviderlastname                                    = profileData.get(ProfileTest.PROFILE_PROVIDER_LASTNAME);
+//		ProfileTest.userNameForAdvanceDirectiveProfile                                 = profileData.get(ProfileTest.PROFILE_USER_NAME);
+//		cleanupOperationText                                                           = outputData.get(CLEAN_UP_TEXT) ; 
+//		signOperationText                                                              = outputData.get(SIGN_TEXT) ;
+//		printOperationText                                                             = outputData.get(PRINT_TEXT) ;
+//		faxOperationText                                                               = outputData.get(FAX_TEXT) ;
+//		existingPatientfirstname                                                       = outputData.get(PATIENT_FIRSTNAME);
+//		existingPatientlastname                                                        = outputData.get(PATIENT_LASTNAME);
+//		publishToPortalOperationText                                                   = outputData.get(PUBLISH_TO_PORTAL_TEXT);
+//		documentText                                                                   = outputData.get(DOCUMENT_TEXT);
+//		sendForSignatureOperationText                                                  = outputData.get(SEND_FOR_SIGNATURE_TEXT);
+//		sendForSignatureText                                                           = outputData.get(SIGNATURE_TEXT);
+//		sendForReviewOperationText                                                     = outputData.get(SEND_FOR_REVIEW_TEXT);
+//		sendForReviewText                                                              = outputData.get(REVIEW_TEXT);
 		loginPageObj                                                                   = new LoginPage();
 		leftPanelpageobj                                                               = new LeftPanelPage();
 		medicalchartpage                                                               = new MedicalChartPage();
@@ -127,20 +129,15 @@ public class OutputManagerTest extends BaseTestClass {
 		prescriptionobj                                                                = new PrescriptionPage();
 		faxobj                                                                         = new FaxingPage();
 		patientLogin                                                                   = new PatientPortalLogin();
+		outputpageobj.initClass();
 	}
 
 	@BeforeGroups(groups = { "Patient_Portal" })
 	public void opendPatientPortal() {
-		//String testCaseName=method.getName();
-		//if(testCaseName.equalsIgnoreCase("verifyPublishToPortal")){
 		String patientPortalUrl =GmedConfig.getConfig("patientPortalLogin");
 		System.out.println(patientPortalUrl);
 		getAnotherDriverInstance(patientPortalUrl);
 		openPatientPortalURL(patientPortalUrl);
-		/*}
-		else{
-			System.out.println("Not required to open patient portal");
-		}*/
 	}
 
 
@@ -154,12 +151,12 @@ public class OutputManagerTest extends BaseTestClass {
 		medicalchartpage.clickOnMedicalChartFromLeftPanel();
 		medicalchartpage.switchToMedicalFrame();
 		logger.info("Searching the patient with first name & last name in medical chart...");
-		medicalchartpage.searchExistingPatientWithName(DemographicsTest.existingPatientfirstname,DemographicsTest.existingPatientlastname);
-		outputAssert.assertEquals(medicalchartpage.verifyPatientIsSerchedWithName(DemographicsTest.existingPatientfirstname,DemographicsTest.existingPatientlastname), true);
+		medicalchartpage.searchExistingPatientWithName(DemographicsPage.existingPatientfirstname,DemographicsPage.existingPatientlastname);
+		outputAssert.assertEquals(medicalchartpage.verifyPatientIsSerchedWithName(DemographicsPage.existingPatientfirstname,DemographicsPage.existingPatientlastname), true);
 		logger.info("selecting the patient...");
 		medicalchartpage.switchToMedicalFrame();
 		medicalchartpage.selectPatient();
-		outputAssert.assertEquals(patientpageobj.verifyPatientChartIsOpened1(DemographicsTest.existingPatientfirstname,DemographicsTest.existingPatientlastname), true);
+		outputAssert.assertEquals(patientpageobj.verifyPatientChartIsOpened1(DemographicsPage.existingPatientfirstname,DemographicsPage.existingPatientlastname), true);
 		medicalchartpage.dismissGuideline();
 
 		
@@ -200,12 +197,12 @@ public class OutputManagerTest extends BaseTestClass {
 		medicalchartpage.clickOnMedicalChartFromLeftPanel();
 		medicalchartpage.switchToMedicalFrame();
 		logger.info("Searching the patient with first name & last name in medical chart...");
-		medicalchartpage.searchExistingPatientWithName(DemographicsTest.existingPatientfirstname,DemographicsTest.existingPatientlastname);
-		outputAssert.assertEquals(medicalchartpage.verifyPatientIsSerchedWithName(DemographicsTest.existingPatientfirstname,DemographicsTest.existingPatientlastname), true);
+		medicalchartpage.searchExistingPatientWithName(DemographicsPage.existingPatientfirstname,DemographicsPage.existingPatientlastname);
+		outputAssert.assertEquals(medicalchartpage.verifyPatientIsSerchedWithName(DemographicsPage.existingPatientfirstname,DemographicsPage.existingPatientlastname), true);
 		logger.info("selecting the patient...");
 		medicalchartpage.switchToMedicalFrame();
 		medicalchartpage.selectPatient();
-		outputAssert.assertEquals(patientpageobj.verifyPatientChartIsOpened1(DemographicsTest.existingPatientfirstname,DemographicsTest.existingPatientlastname), true);
+		outputAssert.assertEquals(patientpageobj.verifyPatientChartIsOpened1(DemographicsPage.existingPatientfirstname,DemographicsPage.existingPatientlastname), true);
 		medicalchartpage.dismissGuideline();
 
 		logger.info("creating First visit service in patient chart...");
@@ -224,7 +221,7 @@ public class OutputManagerTest extends BaseTestClass {
 		logger.info("Clicking on Provider Section Present in First visit Service");
 		outputpageobj.clickOnProvider();
 		profilepageobj.switchToTooltip();
-		outputpageobj.addProvider(ProfileTest.existingProfileProviderfirstname, ProfileTest.existingProfileProviderlastname);
+		outputpageobj.addProvider(Profile.existingProfileProviderfirstname, Profile.existingProfileProviderlastname);
 
 
 		outputpageobj.switchToTemplateFrame();
@@ -270,12 +267,12 @@ public class OutputManagerTest extends BaseTestClass {
 		medicalchartpage.clickOnMedicalChartFromLeftPanel();
 		medicalchartpage.switchToMedicalFrame();
 		logger.info("Searching the patient with first name & last name in medical chart...");
-		medicalchartpage.searchExistingPatientWithName(DemographicsTest.existingPatientfirstname,DemographicsTest.existingPatientlastname);
-		outputAssert.assertEquals(medicalchartpage.verifyPatientIsSerchedWithName(DemographicsTest.existingPatientfirstname,DemographicsTest.existingPatientlastname), true);
+		medicalchartpage.searchExistingPatientWithName(DemographicsPage.existingPatientfirstname,DemographicsPage.existingPatientlastname);
+		outputAssert.assertEquals(medicalchartpage.verifyPatientIsSerchedWithName(DemographicsPage.existingPatientfirstname,DemographicsPage.existingPatientlastname), true);
 		logger.info("selecting the patient...");
 		medicalchartpage.switchToMedicalFrame();
 		medicalchartpage.selectPatient();
-		outputAssert.assertEquals(patientpageobj.verifyPatientChartIsOpened1(DemographicsTest.existingPatientfirstname,DemographicsTest.existingPatientlastname), true);
+		outputAssert.assertEquals(patientpageobj.verifyPatientChartIsOpened1(DemographicsPage.existingPatientfirstname,DemographicsPage.existingPatientlastname), true);
 		medicalchartpage.dismissGuideline();
 
 		logger.info("creating First visit service in patient chart...");
@@ -321,12 +318,12 @@ public class OutputManagerTest extends BaseTestClass {
 		medicalchartpage.clickOnMedicalChartFromLeftPanel();
 		medicalchartpage.switchToMedicalFrame();
 		logger.info("Searching the patient with first name & last name in medical chart...");
-		medicalchartpage.searchExistingPatientWithName(DemographicsTest.existingPatientfirstname,DemographicsTest.existingPatientlastname);
-		outputAssert.assertEquals(medicalchartpage.verifyPatientIsSerchedWithName(DemographicsTest.existingPatientfirstname,DemographicsTest.existingPatientlastname), true);
+		medicalchartpage.searchExistingPatientWithName(DemographicsPage.existingPatientfirstname,DemographicsPage.existingPatientlastname);
+		outputAssert.assertEquals(medicalchartpage.verifyPatientIsSerchedWithName(DemographicsPage.existingPatientfirstname,DemographicsPage.existingPatientlastname), true);
 		logger.info("selecting the patient...");
 		medicalchartpage.switchToMedicalFrame();
 		medicalchartpage.selectPatient();
-		outputAssert.assertEquals(patientpageobj.verifyPatientChartIsOpened1(DemographicsTest.existingPatientfirstname,DemographicsTest.existingPatientlastname), true);
+		outputAssert.assertEquals(patientpageobj.verifyPatientChartIsOpened1(DemographicsPage.existingPatientfirstname,DemographicsPage.existingPatientlastname), true);
 		medicalchartpage.dismissGuideline();
 
 		logger.info("creating First visit service in patient chart...");
@@ -348,7 +345,7 @@ public class OutputManagerTest extends BaseTestClass {
 		logger.info("Perform Fax Operation on Visit Note Template ");
 		outputpageobj.selectTemplateDocument("fax","verifyFaxOperation");
 		logger.info("select Provider for Faxing...");
-		outputpageobj.selectProviderForFaxOperation(ProfileTest.existingProfileProviderfirstname, ProfileTest.existingProfileProviderlastname);
+		outputpageobj.selectProviderForFaxOperation(Profile.existingProfileProviderfirstname, Profile.existingProfileProviderlastname);
 		profilepageobj.switchToTooltip();
 		logger.info("Clicking on Summary Tab Of Output Manager");
 		leftPanelpageobj.switchToDifferentTab(" Summary ");
@@ -372,12 +369,12 @@ public class OutputManagerTest extends BaseTestClass {
 		medicalchartpage.clickOnMedicalChartFromLeftPanel();
 		medicalchartpage.switchToMedicalFrame();
 		logger.info("Searching the patient with first name & last name in medical chart...");
-		medicalchartpage.searchExistingPatientWithName(existingPatientfirstname,existingPatientlastname);
-		outputAssert.assertEquals(medicalchartpage.verifyPatientIsSerchedWithName(existingPatientfirstname,existingPatientlastname), true);
+		medicalchartpage.searchExistingPatientWithName(OutputManagerPage.existingPatientfirstname,OutputManagerPage.existingPatientlastname);
+		outputAssert.assertEquals(medicalchartpage.verifyPatientIsSerchedWithName(OutputManagerPage.existingPatientfirstname,OutputManagerPage.existingPatientlastname), true);
 		logger.info("selecting the patient...");
 		medicalchartpage.switchToMedicalFrame();
 		medicalchartpage.selectPatient();
-		outputAssert.assertEquals(patientpageobj.verifyPatientChartIsOpened1(existingPatientfirstname,existingPatientlastname), true);
+		outputAssert.assertEquals(patientpageobj.verifyPatientChartIsOpened1(OutputManagerPage.existingPatientfirstname,OutputManagerPage.existingPatientlastname), true);
 		medicalchartpage.dismissGuideline();
 
 		logger.info("creating First visit service in patient chart...");
@@ -426,12 +423,12 @@ public class OutputManagerTest extends BaseTestClass {
 		medicalchartpage.clickOnMedicalChartFromLeftPanel();
 		medicalchartpage.switchToMedicalFrame();
 		logger.info("Searching the patient with first name & last name in medical chart...");
-		medicalchartpage.searchExistingPatientWithName(DemographicsTest.existingPatientfirstname,DemographicsTest.existingPatientlastname);
-		outputAssert.assertEquals(medicalchartpage.verifyPatientIsSerchedWithName(DemographicsTest.existingPatientfirstname,DemographicsTest.existingPatientlastname), true);
+		medicalchartpage.searchExistingPatientWithName(DemographicsPage.existingPatientfirstname,DemographicsPage.existingPatientlastname);
+		outputAssert.assertEquals(medicalchartpage.verifyPatientIsSerchedWithName(DemographicsPage.existingPatientfirstname,DemographicsPage.existingPatientlastname), true);
 		logger.info("selecting the patient...");
 		medicalchartpage.switchToMedicalFrame();
 		medicalchartpage.selectPatient();
-		outputAssert.assertEquals(patientpageobj.verifyPatientChartIsOpened1(DemographicsTest.existingPatientfirstname,DemographicsTest.existingPatientlastname), true);
+		outputAssert.assertEquals(patientpageobj.verifyPatientChartIsOpened1(DemographicsPage.existingPatientfirstname,DemographicsPage.existingPatientlastname), true);
 		medicalchartpage.dismissGuideline();
 
 		logger.info("creating First visit service in patient chart...");
@@ -443,7 +440,7 @@ public class OutputManagerTest extends BaseTestClass {
 		logger.info("Clicking on Provider Section Present in First visit Service");
 		outputpageobj.clickOnProvider();
 		profilepageobj.switchToTooltip();
-		outputpageobj.addProvider(ProfileTest.existingProfileProviderfirstname, ProfileTest.existingProfileProviderlastname);
+		outputpageobj.addProvider(Profile.existingProfileProviderfirstname, Profile.existingProfileProviderlastname);
 		outputpageobj.switchToTemplateFrame();
 		logger.info("Clicking on Process button present on Top of Template menus");
 		leftPanelpageobj.clickOnToolBarMenus("Process");
@@ -479,12 +476,12 @@ public class OutputManagerTest extends BaseTestClass {
 		medicalchartpage.clickOnMedicalChartFromLeftPanel();
 		medicalchartpage.switchToMedicalFrame();
 		logger.info("Searching the patient with first name & last name in medical chart...");
-		medicalchartpage.searchExistingPatientWithName(DemographicsTest.existingPatientfirstname,DemographicsTest.existingPatientlastname);
-		outputAssert.assertEquals(medicalchartpage.verifyPatientIsSerchedWithName(DemographicsTest.existingPatientfirstname,DemographicsTest.existingPatientlastname), true);
+		medicalchartpage.searchExistingPatientWithName(DemographicsPage.existingPatientfirstname,DemographicsPage.existingPatientlastname);
+		outputAssert.assertEquals(medicalchartpage.verifyPatientIsSerchedWithName(DemographicsPage.existingPatientfirstname,DemographicsPage.existingPatientlastname), true);
 		logger.info("selecting the patient...");
 		medicalchartpage.switchToMedicalFrame();
 		medicalchartpage.selectPatient();
-		outputAssert.assertEquals(patientpageobj.verifyPatientChartIsOpened1(DemographicsTest.existingPatientfirstname,DemographicsTest.existingPatientlastname), true);
+		outputAssert.assertEquals(patientpageobj.verifyPatientChartIsOpened1(DemographicsPage.existingPatientfirstname,DemographicsPage.existingPatientlastname), true);
 		medicalchartpage.dismissGuideline();
 
 		logger.info("creating First visit service in patient chart...");
@@ -496,7 +493,7 @@ public class OutputManagerTest extends BaseTestClass {
 		logger.info("Clicking on Provider Section Present in First visit Service");
 		outputpageobj.clickOnProvider();
 		profilepageobj.switchToTooltip();
-		outputpageobj.addProvider(ProfileTest.existingProfileProviderfirstname, ProfileTest.existingProfileProviderlastname);
+		outputpageobj.addProvider(Profile.existingProfileProviderfirstname, Profile.existingProfileProviderlastname);
 		outputpageobj.switchToTemplateFrame();
 		logger.info("Clicking on Process button present on Top of Template menus");
 		leftPanelpageobj.clickOnToolBarMenus("Process");

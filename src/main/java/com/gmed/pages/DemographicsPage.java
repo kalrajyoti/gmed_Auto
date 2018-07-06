@@ -4,6 +4,7 @@ import static com.gmed.helper.DriverFactory.action;
 import static com.gmed.helper.DriverFactory.driver;
 
 import java.util.List;
+import java.util.Map;
 
 import org.apache.log4j.LogManager;
 import org.apache.log4j.Logger;
@@ -11,12 +12,13 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebElement;
 import org.sikuli.script.FindFailed;
+import org.testng.annotations.BeforeClass;
 
 import com.gmed.Frames.DynamicFramePage;
 import com.gmed.Frames.Frames;
 import com.gmed.base.BaseAbstractPage;
 
-import com.gmed.test.DemographicsTest;
+
 
 import com.gmed.utils.ConstantsFile;
 import com.gmed.utils.ExcelFileUtilty;
@@ -49,6 +51,67 @@ public class DemographicsPage extends BaseAbstractPage {
 	public static By patientMonth                                    = By.id("dtbDob_Month");
 	public static By patientDay                                    = By.id("dtbDob_Day");
 	public static By patientYear                                    = By.id("dtbDob_Year");
+	
+	
+	
+
+	public static String existingPatientzipaddress;
+	public static String existingPatientfirstname;
+	public static String existingPatientlastname;
+	public static String existingPatientrecordnumber;
+	public static String existingPatientssn0;
+	public static String existingPatientssn1;
+	public static String existingPatientssn2;
+	public static String existingPrimaryInsurance;
+	public static String existingSecondaryInsurance;
+	public static String existingPatientFromAge;
+	public static String existingPatientToAge;
+	public static String existingPatientdateofbirthmonth;
+	public static String existingPatientdateofbirthday;
+	public static String existingPatientdateofbirthyear;
+	
+	/**contains the Demographics page data*/
+	public static Map<String, String> demographicsData;
+		
+	/** These are the variables which are present on "Demographics" sheet in the excel*/
+	public static final String PATIENT_FIRSTNAME 				                   = "patientfirstname";
+	public static final String PATIENT_LASTNAME 				                   = "patientlastname";
+	public static final String PATIENT_RECORDNUMBER 				               = "recordnumber";
+	public static final String PATIENT_ZIPADDRESS 				                   = "zipaddress";
+	public static final String PATIENT_SSN0 				                       = "ssn0";
+	public static final String PATIENT_SSN1 				                       = "ssn1";
+	public static final String PATIENT_SSN2 				                       = "ssn2";
+	public static final String PRIMARY_INSURANCE 				                   = "primarycarriername";
+	public static final String SECONDARY_INSURANCE 				                   = "secondarycarriername";
+	public static final String PATIENT_FROM_AGE 				                   = "patientFromAge";
+	public static final String PATIENT_TO_AGE 				                       = "patientToAge";
+	public static final String PATIENT_DATEOFBIRTHMONTH 				           = "month";
+	public static final String PATIENT_DATEOFBIRTHDAY 				               = "day";
+	public static final String PATIENT_DATEOFBIRTHYEAR 				               = "year";
+	public static final String PATIENT_SSNNUMBER 				                  =  "socialsecurity";
+	public static final String PATIENT_AGE 				                           = "patientAge";
+	
+
+	public void initClass() throws Exception{
+		logger.info("inside the initClass method for DemographicsTest test class....");
+		demographicsData                                 = ExcelFileUtilty.readExcelSheet("Demographics");
+		existingPatientfirstname                         = demographicsData.get(PATIENT_FIRSTNAME);
+		existingPatientlastname                          = demographicsData.get(PATIENT_LASTNAME);
+		existingPatientrecordnumber                      = demographicsData.get(PATIENT_RECORDNUMBER);
+		existingPatientzipaddress                        = demographicsData.get(PATIENT_ZIPADDRESS);
+		existingPatientssn0                              = demographicsData.get(PATIENT_SSN0);
+		existingPatientssn1                              = demographicsData.get(PATIENT_SSN1);
+		existingPatientssn2                              = demographicsData.get(PATIENT_SSN2);
+		existingPrimaryInsurance                         = demographicsData.get(PRIMARY_INSURANCE);
+		existingSecondaryInsurance                       = demographicsData.get(SECONDARY_INSURANCE);
+		existingPatientFromAge                           = demographicsData.get(PATIENT_FROM_AGE);
+		existingPatientToAge                             = demographicsData.get(PATIENT_TO_AGE);
+		existingPatientdateofbirthmonth                  = demographicsData.get(PATIENT_DATEOFBIRTHMONTH);
+		existingPatientdateofbirthday                    = demographicsData.get(PATIENT_DATEOFBIRTHDAY);
+		existingPatientdateofbirthyear                   = demographicsData.get(PATIENT_DATEOFBIRTHYEAR);
+	
+	}
+	
 	/**
 	 * This method is used to enter valid mail id of  the patient for registering in patient portal
 	 * 
@@ -177,7 +240,7 @@ public class DemographicsPage extends BaseAbstractPage {
 		String patientZipAddress =SeleniumUtil.getElementWithFluentWait(zipAddress).getAttribute("value");
 		String patientMailAddress =SeleniumUtil.getElementWithFluentWait(mailIDTextBox).getAttribute("value");
 		
-		if(patientss0value.contains(DemographicsTest.existingPatientssn0) && patientss1value.contains(DemographicsTest.existingPatientssn1) && patientss2value.contains(DemographicsTest.existingPatientssn2) &&  patientZipAddress.contains(DemographicsTest.existingPatientzipaddress) &&  patientMailAddress.contains(PatientChart.patientMailId)){
+		if(patientss0value.contains(existingPatientssn0) && patientss1value.contains(existingPatientssn1) && patientss2value.contains(existingPatientssn2) &&  patientZipAddress.contains(existingPatientzipaddress) &&  patientMailAddress.contains(PatientChart.patientMailId)){
 			System.out.println("All the modified data is present");
 			isDataAdded=true;
 		}
@@ -234,7 +297,7 @@ public class DemographicsPage extends BaseAbstractPage {
 		DynamicFramePage.switchtoFraFrame();
 		driver.switchTo().frame("panProfile_Frame");
 		SeleniumUtil.getElementWithFluentWait(MedicalChartPage.patientrecordnumber).clear();
-		SeleniumUtil.getElementWithFluentWait(MedicalChartPage.patientrecordnumber).sendKeys(DemographicsTest.existingPatientrecordnumber);
+		SeleniumUtil.getElementWithFluentWait(MedicalChartPage.patientrecordnumber).sendKeys(existingPatientrecordnumber);
 		
 	}
 	/**
@@ -244,7 +307,7 @@ public class DemographicsPage extends BaseAbstractPage {
 	 */
 	public void addZipAddressInDemographics(){
 		SeleniumUtil.getElementWithFluentWait(zipAddress).clear();
-		SeleniumUtil.getElementWithFluentWait(zipAddress).sendKeys(DemographicsTest.existingPatientzipaddress);	
+		SeleniumUtil.getElementWithFluentWait(zipAddress).sendKeys(existingPatientzipaddress);	
 	}
 	/**
 	 * This method is used to add random data zip address,recordnumber in Demographics Module
@@ -265,9 +328,9 @@ public class DemographicsPage extends BaseAbstractPage {
 	public void addSSNInDemographics(){
 		
 		SeleniumUtil.getElementWithFluentWait(patientssn0).clear();
-		SeleniumUtil.getElementWithFluentWait(patientssn0).sendKeys(DemographicsTest.existingPatientssn0);
-		SeleniumUtil.getElementWithFluentWait(patientssn1).sendKeys(DemographicsTest.existingPatientssn1);
-		SeleniumUtil.getElementWithFluentWait(patientssn2).sendKeys(DemographicsTest.existingPatientssn2);	
+		SeleniumUtil.getElementWithFluentWait(patientssn0).sendKeys(existingPatientssn0);
+		SeleniumUtil.getElementWithFluentWait(patientssn1).sendKeys(existingPatientssn1);
+		SeleniumUtil.getElementWithFluentWait(patientssn2).sendKeys(existingPatientssn2);	
 	}
 	/**
 	 * This method is used to add date of birth address in Demographics Module
@@ -275,9 +338,9 @@ public class DemographicsPage extends BaseAbstractPage {
 	 * 
 	 */
 	public void addDateOfBirthInDemographics(){
-		SeleniumUtil.getElementWithFluentWait(patientMonth).sendKeys(DemographicsTest.existingPatientdateofbirthmonth);
-		SeleniumUtil.getElementWithFluentWait(patientDay).sendKeys(DemographicsTest.existingPatientdateofbirthday);
-		SeleniumUtil.getElementWithFluentWait(patientYear).sendKeys(DemographicsTest.existingPatientdateofbirthyear);	
+		SeleniumUtil.getElementWithFluentWait(patientMonth).sendKeys(existingPatientdateofbirthmonth);
+		SeleniumUtil.getElementWithFluentWait(patientDay).sendKeys(existingPatientdateofbirthday);
+		SeleniumUtil.getElementWithFluentWait(patientYear).sendKeys(existingPatientdateofbirthyear);	
 	}
 
 	/**
@@ -290,7 +353,7 @@ public class DemographicsPage extends BaseAbstractPage {
 		SeleniumUtil.getElementWithFluentWait(carrierDropDown).click();
 		//SeleniumUtil.waitForProgressBar(Frames.INSURANCE);
 		SeleniumUtil.switchToParentFrame(Frames.TOOLTIP);
-		SeleniumUtil.getElementWithFluentWait(AppointmentPage.patientnametextbox).sendKeys(DemographicsTest.existingPrimaryInsurance);
+		SeleniumUtil.getElementWithFluentWait(AppointmentPage.patientnametextbox).sendKeys(existingPrimaryInsurance);
 		SeleniumUtil.getElementWithFluentWait(MedicalChartPage.searchPatientInMedical).click();
 		SeleniumUtil.getElementWithFluentWait(ConfigurationPage.filteredrrow).click();
 		SeleniumUtil.waitForProgressBar(Frames.TOOLTIP);
@@ -312,7 +375,7 @@ public class DemographicsPage extends BaseAbstractPage {
 			System.out.println("the rows are:"+irows.getText());
 			String rowtext =irows.getText();
 			System.out.println("row text is"+rowtext);
-			if(rowtext.contains(DemographicsTest.existingPrimaryInsurance) || rowtext.contains(DemographicsTest.existingSecondaryInsurance)){
+			if(rowtext.contains(existingPrimaryInsurance) || rowtext.contains(existingSecondaryInsurance)){
 				System.out.println("Primary & Secondary insurances are added in demographics");
 				SeleniumUtil.rightClick(irows);
 				SeleniumUtil.clickOnImageWitScreenInSikuli("selectDelete");
@@ -359,7 +422,7 @@ public class DemographicsPage extends BaseAbstractPage {
 		SeleniumUtil.getElementWithFluentWait(carrierDropDown).click();
 		//SeleniumUtil.waitForProgressBar(Frames.INSURANCE);
 		SeleniumUtil.switchToParentFrame(Frames.TOOLTIP);
-		SeleniumUtil.getElementWithFluentWait(AppointmentPage.patientnametextbox).sendKeys(DemographicsTest.existingSecondaryInsurance);
+		SeleniumUtil.getElementWithFluentWait(AppointmentPage.patientnametextbox).sendKeys(existingSecondaryInsurance);
 		SeleniumUtil.getElementWithFluentWait(MedicalChartPage.searchPatientInMedical).click();
 		SeleniumUtil.getElementWithFluentWait(ConfigurationPage.filteredrrow).click();
 		SeleniumUtil.waitForProgressBar(Frames.TOOLTIP);
@@ -416,7 +479,7 @@ public class DemographicsPage extends BaseAbstractPage {
 			System.out.println("the rows are:"+irows.getText());
 			String rowtext =irows.getText();
 			System.out.println("row text is"+rowtext);
-			if(rowtext.contains(DemographicsTest.existingPrimaryInsurance) || rowtext.contains(DemographicsTest.existingSecondaryInsurance)){
+			if(rowtext.contains(existingPrimaryInsurance) || rowtext.contains(existingSecondaryInsurance)){
 				System.out.println("Primary & Secondary insurances are added in demographics");
 				//SeleniumUtil.rightClick(irows);
 				//SeleniumUtil.clickOnImageWitScreenInSikuli("selectDelete");
@@ -452,7 +515,7 @@ public class DemographicsPage extends BaseAbstractPage {
 		boolean isGuarantorDataPresent=false;
 		String guarantorFirstname = SeleniumUtil.getElementWithFluentWait(guarantorFirstName).getAttribute("value");
 		String guarantorLastname = SeleniumUtil.getElementWithFluentWait(guarantorLastName).getAttribute("value");
-		if(guarantorFirstname.contains(DemographicsTest.existingPatientfirstname)&& guarantorLastname.contains(DemographicsTest.existingPatientlastname)){
+		if(guarantorFirstname.contains(existingPatientfirstname)&& guarantorLastname.contains(existingPatientlastname)){
 			System.out.println("Guarantor Data is present");
 			isGuarantorDataPresent=true;
 		}

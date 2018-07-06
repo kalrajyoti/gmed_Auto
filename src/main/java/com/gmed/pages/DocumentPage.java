@@ -6,12 +6,14 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.sikuli.script.FindFailed;
 
+
 import com.gmed.Frames.DynamicFramePage;
 import com.gmed.Frames.Frames;
 import com.gmed.base.BaseAbstractPage;
-import com.gmed.test.ImmunizationTest;
+
 import com.gmed.utils.ConstantsFile;
 import com.gmed.utils.DateUtil;
+import com.gmed.utils.ExcelFileUtilty;
 import com.gmed.utils.SeleniumUtil;
 import static com.gmed.helper.DriverFactory.driver;
 import static com.gmed.helper.DriverFactory.action;
@@ -19,6 +21,7 @@ import static com.gmed.helper.DriverFactory.action;
 import java.awt.AWTException;
 import java.util.Iterator;
 import java.util.List;
+import java.util.Map;
 
 public class DocumentPage extends BaseAbstractPage {
 	/** Logger to log the DocumentPage log messages */
@@ -206,6 +209,99 @@ public class DocumentPage extends BaseAbstractPage {
 	public static By        newOrderPopUp                   = By.id("editTemplate");
     public static By        popupCloseButton                = By.id("Popup_CloseButton");
 
+    
+    public static Map<String, String>	documentData;
+    /**contains the Immunization page data*/
+	public static Map<String, String> immunizationData;
+	/**
+	 * Following variable is used to store the value from the Application and
+	 * later on used for comparison
+	 */
+	public static String				APPVALUE;
+	public static String[]				STRARRAY;
+	public static String existingImmunizationPatientfirstname;
+	public static String existingImmunizationPatientlastname;
+	public static String addNewImmunizationForPatient;
+	public static final String PATIENT_FIRSTNAME 				                   = "patientfirstname";
+	public static final String PATIENT_LASTNAME 				                   = "patientlastname";
+	public static final String ADD_NEW_IMMUNIZATION 				               = "addnewcustomimmunization";
+
+	/**
+	 * These are the variables which are present on "Document" sheet in the
+	 * excel
+	 */
+
+	public static String				FIELDS;
+	public static String				PROCEDURE;
+	public static String				PATIENTNAME;
+	public static String				DOB;
+	public static String				GENDER;
+	public static String				ACCOUNTNUM;
+	public static String				INSTRUMENTNAME;
+	public static String				INSTRUMENTNUM;
+	public static String				INSTRUMENTTYPE;
+	public static String				IMAGE_DELETE;
+	public static String				IMAGE_YES;
+	public static String				LIVE_VIDEO;
+	public static String				COMMON_FINDINGS;
+	public static String				GENERAL_FINDINGS;
+	public static String				SPECIMENS;
+	public static String				TIME_TRACKER;
+	public static String				IMAGE_REMOVE;
+	public static String				ASACLASS_TEXT;
+	public static String				ADMINISTERED_MEDICATION;
+	public static String				WEIGHT;
+	public static String				HEIGHT;
+	public static String				LIMITATIONTEXT;
+	public static String				REFERRALTITLE;
+	public static String				IMAGE_REFERRAL;
+	public static String				INTERVENTIONOPTION;
+	public static String				FINDINGSOPTION;
+	public static String				PATHOLOGYTEXT;
+	public static String				AUTHENTICATOR;
+	public static String				AUTHENTICATORPWD;
+	public static String                UNLOCKPWD;
+	public static String                IMPRESSIONTEXT;
+
+	
+	public void initClass() throws Exception {
+		documentData = ExcelFileUtilty.readExcelSheet("Document");
+		FIELDS = documentData.get("fields");
+		PROCEDURE = documentData.get("procedure");
+		PATIENTNAME = documentData.get("searchedpatient");
+		DOB = documentData.get("dob");
+		GENDER = documentData.get("gender");
+		ACCOUNTNUM = documentData.get("accountnum");
+		INSTRUMENTNAME = documentData.get("instrumentname");
+		INSTRUMENTNUM = documentData.get("instrumentnum");
+		INSTRUMENTTYPE = documentData.get("instrumenttype");
+		IMAGE_DELETE = documentData.get("clickondelete");
+		IMAGE_YES = documentData.get("clickonyes");
+		LIVE_VIDEO = documentData.get("livevideo");
+		COMMON_FINDINGS = documentData.get("commonfindings");
+		GENERAL_FINDINGS = documentData.get("generalfindings");
+		SPECIMENS = documentData.get("specimens");
+		TIME_TRACKER = documentData.get("timetracker");
+		IMAGE_REMOVE = documentData.get("clickremovefromdocument");
+		ASACLASS_TEXT = documentData.get("asaclasstext");
+		ADMINISTERED_MEDICATION = documentData.get("administeredmedication");
+		WEIGHT = documentData.get("weight");
+		HEIGHT = documentData.get("height");
+		LIMITATIONTEXT = documentData.get("limitationtext");
+		REFERRALTITLE = documentData.get("referraltitle");
+		IMAGE_REFERRAL = documentData.get("referralimage");
+		INTERVENTIONOPTION = documentData.get("interventiontext");
+		FINDINGSOPTION = documentData.get("findingstext");
+		PATHOLOGYTEXT = documentData.get("pathologytext");
+		AUTHENTICATOR = documentData.get("authenticator");
+		AUTHENTICATORPWD = documentData.get("authenticatorpwd");
+		UNLOCKPWD = documentData.get("unlockpwd");
+		IMPRESSIONTEXT = documentData.get("impressiontext");
+		immunizationData                                 = ExcelFileUtilty.readExcelSheet("Immunization");
+		existingImmunizationPatientfirstname             = immunizationData.get(PATIENT_FIRSTNAME);
+		existingImmunizationPatientlastname              = immunizationData.get(PATIENT_LASTNAME);
+		addNewImmunizationForPatient                     = immunizationData.get(ADD_NEW_IMMUNIZATION);
+	}
 	/**
 	 * This method is used for click on first visit present in medical chart
 	 * 
@@ -2120,7 +2216,7 @@ public class DocumentPage extends BaseAbstractPage {
 		SeleniumUtil.switchToFrame(driver, "fraDocument_Frame");
 		String text =SeleniumUtil.getElementWithFluentWait(immunizationSection).getText();
 		String currentDate=DateUtil.getCurrentDateInDateFormatted("M/d/yyyy");
-		String immunizationTextValue=ImmunizationTest.addNewImmunizationForPatient+", "+currentDate;
+		String immunizationTextValue=addNewImmunizationForPatient+", "+currentDate;
 		if(text.equalsIgnoreCase(immunizationTextValue)){
 			System.out.println("correct immunization details are added in service..");
 			isImmunizationDataPresent=true;
@@ -2140,7 +2236,7 @@ public class DocumentPage extends BaseAbstractPage {
 			System.out.println("the rows are:"+irows.getText());
 			String rowText =irows.getText();
 			System.out.println("row text is"+rowText);
-			if(rowText.contains(ImmunizationTest.addNewImmunizationForPatient)){
+			if(rowText.contains(addNewImmunizationForPatient)){
 				System.out.println("immunization already  added in demographics");
 				SeleniumUtil.rightClick(irows);
 				SeleniumUtil.clickOnImageWitScreenInSikuli("deleteUser");

@@ -27,7 +27,7 @@ import com.gmed.utils.SeleniumUtil;
 import com.gpm.pages.AccountInquiryPage;
 import com.gpm.pages.BillingPage;
 
-public class PatientChartTest extends BaseTestClass {
+public class PatientChartTest extends BaseTestClass1 {
 		/** Logger to log the GpmSmokeTest log messages */
 		private static Logger logger  = LogManager.getLogger(PatientChartTest.class); 
 		private LoginPage loginPageObj;
