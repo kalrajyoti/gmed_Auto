@@ -25,13 +25,13 @@
 		</classes>
 		
 </test>  --> 
- <test name="DemographicsTest" preserve-order="true">
+ <!-- <test name="DemographicsTest" preserve-order="true">
 		<classes>
 			<class name="com.gmed.test.DemographicsTest"/>
 			
 		</classes>
 	
-</test>    
+</test>   -->  
 
 
 
@@ -303,7 +303,7 @@
 </test> -->
 <test name="pifTest" preserve-order="true">
 		<classes>
-			<class name="com.gmed.test.PifTest"/>
+			<class name="com.gmed.test.PatientPortalTestClass"/>
 			
 		</classes>
 		
