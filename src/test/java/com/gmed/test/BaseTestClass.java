@@ -41,13 +41,13 @@ public  class BaseTestClass extends BaseAbstractPage{
 
 
 	@BeforeSuite
-	@Parameters({ "GPINURL" })
+	@Parameters({ "PATIENTPORTALSIGNUP" })
 	public void initBeforeSuite(String parmvalue) {
 		logger.info("initialisation of Gmed Environment...");
 		String url =GmedConfig.getConfig("gGastroURL");
 		System.out.println(url);
-		getDriverInstance(url);
-		openURL(url);
+		//getDriverInstance(url);
+		//openURL(url);
 		if(parmvalue.equalsIgnoreCase("patientPortalSignUp")){
 		logger.info("initialisation of "+ parmvalue + " Environment...");
 		String patientPortalUrl =GmedConfig.getConfig("patientPortalSignUp");
