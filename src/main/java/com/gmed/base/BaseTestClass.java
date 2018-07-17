@@ -46,7 +46,7 @@ public class BaseTestClass extends BaseAbstractPage{
 		getDriverInstance("https://www.facebook.com/");
 		openURL("https://www.facebook.com/");
 		//if(parmvalue.equalsIgnoreCase("patientPortalSignUp")){
-		logger.info("initialisation of "+ parmvalue + " Environment...");
+		//logger.info("initialisation of "+ parmvalue + " Environment...");
 		String patientPortalUrl =GmedConfig.getConfig("patientPortalSignUp");
 		System.out.println(patientPortalUrl);
 		getAnotherDriverInstance(patientPortalUrl);
@@ -58,7 +58,7 @@ public class BaseTestClass extends BaseAbstractPage{
 	    getAnotherDriverInstance(gPin);
 	    openGpinURL(gPin);
 	    GpinUserLogin.logintoGpin();*/	
-	}
+	
 
 	}
 	@BeforeMethod

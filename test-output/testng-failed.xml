@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
+<suite guice-stage="DEVELOPMENT" verbose="0" name="Failed suite [Gmed_test_suite]">
+  <parameter name="BROWSERSCREENSHOT" value="ie"/>
+  <parameter name="PATIENTPORTALLOGIN" value="patientPortalLogin"/>
+  <parameter name="GPINURL" value="gPinURL"/>
+  <parameter name="CleanupSuite" value="gGastro"/>
+  <parameter name="PATIENTPORTALSIGNUP" value="patientPortalSignUp"/>
+  <parameter name="GGASTROLLOGIN" value="gGastroURL"/>
+  <listeners>
+    <listener class-name="com.gmed.helper.ExtentReporterNG"/>
+  </listeners>
+  <test name="DemographicsTest(failed)">
+    <classes>
+      <class name="com.gmed.test.DemographicsTest">
+        <methods>
+          <include name="verifyPatientByZipCodeReport"/>
+          <include name="modifyPatient"/>
+          <include name="verifyPatientByAgeReport"/>
+          <include name="initBeforeSuite"/>
+        </methods>
+      </class> <!-- com.gmed.test.DemographicsTest -->
+    </classes>
+  </test> <!-- DemographicsTest(failed) -->
+</suite> <!-- Failed suite [Gmed_test_suite] -->
