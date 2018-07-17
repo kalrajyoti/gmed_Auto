@@ -38,22 +38,22 @@ public class BaseTestClass extends BaseAbstractPage{
 
 
 	@BeforeSuite
-	@Parameters({ "GPINURL" })
-	public void initBeforeSuite(String parmvalue) {
+	//@Parameters({ "GPINURL" })
+	public void initBeforeSuite() {
 		logger.info("initialisation of Gmed Environment...");
 		String url =GmedConfig.getConfig("gGastroURL");
-		System.out.println(url);
-		getDriverInstance(url);
-		openURL(url);
-		if(parmvalue.equalsIgnoreCase("patientPortalSignUp")){
+		System.out.println("https://www.facebook.com/");
+		getDriverInstance("https://www.facebook.com/");
+		openURL("https://www.facebook.com/");
+		//if(parmvalue.equalsIgnoreCase("patientPortalSignUp")){
 		logger.info("initialisation of "+ parmvalue + " Environment...");
 		String patientPortalUrl =GmedConfig.getConfig("patientPortalSignUp");
 		System.out.println(patientPortalUrl);
 		getAnotherDriverInstance(patientPortalUrl);
 		openPatientPortalURL(patientPortalUrl);
-		}
-		else{
-		logger.info("initialisation of "+ parmvalue + " Environment...");
+	//	}
+		//else{
+		//logger.info("initialisation of "+ parmvalue + " Environment...");
 		/*String gPin =GmedConfig.getConfig(parmvalue);
 	    getAnotherDriverInstance(gPin);
 	    openGpinURL(gPin);
